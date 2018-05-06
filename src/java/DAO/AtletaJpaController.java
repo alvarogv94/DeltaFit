@@ -32,16 +32,16 @@ import javax.persistence.EntityManagerFactory;
  * @author Alvaro
  */
 public class AtletaJpaController implements Serializable {
-    
+
     public AtletaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
-    
+
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
+
     public void create(Atleta atleta) {
         if (atleta.getRecuperacionList() == null) {
             atleta.setRecuperacionList(new ArrayList<Recuperacion>());
@@ -208,7 +208,7 @@ public class AtletaJpaController implements Serializable {
             }
         }
     }
-    
+
     public void edit(Atleta atleta) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -460,7 +460,7 @@ public class AtletaJpaController implements Serializable {
             }
         }
     }
-    
+
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
@@ -532,15 +532,15 @@ public class AtletaJpaController implements Serializable {
             }
         }
     }
-    
+
     public List<Atleta> findAtletaEntities() {
         return findAtletaEntities(true, -1, -1);
     }
-    
+
     public List<Atleta> findAtletaEntities(int maxResults, int firstResult) {
         return findAtletaEntities(false, maxResults, firstResult);
     }
-    
+
     private List<Atleta> findAtletaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
@@ -556,7 +556,7 @@ public class AtletaJpaController implements Serializable {
             em.close();
         }
     }
-    
+
     public Atleta findAtleta(Integer id) {
         EntityManager em = getEntityManager();
         try {
@@ -565,7 +565,7 @@ public class AtletaJpaController implements Serializable {
             em.close();
         }
     }
-    
+
     public int getAtletaCount() {
         EntityManager em = getEntityManager();
         try {
@@ -578,12 +578,12 @@ public class AtletaJpaController implements Serializable {
             em.close();
         }
     }
-    
+
     public Atleta atletaByNomUsuario(String nomUsuario) {
         EntityManager em = getEntityManager();
         List<Atleta> lista = null;
         try {
-            
+
             Query qu = em.createNamedQuery("Atleta.findByNomUsuario", Atleta.class);
             qu.setParameter("nomUsuario", nomUsuario);
             lista = qu.getResultList();
@@ -592,5 +592,4 @@ public class AtletaJpaController implements Serializable {
         }
         return lista.get(0);
     }
-    
 }

@@ -6,6 +6,7 @@
 package DTO;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -42,6 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Atleta.findByPass", query = "SELECT a FROM Atleta a WHERE a.pass = :pass"),
     @NamedQuery(name = "Atleta.findByEmail", query = "SELECT a FROM Atleta a WHERE a.email = :email"),
     @NamedQuery(name = "Atleta.findByPesoActual", query = "SELECT a FROM Atleta a WHERE a.pesoActual = :pesoActual"),
+    @NamedQuery(name = "Atleta.findByAltura", query = "SELECT a FROM Atleta a WHERE a.altura = :altura"),
     @NamedQuery(name = "Atleta.findByDeporte", query = "SELECT a FROM Atleta a WHERE a.deporte = :deporte"),
     @NamedQuery(name = "Atleta.findByDeporteComplementado", query = "SELECT a FROM Atleta a WHERE a.deporteComplementado = :deporteComplementado"),
     @NamedQuery(name = "Atleta.findByTipoUsuario", query = "SELECT a FROM Atleta a WHERE a.tipoUsuario = :tipoUsuario"),
@@ -74,8 +76,11 @@ public class Atleta implements Serializable {
     private String pass;
     @Column(name = "email")
     private String email;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "peso_actual")
-    private Integer pesoActual;
+    private BigDecimal pesoActual;
+    @Column(name = "altura")
+    private BigDecimal altura;
     @Column(name = "deporte")
     private String deporte;
     @Column(name = "deporte_complementado")
@@ -193,12 +198,20 @@ public class Atleta implements Serializable {
         this.email = email;
     }
 
-    public Integer getPesoActual() {
+    public BigDecimal getPesoActual() {
         return pesoActual;
     }
 
-    public void setPesoActual(Integer pesoActual) {
+    public void setPesoActual(BigDecimal pesoActual) {
         this.pesoActual = pesoActual;
+    }
+
+    public BigDecimal getAltura() {
+        return altura;
+    }
+
+    public void setAltura(BigDecimal altura) {
+        this.altura = altura;
     }
 
     public String getDeporte() {

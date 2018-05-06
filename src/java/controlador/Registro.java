@@ -20,6 +20,7 @@ public class Registro {
     private Atleta atleta;
     private EntityManagerFactory emf;
     private ExternalContext contexto;
+
     /**
      * Creates a new instance of Registro
      */
@@ -52,7 +53,13 @@ public class Registro {
     public void setContexto(ExternalContext contexto) {
         this.contexto = contexto;
     }
-    
-    
-    
+
+    public String registro() {
+        /*Este metodo será llamado desde el boton del registro, la comprobación
+        de campos de que sean correctos se hará en la parte del cliente
+         */
+
+        return "";
+    }
+
 }

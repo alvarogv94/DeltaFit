@@ -9,6 +9,137 @@ and open the template in the editor.
 */
 
 #contenido {
-    margin: 10% 0 5% 0;
+    width: 90%;
+    margin: 10% 5%;
     position: relative;
+
+}
+
+/*Div datos personales*/
+#datosPersonales {
+    margin: 0 auto;
+    width: 70%;
+    display: table;
+}
+
+h1 {
+    display: table-caption;
+    text-align: center;
+    margin: 0 0 3% 0;
+}
+
+input[type="text"], input[type="password"] {
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+input[type=text]:focus,input[type=password]:focus, select:focus{
+    border: 1px solid #06f;
+}
+
+#datosPersonalesIzquierda {
+    width: 35%;
+    display: table-cell;
+    float: left;
+}
+
+#datosPersonalesDerecha {
+    display: table-cell;
+    float: right;
+    width: 35%;
+}
+
+#datosPersonales label{
+    width: 100px;
+    display:block;
+    float:left;
+}
+
+#datosPersonales p {
+    margin: 5%;
+}
+
+#datosPersonales table{
+    margin: 5%;
+}
+
+#datosPersonales table input[type="radio"] {
+    margin: 0 19px 0 0;
+}
+
+/*Fin div datos personales*/
+
+/*Inicio div datos fisicos*/
+#datosFisicos {
+    margin: 0 auto;
+    width: 70%;
+    display: table;
+}
+
+
+#datosFisicos label{
+    width: 100px;
+    display:block;
+    float:left;
+}
+
+#datosFisicos p {
+    margin: 5%;
+}
+
+
+#datosFisicos select {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+#datosFisicosIzq {
+    width: 35%;
+    display: table-cell;
+    float: left;   
+}
+#datosFisicosDer {
+    width: 35%;
+    display: table-cell;
+    float: right;  
+}
+
+#datosFisicosDer select {
+    margin: 7% 0;
+}
+#objetivoOtro {
+    display: none;
+}
+#objetivoOtro label {
+    width: 220px;
+    margin: 0 0 5% 0;
+}
+
+/*Fin div datos fisicos*/
+
+/*Clase para boton*/
+.btn {
+    background: #06f;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 7;
+    -moz-border-radius: 7;
+    border-radius: 7px;
+    font-size: 15px;
+    padding: 4px 15px 4px 15px;
+    text-decoration: none;
+    color:white;
+    font-family: 'UbuntuBold';
+}
+
+.btn:hover {
+    background: #71aaff;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
 }

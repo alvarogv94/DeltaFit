@@ -31,8 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "PlanPred.findAll", query = "SELECT p FROM PlanPred p"),
     @NamedQuery(name = "PlanPred.findByCodPlanPred", query = "SELECT p FROM PlanPred p WHERE p.codPlanPred = :codPlanPred"),
     @NamedQuery(name = "PlanPred.findByDeporte", query = "SELECT p FROM PlanPred p WHERE p.deporte = :deporte"),
-    @NamedQuery(name = "PlanPred.findByRutina", query = "SELECT p FROM PlanPred p WHERE p.rutina = :rutina"),
-    @NamedQuery(name = "PlanPred.findByDieta", query = "SELECT p FROM PlanPred p WHERE p.dieta = :dieta")})
+    @NamedQuery(name = "PlanPred.findByObjetivo", query = "SELECT p FROM PlanPred p WHERE p.objetivo = :objetivo")})
 public class PlanPred implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,10 +41,8 @@ public class PlanPred implements Serializable {
     private Integer codPlanPred;
     @Column(name = "deporte")
     private String deporte;
-    @Column(name = "rutina")
-    private String rutina;
-    @Column(name = "dieta")
-    private String dieta;
+    @Column(name = "objetivo")
+    private String objetivo;
     @OneToMany(mappedBy = "codPlanPred")
     private List<RutinaPlanPred> rutinaPlanPredList;
     @OneToMany(mappedBy = "codPlanPred")
@@ -74,20 +71,12 @@ public class PlanPred implements Serializable {
         this.deporte = deporte;
     }
 
-    public String getRutina() {
-        return rutina;
+    public String getObjetivo() {
+        return objetivo;
     }
 
-    public void setRutina(String rutina) {
-        this.rutina = rutina;
-    }
-
-    public String getDieta() {
-        return dieta;
-    }
-
-    public void setDieta(String dieta) {
-        this.dieta = dieta;
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
     }
 
     @XmlTransient
