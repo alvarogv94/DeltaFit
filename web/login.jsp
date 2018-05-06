@@ -35,11 +35,19 @@
                             <legend>Acceso a tu Perfil</legend>
                             <p>
                             <h:outputLabel for="NomUsuario">Nombre de usuario:</h:outputLabel>
-                            <h:inputText value="#{login.nomUsuario}" id="NomUsuario"></h:inputText><br />
+                            <h:inputText value="#{login.nomUsuario}" 
+                                         id="NomUsuario" 
+                                         required="true"                               
+                                         requiredMessage="El campo de nombre de Usuario es obligatorio">
+                            </h:inputText><br /><h:message id="reqnomusu" for="NomUsuario" style="color:red"/>
                             </p>
                             <p>
-                            <h:outputLabel for="Pass">Contraseña:</h:outputLabel>
-                            <h:inputSecret value="#{login.pass}" id="Pass"></h:inputSecret><br />
+                            <h:outputLabel for="pass">Contraseña:</h:outputLabel>
+                            <h:inputSecret value="#{login.pass}" 
+                                           id="pass" 
+                                           required="true"
+                                           requiredMessage="El campo de contraseña es obligatorio">                                
+                            </h:inputSecret><br /><h:message id="reqpass" for="pass" style="color:red"/>
                             </p>
                             
                             <p>

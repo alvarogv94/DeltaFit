@@ -13,7 +13,9 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 
 <f:view>
-    <html>
+    <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:pt="">
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>Registro</title>
@@ -48,8 +50,10 @@
                             </div> 
                             <div id="datosPersonalesDerecha">
                                 <p>
-                                    <h:outputLabel for="nombre">Nombre </h:outputLabel>
-                                    <h:inputText value="#{registro.atleta.nombre}" id="nombre"></h:inputText><br />
+                                    <h:outputLabel for="edad">Edad </h:outputLabel>
+                                    <h:inputText value="#{registro.atleta.edad}" id="edad" validatorMessage="La edad debe estar entre 16 y 120">
+                                        <f:convertNumber minIntegerDigits="16" maxIntegerDigits="120" />
+                                    </h:inputText><h:message for="edad" style="color:red" /><br />
                                 </p>
                                 <p>
                                     <h:outputLabel for="localidad">Localidad </h:outputLabel>
