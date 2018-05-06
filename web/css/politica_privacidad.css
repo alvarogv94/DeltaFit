@@ -1,0 +1,17 @@
+#contenido {
+
+position: relative;
+margin: 10% 0 0 0;
+
+}
+
+h1 {
+	text-align:center;
+}
+
+
+p {
+	font-family: "UbuntuRegular";
+	text-align: justify;
+	margin: 3%;
+}

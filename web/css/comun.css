@@ -1,0 +1,97 @@
+﻿/**********************************************************************************************************************
+ESTA ES LA HOJA DE ESTILO DE USO COMUN PARA TODAS LAS PAGINAS DEL SITIO WEB, TODAS LAS PAGINAS DEBEN LLEVAR ESTE ESTILO
+***********************************************************************************************************************/
+
+/*Estilos generales*/
+
+#contenedor {
+	position: relative;
+	width: 100%;	
+	font-family: 'UbuntuBold';
+}
+
+
+/*Configuración del menu*/
+#menu {
+	position: relative;
+}
+
+#menu > nav > ul {
+
+	width: 100%;
+	background: #06f;
+    list-style: none;
+    height: 45px;
+    text-align: center;
+}
+
+#menu > nav > ul > li {
+
+	width: 20%;
+	float: left;
+	line-height: 2.5em;
+	color: white;
+}
+
+/*Logo central*/
+li img {
+	/*width: 80%;*/
+	width: 12em;
+	margin: 5% 0 0 0;
+}
+
+#letras_titulo_izquierda {
+	position: relative;
+	top: 10px;
+	right: 50%;
+	float: left;
+}
+
+
+#letras_titulo_derecha {
+	position: relative;
+	top: 10px;
+	left: 1%;
+}
+
+
+.titulo_web {
+	font-size: 5em;
+}
+
+
+#contenedorLogin {
+	position: absolute;
+	right: 10px;
+	top: 7px;
+}
+
+#contenedorLogin img {
+	width: 2em;
+}
+/*Fin de coniguración del menú*/
+
+
+
+/**************** Inicio estilo pie pagina *********************************/
+
+#footer {
+	background: #636363;
+	width: 100%;
+	height: 220px;
+	clear: both;
+}
+
+#footer #logo_pie {
+
+	width: 25%;
+	height: 200px;
+}
+
+#footer img{
+	width: 12em;
+	margin: 2%;
+}
+
+
+/**************** Fin estilo pie pagina ***********************/

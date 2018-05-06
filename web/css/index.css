@@ -1,0 +1,77 @@
+#slider {
+	text-align:center;
+	margin: 0 0 4% 0;
+}
+
+/****************** Slider de imagenes ************************/
+.rslides {
+	position: relative;
+	list-style: none;
+	overflow: hidden;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.rslides li {
+	-webkit-backface-visibility: hidden;
+	position: absolute;
+	display: none;
+	width: 100%;
+	left: 0;
+	top: 0;
+}
+
+.rslides li:first-child {
+	position: relative;
+	display: block;
+	float: left;
+}
+
+.rslides img {
+	width: 95%;
+	border: 2px solid black;
+	border-radius: 10px;
+}
+
+/************************* FIN SLIDER IMAGENES **************************/
+
+/************************* clase utilizada poar *************************/
+
+
+#quienes_somos {
+	width: 30%;
+	float:left;
+	margin: 0 0 0 5%;
+}
+
+
+#que_ofrecemos {
+	width: 30%;
+	float:left;
+
+}
+
+
+
+#que_conseguiras {
+	width: 30%;
+	float:left;
+
+}
+
+
+h1 {
+	text-align:center;
+}
+
+
+p {
+	font-family: "UbuntuRegular";
+	text-align: justify;
+	margin: 5%;
+}
+
+
+
+/************************* FIN DIV RESUMENES ****************************/

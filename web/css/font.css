@@ -1,0 +1,18 @@
+/*** Reglas Font Face ***/
+@font-face {
+	font-family: "UbuntuBold";
+	src:
+	url("../fonts/Ubuntu-Bold.ttf") format('truetype');
+}
+
+@font-face {
+	font-family: "UbuntuLight";
+	src:
+	url("../fonts/Ubuntu-Light.ttf") format('truetype');
+}
+
+@font-face {
+	font-family: "UbuntuRegular";
+	src:
+	url("../fonts/Ubuntu-Regular.ttf") format('truetype');
+}

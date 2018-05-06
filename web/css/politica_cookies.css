@@ -1,0 +1,29 @@
+
+#contenido {
+
+position: relative;
+margin: 10% 0 0 0;
+
+}
+
+.negrita_subrayado {
+
+font-weight: bold;
+text-decoration: underline;
+
+}
+
+h1 {
+	text-align:center;
+}
+
+div#contenido > ul > li,p {
+	font-family: "UbuntuRegular";
+	text-align: justify;
+	margin: 3%;
+}
+
+#lista_navegadores > li {
+	color: orange;
+	margin: 0 10%;
+}

@@ -1,0 +1,89 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04-may-2018, 22:21:57
+    Author     : Alvaro
+*/
+
+#contenido {
+    margin: 10% 0 5% 0;
+    position: relative;
+}
+
+
+/*Formulario de login*/
+fieldset {
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+legend {
+    margin: 0 50%;
+    width: 150px;
+    font-size: 18px;
+}
+#formularioLogin {
+    margin: 0 auto;
+    width: 50%;
+}
+
+label {
+    display:block;
+    float:left;
+    width:200px;
+    margin:0 0 0 0;
+}
+
+p {
+    margin: 5%;
+}
+
+input[type="text"], input[type="password"] {
+    width: 250px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+input[type=text]:focus,input[type=password]:focus{
+    border: 1px solid #06f;
+}
+
+.btn {
+    background: #06f;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 7;
+    -moz-border-radius: 7;
+    border-radius: 7px;
+    font-size: 15px;
+    padding: 4px 15px 4px 15px;
+    text-decoration: none;
+    color:white;
+    font-family: 'UbuntuBold';
+}
+
+.btn:hover {
+    background: #71aaff;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+/*Fin de formulario de login*/
+
+#formularioRegistro {
+    text-align: center;
+    margin: 3% 0;
+}
+
+a {
+   text-decoration: none;
+}
