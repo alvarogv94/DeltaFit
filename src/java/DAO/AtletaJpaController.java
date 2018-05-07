@@ -592,4 +592,5 @@ public class AtletaJpaController implements Serializable {
         }
         return lista.get(0);
     }
+
 }

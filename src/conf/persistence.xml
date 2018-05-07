@@ -25,6 +25,29 @@
     <class>DTO.Ejercicio</class>
     <class>DTO.Preparador</class>
     <class>DTO.Pago</class>
+    <class>DAO.PreparadorSeleccion</class>
+    <class>DAO.Musculo</class>
+    <class>DAO.Imagen</class>
+    <class>DAO.Valoracion</class>
+    <class>DAO.RutinaRecuperacion</class>
+    <class>DAO.Recuperacion</class>
+    <class>DAO.DietaEntreno</class>
+    <class>DAO.DietaPlanPred</class>
+    <class>DAO.Mensaje</class>
+    <class>DAO.Pago</class>
+    <class>DAO.Entreno</class>
+    <class>DAO.Atleta</class>
+    <class>DAO.Peso</class>
+    <class>DAO.PlanPred</class>
+    <class>DAO.Ejercicio</class>
+    <class>DAO.Preparador</class>
+    <class>DAO.RutinaPlanPred</class>
+    <class>DAO.DietaRecuperacion</class>
+    <class>DAO.Visita</class>
+    <class>DAO.Deporte</class>
+    <class>DAO.Administrador</class>
+    <class>DAO.RutinaEntreno</class>
+    <class>DAO.Exito</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/deltafit?zeroDateTimeBehavior=convertToNull"/>

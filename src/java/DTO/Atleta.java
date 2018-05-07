@@ -52,6 +52,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Atleta.findByAlergia", query = "SELECT a FROM Atleta a WHERE a.alergia = :alergia"),
     @NamedQuery(name = "Atleta.findBySuplementacion", query = "SELECT a FROM Atleta a WHERE a.suplementacion = :suplementacion"),
     @NamedQuery(name = "Atleta.findByLesionSi", query = "SELECT a FROM Atleta a WHERE a.lesionSi = :lesionSi"),
+    @NamedQuery(name = "Atleta.findByEnfermedad", query = "SELECT a FROM Atleta a WHERE a.enfermedad = :enfermedad"),
     @NamedQuery(name = "Atleta.findByObservacionesAtleta", query = "SELECT a FROM Atleta a WHERE a.observacionesAtleta = :observacionesAtleta")})
 public class Atleta implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -97,6 +98,8 @@ public class Atleta implements Serializable {
     private Integer suplementacion;
     @Column(name = "lesion_si")
     private Integer lesionSi;
+    @Column(name = "enfermedad")
+    private String enfermedad;
     @Column(name = "observaciones_atleta")
     private String observacionesAtleta;
     @JoinColumn(name = "cod_preparador", referencedColumnName = "cod_preparador")
@@ -276,6 +279,14 @@ public class Atleta implements Serializable {
 
     public void setLesionSi(Integer lesionSi) {
         this.lesionSi = lesionSi;
+    }
+
+    public String getEnfermedad() {
+        return enfermedad;
+    }
+
+    public void setEnfermedad(String enfermedad) {
+        this.enfermedad = enfermedad;
     }
 
     public String getObservacionesAtleta() {
