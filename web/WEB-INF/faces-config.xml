@@ -13,4 +13,26 @@
         <managed-bean-class>controlador.Registro</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <navigation-rule>
+        <from-view-id>/login.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/perfil.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>no</from-outcome>
+            <to-view-id>/login.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/registro.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/perfil.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>no</from-outcome>
+            <to-view-id>/registro.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
