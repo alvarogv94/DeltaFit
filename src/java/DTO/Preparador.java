@@ -45,7 +45,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Preparador.findByEspecialidad", query = "SELECT p FROM Preparador p WHERE p.especialidad = :especialidad"),
     @NamedQuery(name = "Preparador.findByExperiencia", query = "SELECT p FROM Preparador p WHERE p.experiencia = :experiencia"),
     @NamedQuery(name = "Preparador.findBySobreTi", query = "SELECT p FROM Preparador p WHERE p.sobreTi = :sobreTi"),
-    @NamedQuery(name = "Preparador.findByFechIncorporacion", query = "SELECT p FROM Preparador p WHERE p.fechIncorporacion = :fechIncorporacion")})
+    @NamedQuery(name = "Preparador.findByFechIncorporacion", query = "SELECT p FROM Preparador p WHERE p.fechIncorporacion = :fechIncorporacion"),
+    @NamedQuery(name = "Preparador.findByFotoPerfil", query = "SELECT p FROM Preparador p WHERE p.fotoPerfil = :fotoPerfil")})
 public class Preparador implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -80,6 +81,8 @@ public class Preparador implements Serializable {
     @Column(name = "fech_incorporacion")
     @Temporal(TemporalType.DATE)
     private Date fechIncorporacion;
+    @Column(name = "foto_perfil")
+    private String fotoPerfil;
     @OneToMany(mappedBy = "codPreparador")
     private List<Atleta> atletaList;
     @OneToMany(mappedBy = "codPreparador")
@@ -210,6 +213,14 @@ public class Preparador implements Serializable {
 
     public void setFechIncorporacion(Date fechIncorporacion) {
         this.fechIncorporacion = fechIncorporacion;
+    }
+
+    public String getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 
     @XmlTransient

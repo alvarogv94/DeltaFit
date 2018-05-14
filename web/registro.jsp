@@ -13,9 +13,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 
 <f:view>
-    <html xmlns="http://www.w3.org/1999/xhtml"
-          xmlns:h="http://xmlns.jcp.org/jsf/html"
-          xmlns:pt="">
+    <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>Registro</title>
@@ -69,6 +67,7 @@
                             $("#textoDeporteComple").slideUp("slow");
                         }
                     });
+
                     $("form[name='formularioRegistro']").submit(function (event) {
 
                         if ($('select[name="formularioRegistro:objetivo"]').val() != 1) {
@@ -78,6 +77,7 @@
                             $("#spanObjetivo").text("Debes seleccionar un objetivo");
                             event.preventDefault();
                         }
+
                         if ($('select[name="formularioRegistro:planDeportivo"]').val() != 0) {
                             $("#spanPlan").text("");
 
@@ -87,16 +87,24 @@
                             event.preventDefault();
                         }
 
+                        var expresion = new RegExp("^[a-zA-Z]\w{3,}@\w+\.[a-z]{2,3}$");
+                        var email = $('select[name="formularioRegistro:email"]').val();
+                        if (!expresion.test(email)) {
+                            $("#spanEmail").text("Debes Introducir un email correcto.");
+                            event.preventDefault();
+                        }
                     });
 
                 });
+
             </script>
         </head>
         <body>
             <div id="contenedor">
                 <jsp:include page="/include/menu.jsp" />
                 <p id="titulo">Registro de Usuario</p>
-                <div id="contenido">
+                <h:form id="formularioSolicitudPreparador"><h:commandLink value="¿Quieres ser preparador físico? Haz click aquí" action="solicitud_preparador"></h:commandLink></h:form>
+                        <div id="contenido">
                     <h:form id="formularioRegistro">
                         <div id="datosPersonales">
                             <h1>Datos Personales</h1>
@@ -161,6 +169,7 @@
                                                  required="true"
                                                  requiredMessage="El campo de email es obligatorio"></h:inputText><br />
                                     <h:message id="msgemail" for="email" style="color:red" />                                
+                                    <span id="spanEmail"></span>
                                 </p>
                                 <p>
                                     <h:outputLabel for="pass">Contraseña</h:outputLabel>
@@ -169,7 +178,7 @@
                                                    required = "true"
                                                    requiredMessage="El campo de contraseña es obligatorio">
                                     </h:inputSecret><br />
-                                <h:message id="msgpass1" for="pass" style="color:red" />                                
+                                    <h:message id="msgpass1" for="pass" style="color:red" />                                
                                 </p>
                                 <p>
                                     <h:outputLabel for="pass2">Repite la contraseña</h:outputLabel>
@@ -178,8 +187,8 @@
                                                    required = "true"
                                                    requiredMessage="Repite la contraseña">
                                     </h:inputSecret><br />
-                                <h:message id="msgpass2" for="pass2" style="color:red" />   
-                                <span style="color:red"><h:outputText value="#{registro.resultadoPass}" /></span>
+                                    <h:message id="msgpass2" for="pass2" style="color:red" />   
+                                    <span style="color:red"><h:outputText value="#{registro.resultadoPass}" /></span>
                                 </p>
                             </div>                                  
                         </div>
@@ -211,10 +220,8 @@
                                 <p>
                                     <h:outputLabel for="deporte">Deporte </h:outputLabel>
                                     <h:selectOneMenu value="#{registro.atleta.deporte}"
-                                                     id="deporte"
-                                                     required="true"
-                                                     requiredMessage="El campo de Deporte es obligatorio">  
-                                        <f:selectItem itemValue = "Aumento" itemLabel = "Aumento de Rendimiento" />
+                                                     id="deporte">
+                                        <f:selectItems value="#{registro.listaDeporte}" />
                                     </h:selectOneMenu> <br /> 
                                     <h:message id="msgdeporte" for="deporte" style="color:red" />
                                 </p>

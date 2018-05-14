@@ -10,13 +10,19 @@ and open the template in the editor.
 
 #contenido {
     width: 90%;
-    margin: 10% 5%;
+    margin: 5% 5%;
     position: relative;
 
 }
 
 #contenido form {
     box-shadow: -8px 10px 5px 0px rgba(0,0,0,0.35);
+}
+
+form > a {
+    display: block;
+    text-align: left;
+    margin: 8% 0 0 5%;
 }
 
 p span {
@@ -26,7 +32,6 @@ p span {
     text-align: right;
     margin: 4% 17% 0 0;
     padding: 0 0 3% 0;
-
 }
 
 label {
@@ -62,6 +67,8 @@ h1 {
     text-align: center;
     margin: 0 0 3% 0;
     color: #06f;
+    border-bottom: 3px solid #e6e6e6;
+    padding-bottom: 10px;
 
 }
 

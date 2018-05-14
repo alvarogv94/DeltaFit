@@ -16,10 +16,18 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>JSP Page</title>
+            <title>Login</title>
+            <link rel="stylesheet" href="css/reseteo.css">
+            <link rel="stylesheet" href="css/font.css">
+            <link rel="stylesheet" href="css/comun.css">
+            <script src="js/jquery.js"></script>
         </head>
         <body>
-            <h1><h:outputText value="Hello World!"/></h1>
+            <div id="contenedor">
+
+                <jsp:include page="/include/menu.jsp" />
+            </div>
+            <jsp:include page="/include/pie.jsp" />
         </body>
     </html>
 </f:view>

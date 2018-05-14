@@ -44,9 +44,8 @@ table {
 	border-spacing: 0;
 }
 body, html {
-	
 	width: 100%;
-	min-width: 1000px;
+	min-width: 800px;
 }
 /*********************
 Fin del reseteo de estilos

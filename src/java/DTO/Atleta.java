@@ -53,7 +53,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Atleta.findBySuplementacion", query = "SELECT a FROM Atleta a WHERE a.suplementacion = :suplementacion"),
     @NamedQuery(name = "Atleta.findByLesionSi", query = "SELECT a FROM Atleta a WHERE a.lesionSi = :lesionSi"),
     @NamedQuery(name = "Atleta.findByEnfermedad", query = "SELECT a FROM Atleta a WHERE a.enfermedad = :enfermedad"),
-    @NamedQuery(name = "Atleta.findByObservacionesAtleta", query = "SELECT a FROM Atleta a WHERE a.observacionesAtleta = :observacionesAtleta")})
+    @NamedQuery(name = "Atleta.findByObservacionesAtleta", query = "SELECT a FROM Atleta a WHERE a.observacionesAtleta = :observacionesAtleta"),
+    @NamedQuery(name = "Atleta.findByFotoPerfil", query = "SELECT a FROM Atleta a WHERE a.fotoPerfil = :fotoPerfil")})
 public class Atleta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -102,6 +103,8 @@ public class Atleta implements Serializable {
     private String enfermedad;
     @Column(name = "observaciones_atleta")
     private String observacionesAtleta;
+    @Column(name = "foto_perfil")
+    private String fotoPerfil;
     @JoinColumn(name = "cod_preparador", referencedColumnName = "cod_preparador")
     @ManyToOne
     private Preparador codPreparador;
@@ -295,6 +298,14 @@ public class Atleta implements Serializable {
 
     public void setObservacionesAtleta(String observacionesAtleta) {
         this.observacionesAtleta = observacionesAtleta;
+    }
+
+    public String getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 
     public Preparador getCodPreparador() {

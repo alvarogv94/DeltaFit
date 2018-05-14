@@ -6,7 +6,11 @@
 package controlador;
 
 import DAO.AtletaJpaController;
+import DAO.DeporteJpaController;
 import DTO.Atleta;
+import DTO.Deporte;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManagerFactory;
@@ -16,7 +20,7 @@ import javax.persistence.Persistence;
  *
  * @author Alvaro
  */
-public class Registro {
+public class Registro{
 
     private Atleta atleta;
     private EntityManagerFactory emf;
@@ -29,6 +33,8 @@ public class Registro {
     private String pass1;
     private String pass2;
     private String resultadoPass;
+    private ArrayList<String> listaDeporte;
+
     /**
      * Creates a new instance of Registro
      */
@@ -36,6 +42,12 @@ public class Registro {
         emf = Persistence.createEntityManagerFactory("DeltaFitPU");
         contexto = FacesContext.getCurrentInstance().getExternalContext();
         atleta = new Atleta();
+        listaDeporte = new ArrayList<>();
+        DeporteJpaController deporteControl = new DeporteJpaController(emf);
+        List<Deporte> listaDeportes = deporteControl.findDeporteEntities();
+            for(int i = 0; i < listaDeportes.size(); i++) {
+                listaDeporte.add(listaDeportes.get(i).getNombre());
+            }
     }
 
     public String getPass1() {
@@ -53,14 +65,14 @@ public class Registro {
     public void setPass2(String pass2) {
         this.pass2 = pass2;
     }
-    
+
     public String getDeporteComplementado() {
         return deporteComplementado;
     }
 
     public void setDeporteComplementado(String deporteComplementado) {
         this.deporteComplementado = deporteComplementado;
-    }        
+    }
 
     public String getEnfermedad() {
         return enfermedad;
@@ -69,7 +81,7 @@ public class Registro {
     public void setEnfermedad(String enfermedad) {
         this.enfermedad = enfermedad;
     }
-    
+
     public String getComidaNoGusta() {
         return comidaNoGusta;
     }
@@ -77,7 +89,7 @@ public class Registro {
     public void setComidaNoGusta(String comidaNoGusta) {
         this.comidaNoGusta = comidaNoGusta;
     }
-    
+
     public String getObjetivoOtro() {
         return objetivoOtro;
     }
@@ -94,7 +106,6 @@ public class Registro {
         this.textoAlergia = textoAlergia;
     }
 
-       
     public Atleta getAtleta() {
         return atleta;
     }
@@ -125,39 +136,58 @@ public class Registro {
 
     public void setResultadoPass(String resultadoPass) {
         this.resultadoPass = resultadoPass;
-    }    
+    }
+
+    public ArrayList<String> getListaDeporte() {
+        return listaDeporte;
+    }
+
+    public void setListaDeporte(ArrayList<String> listaDeporte) {
+        this.listaDeporte = listaDeporte;
+    }
     
+
     public String registro() {
         /*Este metodo será llamado desde el boton del registro, la comprobación
-        de campos de que sean correctos se hará en la parte del cliente
+         de campos de que sean correctos se hará en la parte del cliente
          */
 
         AtletaJpaController controlAtleta = new AtletaJpaController(emf);
         String resultado;
-        if(pass1.equals(pass2)) {
+        if (pass1.equals(pass2)) {
             /*Como las contraseñas coinciden se la asignamos al atleta*/
             atleta.setPass(pass1);
-            
             /*Comprobamos si el usuario ha escrito algun campo mas que no lo controle el objeto atleta, y se lo asignamos a atleta*/
-            if(!objetivoOtro.equals("")) atleta.setObjetivo(objetivoOtro);
-            
-            if(!textoAlergia.equals("")) atleta.setAlergia(textoAlergia);
-            
-            if(!comidaNoGusta.equals("")) atleta.setComidaNoGusta(comidaNoGusta);
-            
-            if(!enfermedad.equals("")) atleta.setEnfermedad(enfermedad);
-            
-            if(!deporteComplementado.equals("")) atleta.setDeporteComplementado(deporteComplementado);
-            
+            if (!objetivoOtro.equals("")) {
+                atleta.setObjetivo(objetivoOtro);
+            }
+
+            if (!textoAlergia.equals("")) {
+                atleta.setAlergia(textoAlergia);
+            }
+
+            if (!comidaNoGusta.equals("")) {
+                atleta.setComidaNoGusta(comidaNoGusta);
+            }
+
+            if (!enfermedad.equals("")) {
+                atleta.setEnfermedad(enfermedad);
+            }
+
+            if (!deporteComplementado.equals("")) {
+                atleta.setDeporteComplementado(deporteComplementado);
+            }
+
             controlAtleta.create(atleta);
             resultado = "ok";
         } else {
-            
+
             resultadoPass = "Las contraseñas deben coincidir";
             resultado = "no";
         }
-        
+
         return resultado;
     }
+
 
 }

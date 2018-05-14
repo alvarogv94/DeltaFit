@@ -21,4 +21,20 @@
     <welcome-file-list>
         <welcome-file>faces/index.jsp</welcome-file>
     </welcome-file-list>
+    <servlet>
+        <servlet-name>CompruebaDatos</servlet-name>
+        <servlet-class>controlador.solicitudPreparador.CompruebaDatos</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CompruebaDatos</servlet-name>
+        <url-pattern>/CompruebaDatos</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CargaDeportes</servlet-name>
+        <servlet-class>controlador.solicitudPreparador.CargaDeportes</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CargaDeportes</servlet-name>
+        <url-pattern>/CargaDeportes</url-pattern>
+    </servlet-mapping>
 </web-app>

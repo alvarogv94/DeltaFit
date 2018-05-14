@@ -135,4 +135,18 @@ public class PreparadorSeleccionJpaController implements Serializable {
         }
     }
     
+        public Long preparadorByEmailNum(String email) {
+        EntityManager em = getEntityManager();
+        List<Long> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("PreparadorSeleccion.findByEmailNumero", PreparadorSeleccion.class);
+            qu.setParameter("email", email);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista.get(0);
+    }
+    
 }

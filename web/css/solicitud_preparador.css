@@ -1,0 +1,168 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 09-may-2018, 19:29:14
+    Author     : Alvaro
+*/
+
+#contenido {
+    width: 90%;
+    margin: 5% 5%;
+    position: relative;   
+}
+
+/*Clases para pintar el resultado*/
+.ok {
+    color: green;
+}
+
+.no {
+    color: red;
+}
+
+#contenido span {
+    color: red;
+}
+/*Titulo principal del formulario*/
+#titulo {
+    display: block;
+    text-align: left;
+    margin: 7% 0 -6% 5%;
+    font-size: 2em;   
+    color: #06f;
+    border-bottom: 3px solid #06f;
+    padding-right: 29%;
+    width: 50%;
+}
+
+
+/*Formulario de solicitud*/
+#contenido form {
+    box-shadow: -8px 10px 5px 0px rgba(0,0,0,0.35);
+}
+
+/*Parrafo resultado de la solicitud*/
+#resultado {
+    text-align: left;
+    margin: 9% 0 -4% 19%;
+    color: #06f;
+    width: 50%;
+}
+
+/*titulo de las zonas del formulario*/
+h1 {
+    display: table-caption;
+    text-align: center;
+    margin: 0 0 3% 0;
+    color: #06f;
+    border-bottom: 3px solid #e6e6e6;
+    padding-bottom: 10px;
+
+}
+
+/*Div de datos personales*/
+#datosPersonales {
+    margin: 0 auto;
+    width: 70%;
+    display: table;
+}
+
+#datosPersonalesIzquierda {
+    width: 35%;
+    display: table-cell;
+    float: left;
+}
+
+#datosPersonalesDerecha {
+    width: 35%;
+    display: table-cell;
+    float: right;
+}
+
+#datosPersonales p {
+    margin: 5%;
+}
+
+#datosPersonales label {
+    display: block;
+    float: left;
+    width: 100px;
+}
+
+#datosPersonales table{
+    margin: 5%;
+}
+
+#datosPersonales table input[type="radio"] {
+    margin: 0 19px 0 0;
+}
+/*Fin div datos personales*/
+
+/*Div de datos*/
+#datos {
+    margin: 0 auto;
+    width: 70%;
+    display: table;
+}
+
+#datos p {
+    margin: 2%;
+}
+
+#datos label {
+    display: block;
+    float: left;
+    width: 80%;
+    margin: 2% 0;
+}
+
+#datos textarea {
+    width: 97%;
+}
+
+#datos select {
+    margin: 2% 0;
+}
+/*Fin div de datos*/
+
+
+#boton {
+    text-align: right;
+    margin: 4% 18% 0 0;
+    padding: 0 0 3% 0;
+}
+
+.btn {
+    background: #06f;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 7;
+    -moz-border-radius: 7;
+    border-radius: 7px;
+    font-size: 15px;
+    padding: 4px 15px 4px 15px;
+    text-decoration: none;
+    color:white;
+    font-family: 'UbuntuBold';
+}
+
+.btn:hover {
+    background: #71aaff;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+
+.error {
+    width: 250px;
+    display: block;
+}

@@ -27,12 +27,17 @@
     <navigation-rule>
         <from-view-id>/registro.jsp</from-view-id>
         <navigation-case>
-            <from-outcome>ok</from-outcome>
-            <to-view-id>/perfil.jsp</to-view-id>
-        </navigation-case>
-        <navigation-case>
             <from-outcome>no</from-outcome>
             <to-view-id>/registro.jsp</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/login.jsp</to-view-id>
+        </navigation-case>
     </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>solicitudPreparador</managed-bean-name>
+        <managed-bean-class>controlador.solicitudPreparador.SolicitudPreparador</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>
