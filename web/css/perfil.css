@@ -1,0 +1,129 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17-may-2018, 19:32:43
+    Author     : Alvaro
+*/
+
+
+/*Diseño menu superior*/
+#menu {
+    position: relative;
+    background: #06f;
+}
+
+#menu nav {
+    display: table;
+    width: 100%;
+}
+
+#menu nav div {
+    width: 33%;
+}
+
+/*Parte izquierda del menu*/
+#izq {
+    display: table-cell;
+}
+
+#izq img {
+    width: 3em;
+}
+
+/*Parte central menu*/
+#centro {
+    display: table-cell;
+    text-align: center;
+}
+
+#centro p {
+    display: ruby-text;
+    color: white;
+}
+
+/*Parte derecha menu*/
+#der {
+    display: table-cell;
+    text-align: right;
+}
+
+#der img {
+    width: 3em;
+    border-radius: 100px;
+    margin: 1% 5% 0 0;
+}
+
+#der #menuPer {
+    background: lightgray;
+    position: absolute;
+    width: 20%;
+    right: 10px;
+    border-radius: 15px;
+    box-shadow: -8px 10px 5px 0px rgba(0,0,0,0.35);
+    display: none;
+    z-index: 10;
+}
+
+#der #menuPer #menuSuperior {
+    text-align: center;
+    width: 100%;
+    border-bottom: 3px solid #e6e6e6;
+    margin: 0 0 7% 0;
+}
+
+#der #menuPer #menuSuperior p{
+    margin: 0 0 3% 0;
+}
+
+#der #menuPer #menuInferior{
+    width: 100%;
+}
+
+#der #menuPer #menuInferior ul{
+    text-align: left;
+}
+
+#der #menuPer #menuInferior ul li{
+    margin: 0 0 5% 4%;
+}
+
+/*Fin menu*/
+
+/*contenedor de contenidos*/
+/*PerfilAtleta*/
+#contenido {
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+}
+
+#resumen {
+    width: 90%;
+    margin: 5% auto;   
+}
+
+#grafico {
+    height: 310px;
+}
+
+#dialog-link {
+    background: #06f;
+    color: white;
+    float: right;
+    margin: 2% 0;
+}
+
+#dialog-link img {
+    width: 15px;
+    position: relative;
+    top: 2px;
+    right: 10px;
+}
+
+/*Fin perfil atleta*/

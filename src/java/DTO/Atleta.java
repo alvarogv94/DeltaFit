@@ -54,7 +54,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Atleta.findByLesionSi", query = "SELECT a FROM Atleta a WHERE a.lesionSi = :lesionSi"),
     @NamedQuery(name = "Atleta.findByEnfermedad", query = "SELECT a FROM Atleta a WHERE a.enfermedad = :enfermedad"),
     @NamedQuery(name = "Atleta.findByObservacionesAtleta", query = "SELECT a FROM Atleta a WHERE a.observacionesAtleta = :observacionesAtleta"),
-    @NamedQuery(name = "Atleta.findByFotoPerfil", query = "SELECT a FROM Atleta a WHERE a.fotoPerfil = :fotoPerfil")})
+    @NamedQuery(name = "Atleta.findByFotoPerfil", query = "SELECT a FROM Atleta a WHERE a.fotoPerfil = :fotoPerfil"),
+    @NamedQuery(name = "Atleta.findByFotoPerfil", query = "SELECT a FROM Atleta a WHERE a.fotoPerfil = :fotoPerfil"),
+    @NamedQuery(name = "Atleta.atletaNumByEmail", query = "SELECT count(a) FROM Atleta a WHERE a.email = :email"),
+    @NamedQuery(name = "Atleta.atletaNumByNomUsuario", query = "SELECT count(a) FROM Atleta a WHERE a.nomUsuario = :nomUsuario")})
 public class Atleta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -105,6 +108,8 @@ public class Atleta implements Serializable {
     private String observacionesAtleta;
     @Column(name = "foto_perfil")
     private String fotoPerfil;
+    @Column(name = "cod_entrenamiento")
+    private Integer codEntrenamiento;
     @JoinColumn(name = "cod_preparador", referencedColumnName = "cod_preparador")
     @ManyToOne
     private Preparador codPreparador;
@@ -308,6 +313,14 @@ public class Atleta implements Serializable {
         this.fotoPerfil = fotoPerfil;
     }
 
+    public Integer getCodEntrenamiento() {
+        return codEntrenamiento;
+    }
+
+    public void setCodEntrenamiento(Integer codEntrenamiento) {
+        this.codEntrenamiento = codEntrenamiento;
+    }
+
     public Preparador getCodPreparador() {
         return codPreparador;
     }
@@ -410,7 +423,7 @@ public class Atleta implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Atleta[ codAtleta=" + codAtleta + " ]";
+        return "DAO.Atleta[ codAtleta=" + codAtleta + " ]";
     }
     
 }

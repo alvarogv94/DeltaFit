@@ -118,7 +118,7 @@ public class Ejercicio implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Ejercicio[ codEjercicio=" + codEjercicio + " ]";
+        return "DAO.Ejercicio[ codEjercicio=" + codEjercicio + " ]";
     }
     
 }

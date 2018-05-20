@@ -36,10 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PreparadorSeleccion.findByTitulacion", query = "SELECT p FROM PreparadorSeleccion p WHERE p.titulacion = :titulacion"),
     @NamedQuery(name = "PreparadorSeleccion.findByEspecialidad", query = "SELECT p FROM PreparadorSeleccion p WHERE p.especialidad = :especialidad"),
     @NamedQuery(name = "PreparadorSeleccion.findByExperiencia", query = "SELECT p FROM PreparadorSeleccion p WHERE p.experiencia = :experiencia"),
-    @NamedQuery(name = "PreparadorSeleccion.findBySobreTi", query = "SELECT p FROM PreparadorSeleccion p WHERE p.sobreTi = :sobreTi"),
-    @NamedQuery(name = "PreparadorSeleccion.findByEmailNumero", query = "SELECT count(p.email) FROM PreparadorSeleccion p WHERE p.email = :email")
-
-})
+    @NamedQuery(name = "PreparadorSeleccion.findBySobreTi", query = "SELECT p FROM PreparadorSeleccion p WHERE p.sobreTi = :sobreTi")})
 public class PreparadorSeleccion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -185,7 +182,7 @@ public class PreparadorSeleccion implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.PreparadorSeleccion[ codPreparadorSeleccion=" + codPreparadorSeleccion + " ]";
+        return "DAO.PreparadorSeleccion[ codPreparadorSeleccion=" + codPreparadorSeleccion + " ]";
     }
     
 }

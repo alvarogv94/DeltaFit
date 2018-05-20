@@ -20,8 +20,8 @@ import javax.persistence.Persistence;
  */
 public class Login {
 
-    String nomUsuario;
-    String pass;
+    private String nomUsuario;
+    private String pass;
     private EntityManagerFactory emf;
     private String mensaje;
     private static boolean login;
@@ -91,10 +91,12 @@ public class Login {
         String resultado = "";
         Atleta atl = compruebaAtleta();
         Preparador prep = compruebaPreparador();
+        contexto = FacesContext.getCurrentInstance().getExternalContext();
 
         if (atl != null) {
             if (atl.getPass().equals(getPass())) {
                 contexto.getSessionMap().put("usuActivo", atl);
+                contexto.getSessionMap().put("tipoUsuario", "atleta");
                 login = true;
                 resultado = "ok";
             }
@@ -102,11 +104,12 @@ public class Login {
             if (prep != null) {
                 if (prep.getPass().equals(getPass())) {
                     contexto.getSessionMap().put("usuActivo", prep);
+                    contexto.getSessionMap().put("tipoUsuario", "preparador");
                     login = true;
                     resultado = "ok";
                 }
             } else {
-                mensaje = "Error al entrar.";
+                mensaje = "Error al entrar revise sus datos.";
                 resultado = "no";
             }
         }
@@ -117,15 +120,28 @@ public class Login {
 
         AtletaJpaController atletaControl = new AtletaJpaController(emf);
 
-        return atletaControl.atletaByNomUsuario(getNomUsuario());
+        Atleta atleta;
+        try {
+            atleta = atletaControl.atletaByNomUsuario(getNomUsuario());
+        } catch(Exception ex) {
+            System.out.println(ex.getMessage());
+            atleta = null;
+        }
+        return atleta;
 
     }
 
     public Preparador compruebaPreparador() {
 
         PreparadorJpaController preparadorControl = new PreparadorJpaController(emf);
-
-        return preparadorControl.preparadorByNomUsuario(getNomUsuario());
+        Preparador preparador;
+        try {
+            preparador = preparadorControl.preparadorByNomUsuario(getNomUsuario());            
+        } catch(Exception ex) {
+            preparador = null;
+            System.out.println(ex.getMessage());
+        }
+        return preparador;
 
     }
 

@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Entreno.findAll", query = "SELECT e FROM Entreno e"),
     @NamedQuery(name = "Entreno.findByCodEntreno", query = "SELECT e FROM Entreno e WHERE e.codEntreno = :codEntreno"),
-    @NamedQuery(name = "Entreno.findByFechaProxima", query = "SELECT e FROM Entreno e WHERE e.fechaProxima = :fechaProxima")})
+    @NamedQuery(name = "Entreno.findByFechaProxima", query = "SELECT e FROM Entreno e WHERE e.fechaProxima = :fechaProxima"),
+    @NamedQuery(name = "Entreno.findByAnotacion", query = "SELECT e FROM Entreno e WHERE e.anotacion = :anotacion")})
 public class Entreno implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,6 +47,8 @@ public class Entreno implements Serializable {
     @Column(name = "fecha_proxima")
     @Temporal(TemporalType.DATE)
     private Date fechaProxima;
+    @Column(name = "anotacion")
+    private String anotacion;
     @OneToMany(mappedBy = "codEntreno")
     private List<DietaEntreno> dietaEntrenoList;
     @OneToMany(mappedBy = "codEntreno")
@@ -80,6 +83,14 @@ public class Entreno implements Serializable {
 
     public void setFechaProxima(Date fechaProxima) {
         this.fechaProxima = fechaProxima;
+    }
+
+    public String getAnotacion() {
+        return anotacion;
+    }
+
+    public void setAnotacion(String anotacion) {
+        this.anotacion = anotacion;
     }
 
     @XmlTransient
@@ -147,7 +158,7 @@ public class Entreno implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Entreno[ codEntreno=" + codEntreno + " ]";
+        return "DAO.Entreno[ codEntreno=" + codEntreno + " ]";
     }
     
 }

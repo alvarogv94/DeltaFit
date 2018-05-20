@@ -104,7 +104,8 @@
                 <jsp:include page="/include/menu.jsp" />
                 <p id="titulo">Registro de Usuario</p>
                 <h:form id="formularioSolicitudPreparador"><h:commandLink value="¿Quieres ser preparador físico? Haz click aquí" action="solicitud_preparador"></h:commandLink></h:form>
-                        <div id="contenido">
+                <p><h:outputText styleClass="#{registro.clase}" value="#{registro.resultadoAlta}" /></p>        
+                <div id="contenido">
                     <h:form id="formularioRegistro">
                         <div id="datosPersonales">
                             <h1>Datos Personales</h1>
@@ -140,6 +141,7 @@
                                                  required="true"
                                                  requiredMessage="El campo del nombre de usuario es obligatorio"></h:inputText><br />
                                     <h:message id="reqnombreusu" for="nombreUsu" style="color:red"/>
+                                    <span style="color:red"><h:outputText value="#{registro.resultadoUsu}" /></span>
                                 </p>
                             </div> 
                             <div id="datosPersonalesDerecha">
@@ -170,6 +172,7 @@
                                                  requiredMessage="El campo de email es obligatorio"></h:inputText><br />
                                     <h:message id="msgemail" for="email" style="color:red" />                                
                                     <span id="spanEmail"></span>
+                                    <span style="color:red"><h:outputText value="#{registro.resultadoEmail}" /></span>
                                 </p>
                                 <p>
                                     <h:outputLabel for="pass">Contraseña</h:outputLabel>

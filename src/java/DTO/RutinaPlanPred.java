@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RutinaPlanPred.findByCodRutinaPlanPred", query = "SELECT r FROM RutinaPlanPred r WHERE r.codRutinaPlanPred = :codRutinaPlanPred"),
     @NamedQuery(name = "RutinaPlanPred.findByDia", query = "SELECT r FROM RutinaPlanPred r WHERE r.dia = :dia"),
     @NamedQuery(name = "RutinaPlanPred.findByEjercicio", query = "SELECT r FROM RutinaPlanPred r WHERE r.ejercicio = :ejercicio"),
-    @NamedQuery(name = "RutinaPlanPred.findByAnotacion", query = "SELECT r FROM RutinaPlanPred r WHERE r.anotacion = :anotacion")})
+    @NamedQuery(name = "RutinaPlanPred.findByAnotacion", query = "SELECT r FROM RutinaPlanPred r WHERE r.anotacion = :anotacion"),
+    @NamedQuery(name = "RutinaPlanPred.findByOrden", query = "SELECT r FROM RutinaPlanPred r WHERE r.orden = :orden")})
 public class RutinaPlanPred implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,6 +46,8 @@ public class RutinaPlanPred implements Serializable {
     private String ejercicio;
     @Column(name = "anotacion")
     private String anotacion;
+    @Column(name = "orden")
+    private Integer orden;
     @JoinColumn(name = "cod_plan_pred", referencedColumnName = "cod_plan_pred")
     @ManyToOne
     private PlanPred codPlanPred;
@@ -88,6 +91,14 @@ public class RutinaPlanPred implements Serializable {
         this.anotacion = anotacion;
     }
 
+    public Integer getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Integer orden) {
+        this.orden = orden;
+    }
+
     public PlanPred getCodPlanPred() {
         return codPlanPred;
     }
@@ -118,7 +129,7 @@ public class RutinaPlanPred implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.RutinaPlanPred[ codRutinaPlanPred=" + codRutinaPlanPred + " ]";
+        return "DAO.RutinaPlanPred[ codRutinaPlanPred=" + codRutinaPlanPred + " ]";
     }
     
 }

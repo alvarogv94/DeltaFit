@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DietaRecuperacion.findAll", query = "SELECT d FROM DietaRecuperacion d"),
     @NamedQuery(name = "DietaRecuperacion.findByCodDietaRecuperacion", query = "SELECT d FROM DietaRecuperacion d WHERE d.codDietaRecuperacion = :codDietaRecuperacion"),
     @NamedQuery(name = "DietaRecuperacion.findByDesayuno", query = "SELECT d FROM DietaRecuperacion d WHERE d.desayuno = :desayuno"),
-    @NamedQuery(name = "DietaRecuperacion.findByMediaMa\u00f1ana", query = "SELECT d FROM DietaRecuperacion d WHERE d.mediaMa\u00f1ana = :mediaMa\u00f1ana"),
+    @NamedQuery(name = "DietaRecuperacion.findByMediaManhana", query = "SELECT d FROM DietaRecuperacion d WHERE d.mediaManhana = :mediaManhana"),
     @NamedQuery(name = "DietaRecuperacion.findByAlmuerzo", query = "SELECT d FROM DietaRecuperacion d WHERE d.almuerzo = :almuerzo"),
     @NamedQuery(name = "DietaRecuperacion.findByCena", query = "SELECT d FROM DietaRecuperacion d WHERE d.cena = :cena")})
 public class DietaRecuperacion implements Serializable {
@@ -42,8 +42,8 @@ public class DietaRecuperacion implements Serializable {
     private Integer codDietaRecuperacion;
     @Column(name = "desayuno")
     private String desayuno;
-    @Column(name = "media_ma\u00f1ana")
-    private String mediaMañana;
+    @Column(name = "media_manhana")
+    private String mediaManhana;
     @Column(name = "almuerzo")
     private String almuerzo;
     @Column(name = "cena")
@@ -75,12 +75,12 @@ public class DietaRecuperacion implements Serializable {
         this.desayuno = desayuno;
     }
 
-    public String getMediaMañana() {
-        return mediaMañana;
+    public String getMediaManhana() {
+        return mediaManhana;
     }
 
-    public void setMediaMañana(String mediaMañana) {
-        this.mediaMañana = mediaMañana;
+    public void setMediaManhana(String mediaManhana) {
+        this.mediaManhana = mediaManhana;
     }
 
     public String getAlmuerzo() {

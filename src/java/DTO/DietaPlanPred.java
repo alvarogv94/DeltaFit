@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DietaPlanPred.findAll", query = "SELECT d FROM DietaPlanPred d"),
     @NamedQuery(name = "DietaPlanPred.findByCodDietaPlanPred", query = "SELECT d FROM DietaPlanPred d WHERE d.codDietaPlanPred = :codDietaPlanPred"),
     @NamedQuery(name = "DietaPlanPred.findByDesayuno", query = "SELECT d FROM DietaPlanPred d WHERE d.desayuno = :desayuno"),
-    @NamedQuery(name = "DietaPlanPred.findByMediaMa\u00f1ana", query = "SELECT d FROM DietaPlanPred d WHERE d.mediaMa\u00f1ana = :mediaMa\u00f1ana"),
+    @NamedQuery(name = "DietaPlanPred.findByMediaManhana", query = "SELECT d FROM DietaPlanPred d WHERE d.mediaManhana = :mediaManhana"),
     @NamedQuery(name = "DietaPlanPred.findByAlmuerzo", query = "SELECT d FROM DietaPlanPred d WHERE d.almuerzo = :almuerzo"),
     @NamedQuery(name = "DietaPlanPred.findByPreEntreno", query = "SELECT d FROM DietaPlanPred d WHERE d.preEntreno = :preEntreno"),
     @NamedQuery(name = "DietaPlanPred.findByPostEntreno", query = "SELECT d FROM DietaPlanPred d WHERE d.postEntreno = :postEntreno"),
@@ -44,8 +44,8 @@ public class DietaPlanPred implements Serializable {
     private Integer codDietaPlanPred;
     @Column(name = "desayuno")
     private String desayuno;
-    @Column(name = "media_ma\u00f1ana")
-    private String mediaMañana;
+    @Column(name = "media_manhana")
+    private String mediaManhana;
     @Column(name = "almuerzo")
     private String almuerzo;
     @Column(name = "pre_entreno")
@@ -81,12 +81,12 @@ public class DietaPlanPred implements Serializable {
         this.desayuno = desayuno;
     }
 
-    public String getMediaMañana() {
-        return mediaMañana;
+    public String getMediaManhana() {
+        return mediaManhana;
     }
 
-    public void setMediaMañana(String mediaMañana) {
-        this.mediaMañana = mediaMañana;
+    public void setMediaManhana(String mediaManhana) {
+        this.mediaManhana = mediaManhana;
     }
 
     public String getAlmuerzo() {

@@ -20,7 +20,7 @@ import javax.persistence.Persistence;
  *
  * @author Alvaro
  */
-public class Registro{
+public class Registro {
 
     private Atleta atleta;
     private EntityManagerFactory emf;
@@ -34,6 +34,10 @@ public class Registro{
     private String pass2;
     private String resultadoPass;
     private ArrayList<String> listaDeporte;
+    private String resultadoAlta;
+    private String clase;
+    private String resultadoEmail;
+    private String resultadoUsu;
 
     /**
      * Creates a new instance of Registro
@@ -45,9 +49,25 @@ public class Registro{
         listaDeporte = new ArrayList<>();
         DeporteJpaController deporteControl = new DeporteJpaController(emf);
         List<Deporte> listaDeportes = deporteControl.findDeporteEntities();
-            for(int i = 0; i < listaDeportes.size(); i++) {
-                listaDeporte.add(listaDeportes.get(i).getNombre());
-            }
+        for (int i = 0; i < listaDeportes.size(); i++) {
+            listaDeporte.add(listaDeportes.get(i).getNombre());
+        }
+    }
+
+    public String getResultadoEmail() {
+        return resultadoEmail;
+    }
+
+    public void setResultadoEmail(String resultadoEmail) {
+        this.resultadoEmail = resultadoEmail;
+    }
+
+    public String getResultadoUsu() {
+        return resultadoUsu;
+    }
+
+    public void setResultadoUsu(String resultadoUsu) {
+        this.resultadoUsu = resultadoUsu;
     }
 
     public String getPass1() {
@@ -145,7 +165,22 @@ public class Registro{
     public void setListaDeporte(ArrayList<String> listaDeporte) {
         this.listaDeporte = listaDeporte;
     }
-    
+
+    public String getResultadoAlta() {
+        return resultadoAlta;
+    }
+
+    public void setResultadoAlta(String resultadoAlta) {
+        this.resultadoAlta = resultadoAlta;
+    }
+
+    public String getClase() {
+        return clase;
+    }
+
+    public void setClase(String clase) {
+        this.clase = clase;
+    }
 
     public String registro() {
         /*Este metodo será llamado desde el boton del registro, la comprobación
@@ -154,40 +189,61 @@ public class Registro{
 
         AtletaJpaController controlAtleta = new AtletaJpaController(emf);
         String resultado;
-        if (pass1.equals(pass2)) {
-            /*Como las contraseñas coinciden se la asignamos al atleta*/
-            atleta.setPass(pass1);
-            /*Comprobamos si el usuario ha escrito algun campo mas que no lo controle el objeto atleta, y se lo asignamos a atleta*/
-            if (!objetivoOtro.equals("")) {
-                atleta.setObjetivo(objetivoOtro);
-            }
 
-            if (!textoAlergia.equals("")) {
-                atleta.setAlergia(textoAlergia);
-            }
+        Long email = controlAtleta.atletaNumByEmail(atleta.getEmail());
+        Long nomUsu = controlAtleta.atletaNumByNomUsuario(atleta.getNomUsuario());
 
-            if (!comidaNoGusta.equals("")) {
-                atleta.setComidaNoGusta(comidaNoGusta);
-            }
-
-            if (!enfermedad.equals("")) {
-                atleta.setEnfermedad(enfermedad);
-            }
-
-            if (!deporteComplementado.equals("")) {
-                atleta.setDeporteComplementado(deporteComplementado);
-            }
-
-            controlAtleta.create(atleta);
-            resultado = "ok";
-        } else {
-
-            resultadoPass = "Las contraseñas deben coincidir";
+        if (nomUsu == 0) {
+            resultadoUsu = "Ya hay un Usuario con ese Nombre de Usuario";
             resultado = "no";
-        }
+        } else {
+            if (email == 0) {
+                resultadoEmail = "Ya hay un Usuario con ese Email.";
+                resultado = "no";
+            } else {
+                if (pass1.equals(pass2)) {
+                    /*Como las contraseñas coinciden se la asignamos al atleta*/
+                    atleta.setPass(pass1);
+                    /*Comprobamos si el usuario ha escrito algun campo mas que no lo controle el objeto atleta, y se lo asignamos a atleta*/
+                    if (!objetivoOtro.equals("")) {
+                        atleta.setObjetivo(objetivoOtro);
+                    }
 
+                    if (!textoAlergia.equals("")) {
+                        atleta.setAlergia(textoAlergia);
+                    }
+
+                    if (!comidaNoGusta.equals("")) {
+                        atleta.setComidaNoGusta(comidaNoGusta);
+                    }
+
+                    if (!enfermedad.equals("")) {
+                        atleta.setEnfermedad(enfermedad);
+                    }
+
+                    if (!deporteComplementado.equals("")) {
+                        atleta.setDeporteComplementado(deporteComplementado);
+                    }
+
+                    try {
+                        controlAtleta.create(atleta);
+                        resultado = "ok";
+                        resultadoAlta = "El Registro se hizo correctamente.";
+                        clase = "ok";
+                    } catch (Exception ex) {
+                        resultado = "no";
+                        clase = "no";
+                    }
+
+                } else {
+                    clase = "no";
+                    resultadoAlta = "Hubo un error al realizar el Registro, inténtelo de nuevo o más tarde.";
+                    resultadoPass = "Las contraseñas deben coincidir";
+                    resultado = "no";
+                }
+            }
+        }
         return resultado;
     }
-
 
 }

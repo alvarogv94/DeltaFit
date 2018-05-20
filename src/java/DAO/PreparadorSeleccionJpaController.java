@@ -134,8 +134,8 @@ public class PreparadorSeleccionJpaController implements Serializable {
             em.close();
         }
     }
-    
-        public Long preparadorByEmailNum(String email) {
+
+    public Long preparadorByEmailNum(String email) {
         EntityManager em = getEntityManager();
         List<Long> lista = null;
         try {
@@ -148,5 +148,5 @@ public class PreparadorSeleccionJpaController implements Serializable {
         }
         return lista.get(0);
     }
-    
+
 }

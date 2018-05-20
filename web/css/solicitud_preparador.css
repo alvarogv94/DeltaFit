@@ -23,6 +23,11 @@ and open the template in the editor.
     color: red;
 }
 
+label {
+    font-family: "UbuntuLight";
+    font-weight: bold;
+}
+
 #contenido span {
     color: red;
 }

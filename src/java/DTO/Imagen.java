@@ -111,7 +111,7 @@ public class Imagen implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Imagen[ codImagen=" + codImagen + " ]";
+        return "DAO.Imagen[ codImagen=" + codImagen + " ]";
     }
     
 }

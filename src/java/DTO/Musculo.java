@@ -83,7 +83,7 @@ public class Musculo implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Musculo[ nombreMusculo=" + nombreMusculo + " ]";
+        return "DAO.Musculo[ nombreMusculo=" + nombreMusculo + " ]";
     }
     
 }

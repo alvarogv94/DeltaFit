@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RutinaRecuperacion.findByCodRutinaRecuperacion", query = "SELECT r FROM RutinaRecuperacion r WHERE r.codRutinaRecuperacion = :codRutinaRecuperacion"),
     @NamedQuery(name = "RutinaRecuperacion.findByDia", query = "SELECT r FROM RutinaRecuperacion r WHERE r.dia = :dia"),
     @NamedQuery(name = "RutinaRecuperacion.findByEjercicio", query = "SELECT r FROM RutinaRecuperacion r WHERE r.ejercicio = :ejercicio"),
-    @NamedQuery(name = "RutinaRecuperacion.findByAnotacion", query = "SELECT r FROM RutinaRecuperacion r WHERE r.anotacion = :anotacion")})
+    @NamedQuery(name = "RutinaRecuperacion.findByAnotacion", query = "SELECT r FROM RutinaRecuperacion r WHERE r.anotacion = :anotacion"),
+    @NamedQuery(name = "RutinaRecuperacion.findByOrden", query = "SELECT r FROM RutinaRecuperacion r WHERE r.orden = :orden")})
 public class RutinaRecuperacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,6 +46,8 @@ public class RutinaRecuperacion implements Serializable {
     private String ejercicio;
     @Column(name = "anotacion")
     private String anotacion;
+    @Column(name = "orden")
+    private Integer orden;
     @JoinColumn(name = "cod_recuperacion", referencedColumnName = "cod_recuperacion")
     @ManyToOne
     private Recuperacion codRecuperacion;
@@ -88,6 +91,14 @@ public class RutinaRecuperacion implements Serializable {
         this.anotacion = anotacion;
     }
 
+    public Integer getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Integer orden) {
+        this.orden = orden;
+    }
+
     public Recuperacion getCodRecuperacion() {
         return codRecuperacion;
     }
@@ -118,7 +129,7 @@ public class RutinaRecuperacion implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.RutinaRecuperacion[ codRutinaRecuperacion=" + codRutinaRecuperacion + " ]";
+        return "DAO.RutinaRecuperacion[ codRutinaRecuperacion=" + codRutinaRecuperacion + " ]";
     }
     
 }

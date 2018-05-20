@@ -593,4 +593,32 @@ public class AtletaJpaController implements Serializable {
         return lista.get(0);
     }
 
+    public Long atletaNumByEmail(String email) {
+        EntityManager em = getEntityManager();
+        List<Long> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("Atleta.atletaNumByEmail", Atleta.class);
+            qu.setParameter("email", email);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista.get(0);
+    }
+
+    public Long atletaNumByNomUsuario(String nomUsuario) {
+        EntityManager em = getEntityManager();
+        List<Long> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("Atleta.atletaNumByNomUsuario", Atleta.class);
+            qu.setParameter("nomUsuario", nomUsuario);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista.get(0);
+    }
+
 }

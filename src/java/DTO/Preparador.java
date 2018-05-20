@@ -299,7 +299,7 @@ public class Preparador implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Preparador[ codPreparador=" + codPreparador + " ]";
+        return "DAO.Preparador[ codPreparador=" + codPreparador + " ]";
     }
     
 }

@@ -83,7 +83,7 @@ public class Deporte implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Deporte[ codDeporte=" + codDeporte + " ]";
+        return "DAO.Deporte[ codDeporte=" + codDeporte + " ]";
     }
     
 }

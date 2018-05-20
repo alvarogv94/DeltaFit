@@ -26,32 +26,33 @@
         <body>
             <div id="contenedor">
                 <jsp:include page="/include/menu.jsp" />
-
+                <p id="resultadoRegistro"><h:outputText styleClass="#{registro.clase}" value="#{registro.resultadoAlta}" /></p>
                 <div id="contenido">
                     <h:form id="formularioRegistro"><h:commandLink value="¿No tienes cuenta? Consigue tu cuenta y empieza tu desafío haciendo click aquí" action="registro"></h:commandLink></h:form>
+                    <p id="resultadoLogin"><h:outputText styleClass="red" value="#{login.mensaje}" /></p>
                     <h:form id="formularioLogin">
 
                         <fieldset>
                             <legend>Acceso a tu Perfil</legend>
                             <p>
-                            <h:outputLabel for="NomUsuario">Nombre de usuario:</h:outputLabel>
-                            <h:inputText value="#{login.nomUsuario}" 
-                                         id="NomUsuario" 
-                                         required="true"                               
-                                         requiredMessage="El campo de nombre de Usuario es obligatorio">
-                            </h:inputText><br /><h:message id="reqnomusu" for="NomUsuario" style="color:red"/>
+                                <h:outputLabel for="NomUsuario">Nombre de usuario:</h:outputLabel>
+                                <h:inputText value="#{login.nomUsuario}" 
+                                             id="NomUsuario" 
+                                             required="true"                               
+                                             requiredMessage="El campo de nombre de Usuario es obligatorio">
+                                </h:inputText><br /><h:message id="reqnomusu" for="NomUsuario" style="color:red"/>
                             </p>
                             <p>
-                            <h:outputLabel for="pass">Contraseña:</h:outputLabel>
-                            <h:inputSecret value="#{login.pass}" 
-                                           id="pass" 
-                                           required="true"
-                                           requiredMessage="El campo de contraseña es obligatorio">                                
-                            </h:inputSecret><br /><h:message id="reqpass" for="pass" style="color:red"/>
+                                <h:outputLabel for="pass">Contraseña:</h:outputLabel>
+                                <h:inputSecret value="#{login.pass}" 
+                                               id="pass" 
+                                               required="true"
+                                               requiredMessage="El campo de contraseña es obligatorio">                                
+                                </h:inputSecret><br /><h:message id="reqpass" for="pass" style="color:red"/>
                             </p>
-                            
+
                             <p>
-                            <h:commandButton value="Entrar" styleClass="btn" action="#{login.login()}"/>
+                                <h:commandButton value="Entrar" styleClass="btn" action="#{login.login()}"/>
                             </p>
                         </fieldset>
 

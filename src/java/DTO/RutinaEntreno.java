@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RutinaEntreno.findByCodRutinaEntreno", query = "SELECT r FROM RutinaEntreno r WHERE r.codRutinaEntreno = :codRutinaEntreno"),
     @NamedQuery(name = "RutinaEntreno.findByDia", query = "SELECT r FROM RutinaEntreno r WHERE r.dia = :dia"),
     @NamedQuery(name = "RutinaEntreno.findByEjercicio", query = "SELECT r FROM RutinaEntreno r WHERE r.ejercicio = :ejercicio"),
-    @NamedQuery(name = "RutinaEntreno.findByAnotacion", query = "SELECT r FROM RutinaEntreno r WHERE r.anotacion = :anotacion")})
+    @NamedQuery(name = "RutinaEntreno.findByAnotacion", query = "SELECT r FROM RutinaEntreno r WHERE r.anotacion = :anotacion"),
+    @NamedQuery(name = "RutinaEntreno.findByOrden", query = "SELECT r FROM RutinaEntreno r WHERE r.orden = :orden")})
 public class RutinaEntreno implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,6 +46,8 @@ public class RutinaEntreno implements Serializable {
     private String ejercicio;
     @Column(name = "anotacion")
     private String anotacion;
+    @Column(name = "orden")
+    private Integer orden;
     @JoinColumn(name = "cod_entreno", referencedColumnName = "cod_entreno")
     @ManyToOne
     private Entreno codEntreno;
@@ -88,6 +91,14 @@ public class RutinaEntreno implements Serializable {
         this.anotacion = anotacion;
     }
 
+    public Integer getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Integer orden) {
+        this.orden = orden;
+    }
+
     public Entreno getCodEntreno() {
         return codEntreno;
     }
@@ -118,7 +129,7 @@ public class RutinaEntreno implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.RutinaEntreno[ codRutinaEntreno=" + codRutinaEntreno + " ]";
+        return "DAO.RutinaEntreno[ codRutinaEntreno=" + codRutinaEntreno + " ]";
     }
     
 }

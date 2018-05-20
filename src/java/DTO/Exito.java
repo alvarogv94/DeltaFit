@@ -118,7 +118,7 @@ public class Exito implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Exito[ codExito=" + codExito + " ]";
+        return "DAO.Exito[ codExito=" + codExito + " ]";
     }
     
 }

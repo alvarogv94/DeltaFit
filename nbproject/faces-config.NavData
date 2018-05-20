@@ -7,14 +7,14 @@
         <Node id="index.jsp" x="150" y="600" zoom="true"/>
         <Node id="politica_privacidad.jsp" x="900" y="150" zoom="true"/>
         <Node id="solicitud_preparador.jsp" x="150" y="150" zoom="true"/>
+        <Node id="sobre_nosotros.jsp" x="400" y="300" zoom="true"/>
         <Node id="include/menu.jsp" x="650" y="300" zoom="true"/>
         <Node id="que_ofrecemos.jsp" x="400" y="450" zoom="true"/>
         <Node id="login.jsp" x="1150" y="150" zoom="true"/>
-        <Node id="sobre_nosotros.jsp" x="400" y="300" zoom="true"/>
         <Node id="perfil.jsp" x="900" y="300" zoom="true"/>
         <Node id="que_conseguiras.jsp" x="150" y="300" zoom="true"/>
-        <Node id="include/pie.jsp" x="400" y="150" zoom="true"/>
         <Node id="faq.jsp" x="650" y="150" zoom="true"/>
+        <Node id="include/pie.jsp" x="400" y="150" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

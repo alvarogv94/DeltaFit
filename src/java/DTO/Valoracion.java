@@ -107,7 +107,7 @@ public class Valoracion implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Valoracion[ codValoracion=" + codValoracion + " ]";
+        return "DAO.Valoracion[ codValoracion=" + codValoracion + " ]";
     }
     
 }
