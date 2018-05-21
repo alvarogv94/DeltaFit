@@ -129,7 +129,7 @@ public class RutinaEntreno implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.RutinaEntreno[ codRutinaEntreno=" + codRutinaEntreno + " ]";
+        return "DTO.RutinaEntreno[ codRutinaEntreno=" + codRutinaEntreno + " ]";
     }
     
 }

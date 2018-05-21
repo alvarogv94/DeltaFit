@@ -112,7 +112,7 @@ public class Pago implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Pago[ codPago=" + codPago + " ]";
+        return "DTO.Pago[ codPago=" + codPago + " ]";
     }
     
 }

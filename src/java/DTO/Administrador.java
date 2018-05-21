@@ -80,7 +80,7 @@ public class Administrador implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Administrador[ usuario=" + usuario + " ]";
+        return "DTO.Administrador[ usuario=" + usuario + " ]";
     }
     
 }

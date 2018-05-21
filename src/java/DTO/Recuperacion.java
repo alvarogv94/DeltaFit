@@ -136,7 +136,7 @@ public class Recuperacion implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Recuperacion[ codRecuperacion=" + codRecuperacion + " ]";
+        return "DTO.Recuperacion[ codRecuperacion=" + codRecuperacion + " ]";
     }
     
 }

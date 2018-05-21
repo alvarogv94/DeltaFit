@@ -129,7 +129,7 @@ public class RutinaPlanPred implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.RutinaPlanPred[ codRutinaPlanPred=" + codRutinaPlanPred + " ]";
+        return "DTO.RutinaPlanPred[ codRutinaPlanPred=" + codRutinaPlanPred + " ]";
     }
     
 }

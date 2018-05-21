@@ -22,6 +22,7 @@
             <link rel="stylesheet" href="css/font.css">
             <link rel="stylesheet" href="css/comun.css">
             <link rel="stylesheet" href="css/perfil.css">
+            <link rel="stylesheet" href="css/atleta.css">
             <link rel="stylesheet" href="css/jquery-ui.min.css">
             <script src="js/jquery.js"></script>
             <script src="js/jquery-ui.min.js"></script>
@@ -31,19 +32,80 @@
                     $("#der").click(function () {
                         $("#menuPer").slideToggle("fast");
                     });
-
+                    /*Acordeon atleta*/
                     $("#resumen").accordion();
+                    /*tabs del atleta*/
                     $("#tabs").tabs();
 
-                    var lab = [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999];
-                    var datos = [85.7, 82.5, 91.7, 78.1, 76.7];
+                    /*Grafico de peso*/
+                    /*Peticion AJAXpara obtener todos los pesos de usuario*/
+                    var lab = [];
+                    var pesos = [];
+                    $.ajax({
+                        dataType: "json",
+                        url: "CargaGrafico",
+                        async: true,
+                        type: "POST",
+                        data: {DatosPeso: "0"},
+                        success: getDatos,
+                        error: function (datos, status, xhr) {
+                            alert("error en la peticion:" + xhr)
+                        }
+                    });
+                    function getDatos(datos, status, xhr) {
+                        var longitud = Object.keys(datos);
 
+                        for (var i = 0; i < longitud.length; i++) {
+                            var mes;
+
+                            if (longitud[i] == "1") {
+                                mes = "Enero";
+                            }
+                            if (longitud[i] == "2") {
+                                mes = "Febrero";
+                            }
+                            if (longitud[i] == "3") {
+                                mes = "Marzo";
+                            }
+                            if (longitud[i] == "4") {
+                                mes = "Abril";
+                            }
+                            if (longitud[i] == "5") {
+                                mes = "Mayo";
+                            }
+                            if (longitud[i] == "6") {
+                                mes = "Junio";
+                            }
+                            if (longitud[i] == "7") {
+                                mes = "Julio";
+                            }
+                            if (longitud[i] == "8") {
+                                mes = "Agosto";
+                            }
+                            if (longitud[i] == "9") {
+                                mes = "Septiembre";
+                            }
+                            if (longitud[i] == "10") {
+                                mes = "Octubre";
+                            }
+                            if (longitud[i] == "11") {
+                                mes = "Noviembre";
+                            }
+                            if (longitud[i] == "12") {
+                                mes = "Diciembre";
+                            }
+                            lab[i] = mes;
+                            pesos[i] = datos[longitud[i]];
+                        }
+                    }
+                    
+                    /*Carga de grafico*/
                     new Chart(document.getElementById("line-chart"), {
                         type: 'line',
                         data: {
                             labels: lab,
                             datasets: [{
-                                    data: datos,
+                                    data: pesos,
                                     label: "Peso",
                                     borderColor: "#3e95cd",
                                     fill: false
@@ -56,9 +118,9 @@
                                 text: 'Progresión de mi Peso'
                             }
                         }
-                    });
+                    });//Fin carga grafico
 
-                    $("#spinner").spinner();
+                    /*Ventana de dialogo que aparece cuando añadimos un peso*/
                     $("#dialog").dialog({
                         autoOpen: false,
                         width: 400,
@@ -66,6 +128,9 @@
                             {
                                 text: "Ok",
                                 click: function () {
+
+                                    var peso = $("#spinner").val();
+                                    alert(peso);
                                     $(this).dialog("close");
                                 }
                             },
@@ -83,6 +148,11 @@
                         $("#dialog").dialog("open");
                         event.preventDefault();
                     });
+                    /*propiedades de los spinner*/
+                    $("#spinner").spinner({min: 50, max: 200});
+                    $("#spinner").attr("placeholder", "Kilos");
+                    $("#gramos").spinner({min: 0, max: 9});
+                    $("#gramos").attr("placeholder", "gramos");
                 });
 
             </script>
@@ -117,10 +187,12 @@
                                 <div id="grafico">
                                     <canvas id="line-chart" width="700" height="150"></canvas>
                                     <button id="dialog-link" class="ui-button ui-corner-all ui-widget">
-                                        <h:graphicImage value="/img/icons/add.png" />Añadir Peso
+                                        <span class="ui-icon ui-icon-circle-plus"></span>Añadir Peso
                                     </button>
                                     <div id="dialog" title="Confirmación alta de Peso">
-                                        <input id="spinner">
+                                        <input id="spinner"><input id="gramos">                                        
+                                        <p id="textoDialogo">Recuerda, que si ya has añadido un peso este mes será sustituido por este.</p>
+
                                     </div>
                                 </div>
                                 <h3>Mensajes con mi Preparador</h3>

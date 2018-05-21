@@ -110,7 +110,7 @@ public class Visita implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Visita[ codVisita=" + codVisita + " ]";
+        return "DTO.Visita[ codVisita=" + codVisita + " ]";
     }
     
 }

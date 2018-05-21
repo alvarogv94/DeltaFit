@@ -119,7 +119,7 @@ public class PlanPred implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.PlanPred[ codPlanPred=" + codPlanPred + " ]";
+        return "DTO.PlanPred[ codPlanPred=" + codPlanPred + " ]";
     }
     
 }

@@ -423,7 +423,7 @@ public class Atleta implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Atleta[ codAtleta=" + codAtleta + " ]";
+        return "DTO.Atleta[ codAtleta=" + codAtleta + " ]";
     }
     
 }

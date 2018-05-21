@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DTO;
 
 import java.io.Serializable;
@@ -34,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Mensaje.findAll", query = "SELECT m FROM Mensaje m"),
     @NamedQuery(name = "Mensaje.findByCodMensaje", query = "SELECT m FROM Mensaje m WHERE m.codMensaje = :codMensaje"),
     @NamedQuery(name = "Mensaje.findByFechaEnvio", query = "SELECT m FROM Mensaje m WHERE m.fechaEnvio = :fechaEnvio"),
-    @NamedQuery(name = "Mensaje.findByTexto", query = "SELECT m FROM Mensaje m WHERE m.texto = :texto")})
+    @NamedQuery(name = "Mensaje.findByTexto", query = "SELECT m FROM Mensaje m WHERE m.texto = :texto"),
+    @NamedQuery(name = "Mensaje.findByEstado", query = "SELECT m FROM Mensaje m WHERE m.estado = :estado")})
 public class Mensaje implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,6 +47,8 @@ public class Mensaje implements Serializable {
     private Date fechaEnvio;
     @Column(name = "texto")
     private String texto;
+    @Column(name = "estado")
+    private Character estado;
     @JoinColumn(name = "cod_atleta", referencedColumnName = "cod_atleta")
     @ManyToOne
     private Atleta codAtleta;
@@ -83,6 +85,14 @@ public class Mensaje implements Serializable {
 
     public void setTexto(String texto) {
         this.texto = texto;
+    }
+
+    public Character getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Character estado) {
+        this.estado = estado;
     }
 
     public Atleta getCodAtleta() {
@@ -123,7 +133,7 @@ public class Mensaje implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Mensaje[ codMensaje=" + codMensaje + " ]";
+        return "DTO.Mensaje[ codMensaje=" + codMensaje + " ]";
     }
-
+    
 }

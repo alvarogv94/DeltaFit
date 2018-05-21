@@ -29,12 +29,22 @@
         <servlet-name>CompruebaDatos</servlet-name>
         <url-pattern>/CompruebaDatos</url-pattern>
     </servlet-mapping>
+
     <servlet>
-        <servlet-name>CargaDeportes</servlet-name>
-        <servlet-class>controlador.solicitudPreparador.CargaDeportes</servlet-class>
+        <servlet-name>CargaGrafico</servlet-name>
+        <servlet-class>controlador.CargaGrafico</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CargaDeportes</servlet-name>
-        <url-pattern>/CargaDeportes</url-pattern>
+        <servlet-name>CargaGrafico</servlet-name>
+        <url-pattern>/CargaGrafico</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AltaPeso</servlet-name>
+        <servlet-class>controlador.AltaPeso</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AltaPeso</servlet-name>
+        <url-pattern>/AltaPeso</url-pattern>
     </servlet-mapping>
 </web-app>

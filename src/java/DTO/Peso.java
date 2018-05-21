@@ -108,7 +108,7 @@ public class Peso implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Peso[ pesoPK=" + pesoPK + " ]";
+        return "DTO.Peso[ pesoPK=" + pesoPK + " ]";
     }
     
 }

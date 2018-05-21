@@ -158,7 +158,7 @@ public class Entreno implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Entreno[ codEntreno=" + codEntreno + " ]";
+        return "DTO.Entreno[ codEntreno=" + codEntreno + " ]";
     }
     
 }

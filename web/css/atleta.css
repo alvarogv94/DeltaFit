@@ -7,3 +7,43 @@ and open the template in the editor.
     Created on : 17-may-2018, 20:18:30
     Author     : Alvaro
 */
+
+
+p {
+    font-family: UbuntuLight;
+}
+
+#grafico {
+    height: 310px;
+}
+
+#dialog-link {
+    background: #e4e4e4;
+    color: #06f;
+    float: right;
+    margin: 2% 0;
+}
+
+#dialog-link img {
+    width: 15px;
+    position: relative;
+    top: 2px;
+    right: 10px;
+}
+
+#dialog span:first-child {
+    margin-right: 2%; 
+}
+
+#spinner {
+    width: 110px;
+}
+
+#gramos {
+    width: 65px;
+}
+
+#textoDialogo {
+    font-size: 0.8em; 
+    margin: 2%;
+}
