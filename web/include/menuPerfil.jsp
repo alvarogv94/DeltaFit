@@ -32,14 +32,14 @@
                         </div>
                         <div id="menuInferior">
                             <ul>
-                                <li>Inicio</li>
-                                <li>Mi Perfil</li>
-                                <li>Mi Plan</li>
-                                <li>Chat</li>
-                                <li>Ajustes</li>
-                                <li>Salir</li>
-                            </ul>
-                        </div>
+                                <li><h:form><h:commandLink action="perfil">Inicio</h:commandLink></h:form></li>
+                                <li><h:form><h:commandLink action="atleta/perfil">Mi Perfil</h:commandLink></h:form></li>
+                                <li><h:form><h:commandLink action="atleta/plan">Mi Plan</h:commandLink></h:form></li>
+                                <li><h:form><h:commandLink action="atleta/chat">Chat</h:commandLink></h:form></li>
+                                <li><h:form><h:commandLink action="atleta/ajustes">Ajustes</h:commandLink></h:form></</li>
+                                <li><h:form><h:commandLink action="#{login.logout()}">Salir</h:commandLink></h:form></li>
+                                    </ul>
+                                </div>
                     </c:when>
                     <c:when test = "${sessionScope.tipoUsuario eq 'preparador'}">
                         <p>${sessionScope.usuActivo.nombre}</p>

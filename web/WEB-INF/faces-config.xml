@@ -16,10 +16,6 @@
     <navigation-rule>
         <from-view-id>/login.jsp</from-view-id>
         <navigation-case>
-            <from-outcome>ok</from-outcome>
-            <to-view-id>/perfil.jsp</to-view-id>
-        </navigation-case>
-        <navigation-case>
             <from-outcome>no</from-outcome>
             <to-view-id>/login.jsp</to-view-id>
         </navigation-case>
@@ -56,4 +52,11 @@
         <managed-bean-class>controlador.GraficoAtleta</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <navigation-rule>
+        <from-view-id>/perfil.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/login.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

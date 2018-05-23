@@ -13,6 +13,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -83,6 +84,17 @@ public class Login {
         this.contexto = contexto;
     }
 
+    public String logout() {
+        ExternalContext ctx = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            ((HttpSession) ctx.getSession(false)).invalidate();
+            login = false;
+            return "ok";
+        } catch (Exception ex) {
+            return "no";
+        }
+    }
+
     public String login() {
         /*Este metodo será llamado desde el boton del login para entrar a tu perfil
          Comprobará si el usuario introducido es correcto, verificara la contraseña 
@@ -92,13 +104,14 @@ public class Login {
         Atleta atl = compruebaAtleta();
         Preparador prep = compruebaPreparador();
         contexto = FacesContext.getCurrentInstance().getExternalContext();
-
+        String url = "";
         if (atl != null) {
             if (atl.getPass().equals(getPass())) {
                 contexto.getSessionMap().put("usuActivo", atl);
                 contexto.getSessionMap().put("tipoUsuario", "atleta");
                 login = true;
-                resultado = "ok";
+                url = "atleta/inicio.jsp";
+                redireccionar(url);
             }
         } else {
             if (prep != null) {
@@ -106,13 +119,16 @@ public class Login {
                     contexto.getSessionMap().put("usuActivo", prep);
                     contexto.getSessionMap().put("tipoUsuario", "preparador");
                     login = true;
-                    resultado = "ok";
+                    url = "preparador/inicio.jsp";
+                    redireccionar(url);
                 }
             } else {
                 mensaje = "Error al entrar revise sus datos.";
                 resultado = "no";
             }
         }
+        
+        
         return resultado;
     }
 
@@ -123,7 +139,7 @@ public class Login {
         Atleta atleta;
         try {
             atleta = atletaControl.atletaByNomUsuario(getNomUsuario());
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             atleta = null;
         }
@@ -136,13 +152,21 @@ public class Login {
         PreparadorJpaController preparadorControl = new PreparadorJpaController(emf);
         Preparador preparador;
         try {
-            preparador = preparadorControl.preparadorByNomUsuario(getNomUsuario());            
-        } catch(Exception ex) {
+            preparador = preparadorControl.preparadorByNomUsuario(getNomUsuario());
+        } catch (Exception ex) {
             preparador = null;
             System.out.println(ex.getMessage());
         }
         return preparador;
 
+    }
+
+    public void redireccionar(String url) {
+        ExternalContext ctx = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            ctx.redirect(url);
+        } catch (Exception ex) {
+        }
     }
 
 }
