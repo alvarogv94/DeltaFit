@@ -17,7 +17,7 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Perfil Personal</title>
+            <title>Perfil Personal de Preparador</title>
             <link rel="stylesheet" href="../css/reseteo.css">
             <link rel="stylesheet" href="../css/font.css">
             <link rel="stylesheet" href="../css/comun.css">
@@ -32,28 +32,8 @@
             <script>
                 $(document).ready(function () {
                     //Click en el icono de tu perfil para desplegar el menu
-                    $("#logo_pie img").attr("src", "../img/logo.png");
-
                     $("#der").click(function () {
                         $("#menuPer").slideToggle("fast");
-                    });
-                    /*Acordeon*/
-                    $("#resumen").accordion();
-
-                    var eventos = [
-                        {title: 'Event Title 1', description: 'Description 1', datetime: new Date(2018, 4, 12)},
-                        {title: 'Event Title 2', description: 'Description 2', datetime: new Date(2018, 4, 23)}
-                    ];
-
-                    $('#calendar').eCalendar({
-                        weekDays: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-                        months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                        textArrows: {previous: '<', next: '>'},
-                        eventTitle: 'Preparaciones Para Hoy',
-                        url: '',
-                        events: eventos,
-                        firstDayOfWeek: 1
                     });
 
                 });
@@ -63,26 +43,47 @@
             <div id="contenedor">
                 <jsp:include page="/include/menuPerfil.jsp" />
                 <div id="contenido">
-                    <h1>Resumen</h1>
-                    <div id="resumen">
-                        <h3>Mi Calendario</h3>
-                        <div id="calendario">
-                            <div id="calendar"></div>
-                        </div>
-                        <h3>Mis Atletas</h3>
-                        <div>
-                            <p>
-                                Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-                                purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-                                velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-                                suscipit faucibus urna.
-                            </p>
-                        </div>
+                    <h:form prependId="false">
+                        <h:dataTable binding="#{seleccionaAtleta.tabla}" value="#{seleccionaAtleta.prep.atletaList}" var="campo" border="1" >
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nombre Atleta"/>
+                            </f:facet>
+                            <h:outputText value="#{campo.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nombre de Usuario" />
+                            </f:facet>
+                            <h:outputText value="#{campo.nomUsuario}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Deporte"/>
+                            </f:facet>
+                            <h:outputText value="#{campo.deporte}" />
+                        </h:column>
 
-                    </div>
-                </div>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Objetivo" />
+                            </f:facet>
+                            <h:outputText value="#{campo.objetivo}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Preparar" />                            
+                            </f:facet>
+                            <h:commandButton value="Preparar" action="#{seleccionaAtleta.seleccionaAtleta()}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+
             </div>
-            <jsp:include page="/include/pie.jsp" />        
-        </body>
-    </html>
+        </div>
+    </div>
+    <jsp:include page="/include/pie2.jsp" />        
+</body>
+</html>
 </f:view>

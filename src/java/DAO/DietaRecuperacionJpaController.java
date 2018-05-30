@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import DTO.Entreno;
+import DTO.Recuperacion;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -37,15 +37,15 @@ public class DietaRecuperacionJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Entreno codEntreno = dietaRecuperacion.getCodEntreno();
-            if (codEntreno != null) {
-                codEntreno = em.getReference(codEntreno.getClass(), codEntreno.getCodEntreno());
-                dietaRecuperacion.setCodEntreno(codEntreno);
+            Recuperacion codRecuperacion = dietaRecuperacion.getCodRecuperacion();
+            if (codRecuperacion != null) {
+                codRecuperacion = em.getReference(codRecuperacion.getClass(), codRecuperacion.getCodRecuperacion());
+                dietaRecuperacion.setCodRecuperacion(codRecuperacion);
             }
             em.persist(dietaRecuperacion);
-            if (codEntreno != null) {
-                codEntreno.getDietaRecuperacionList().add(dietaRecuperacion);
-                codEntreno = em.merge(codEntreno);
+            if (codRecuperacion != null) {
+                codRecuperacion.getDietaRecuperacionList().add(dietaRecuperacion);
+                codRecuperacion = em.merge(codRecuperacion);
             }
             em.getTransaction().commit();
         } finally {
@@ -61,20 +61,20 @@ public class DietaRecuperacionJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             DietaRecuperacion persistentDietaRecuperacion = em.find(DietaRecuperacion.class, dietaRecuperacion.getCodDietaRecuperacion());
-            Entreno codEntrenoOld = persistentDietaRecuperacion.getCodEntreno();
-            Entreno codEntrenoNew = dietaRecuperacion.getCodEntreno();
-            if (codEntrenoNew != null) {
-                codEntrenoNew = em.getReference(codEntrenoNew.getClass(), codEntrenoNew.getCodEntreno());
-                dietaRecuperacion.setCodEntreno(codEntrenoNew);
+            Recuperacion codRecuperacionOld = persistentDietaRecuperacion.getCodRecuperacion();
+            Recuperacion codRecuperacionNew = dietaRecuperacion.getCodRecuperacion();
+            if (codRecuperacionNew != null) {
+                codRecuperacionNew = em.getReference(codRecuperacionNew.getClass(), codRecuperacionNew.getCodRecuperacion());
+                dietaRecuperacion.setCodRecuperacion(codRecuperacionNew);
             }
             dietaRecuperacion = em.merge(dietaRecuperacion);
-            if (codEntrenoOld != null && !codEntrenoOld.equals(codEntrenoNew)) {
-                codEntrenoOld.getDietaRecuperacionList().remove(dietaRecuperacion);
-                codEntrenoOld = em.merge(codEntrenoOld);
+            if (codRecuperacionOld != null && !codRecuperacionOld.equals(codRecuperacionNew)) {
+                codRecuperacionOld.getDietaRecuperacionList().remove(dietaRecuperacion);
+                codRecuperacionOld = em.merge(codRecuperacionOld);
             }
-            if (codEntrenoNew != null && !codEntrenoNew.equals(codEntrenoOld)) {
-                codEntrenoNew.getDietaRecuperacionList().add(dietaRecuperacion);
-                codEntrenoNew = em.merge(codEntrenoNew);
+            if (codRecuperacionNew != null && !codRecuperacionNew.equals(codRecuperacionOld)) {
+                codRecuperacionNew.getDietaRecuperacionList().add(dietaRecuperacion);
+                codRecuperacionNew = em.merge(codRecuperacionNew);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -105,10 +105,10 @@ public class DietaRecuperacionJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The dietaRecuperacion with id " + id + " no longer exists.", enfe);
             }
-            Entreno codEntreno = dietaRecuperacion.getCodEntreno();
-            if (codEntreno != null) {
-                codEntreno.getDietaRecuperacionList().remove(dietaRecuperacion);
-                codEntreno = em.merge(codEntreno);
+            Recuperacion codRecuperacion = dietaRecuperacion.getCodRecuperacion();
+            if (codRecuperacion != null) {
+                codRecuperacion.getDietaRecuperacionList().remove(dietaRecuperacion);
+                codRecuperacion = em.merge(codRecuperacion);
             }
             em.remove(dietaRecuperacion);
             em.getTransaction().commit();

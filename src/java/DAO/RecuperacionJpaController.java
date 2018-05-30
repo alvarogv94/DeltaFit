@@ -13,10 +13,11 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import DTO.Atleta;
 import DTO.Preparador;
-import DTO.Recuperacion;
 import DTO.RutinaRecuperacion;
 import java.util.ArrayList;
 import java.util.List;
+import DTO.DietaRecuperacion;
+import DTO.Recuperacion;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -39,6 +40,9 @@ public class RecuperacionJpaController implements Serializable {
         if (recuperacion.getRutinaRecuperacionList() == null) {
             recuperacion.setRutinaRecuperacionList(new ArrayList<RutinaRecuperacion>());
         }
+        if (recuperacion.getDietaRecuperacionList() == null) {
+            recuperacion.setDietaRecuperacionList(new ArrayList<DietaRecuperacion>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -59,6 +63,12 @@ public class RecuperacionJpaController implements Serializable {
                 attachedRutinaRecuperacionList.add(rutinaRecuperacionListRutinaRecuperacionToAttach);
             }
             recuperacion.setRutinaRecuperacionList(attachedRutinaRecuperacionList);
+            List<DietaRecuperacion> attachedDietaRecuperacionList = new ArrayList<DietaRecuperacion>();
+            for (DietaRecuperacion dietaRecuperacionListDietaRecuperacionToAttach : recuperacion.getDietaRecuperacionList()) {
+                dietaRecuperacionListDietaRecuperacionToAttach = em.getReference(dietaRecuperacionListDietaRecuperacionToAttach.getClass(), dietaRecuperacionListDietaRecuperacionToAttach.getCodDietaRecuperacion());
+                attachedDietaRecuperacionList.add(dietaRecuperacionListDietaRecuperacionToAttach);
+            }
+            recuperacion.setDietaRecuperacionList(attachedDietaRecuperacionList);
             em.persist(recuperacion);
             if (codAtleta != null) {
                 codAtleta.getRecuperacionList().add(recuperacion);
@@ -75,6 +85,15 @@ public class RecuperacionJpaController implements Serializable {
                 if (oldCodRecuperacionOfRutinaRecuperacionListRutinaRecuperacion != null) {
                     oldCodRecuperacionOfRutinaRecuperacionListRutinaRecuperacion.getRutinaRecuperacionList().remove(rutinaRecuperacionListRutinaRecuperacion);
                     oldCodRecuperacionOfRutinaRecuperacionListRutinaRecuperacion = em.merge(oldCodRecuperacionOfRutinaRecuperacionListRutinaRecuperacion);
+                }
+            }
+            for (DietaRecuperacion dietaRecuperacionListDietaRecuperacion : recuperacion.getDietaRecuperacionList()) {
+                Recuperacion oldCodRecuperacionOfDietaRecuperacionListDietaRecuperacion = dietaRecuperacionListDietaRecuperacion.getCodRecuperacion();
+                dietaRecuperacionListDietaRecuperacion.setCodRecuperacion(recuperacion);
+                dietaRecuperacionListDietaRecuperacion = em.merge(dietaRecuperacionListDietaRecuperacion);
+                if (oldCodRecuperacionOfDietaRecuperacionListDietaRecuperacion != null) {
+                    oldCodRecuperacionOfDietaRecuperacionListDietaRecuperacion.getDietaRecuperacionList().remove(dietaRecuperacionListDietaRecuperacion);
+                    oldCodRecuperacionOfDietaRecuperacionListDietaRecuperacion = em.merge(oldCodRecuperacionOfDietaRecuperacionListDietaRecuperacion);
                 }
             }
             em.getTransaction().commit();
@@ -97,6 +116,8 @@ public class RecuperacionJpaController implements Serializable {
             Preparador codPreparadorNew = recuperacion.getCodPreparador();
             List<RutinaRecuperacion> rutinaRecuperacionListOld = persistentRecuperacion.getRutinaRecuperacionList();
             List<RutinaRecuperacion> rutinaRecuperacionListNew = recuperacion.getRutinaRecuperacionList();
+            List<DietaRecuperacion> dietaRecuperacionListOld = persistentRecuperacion.getDietaRecuperacionList();
+            List<DietaRecuperacion> dietaRecuperacionListNew = recuperacion.getDietaRecuperacionList();
             if (codAtletaNew != null) {
                 codAtletaNew = em.getReference(codAtletaNew.getClass(), codAtletaNew.getCodAtleta());
                 recuperacion.setCodAtleta(codAtletaNew);
@@ -112,6 +133,13 @@ public class RecuperacionJpaController implements Serializable {
             }
             rutinaRecuperacionListNew = attachedRutinaRecuperacionListNew;
             recuperacion.setRutinaRecuperacionList(rutinaRecuperacionListNew);
+            List<DietaRecuperacion> attachedDietaRecuperacionListNew = new ArrayList<DietaRecuperacion>();
+            for (DietaRecuperacion dietaRecuperacionListNewDietaRecuperacionToAttach : dietaRecuperacionListNew) {
+                dietaRecuperacionListNewDietaRecuperacionToAttach = em.getReference(dietaRecuperacionListNewDietaRecuperacionToAttach.getClass(), dietaRecuperacionListNewDietaRecuperacionToAttach.getCodDietaRecuperacion());
+                attachedDietaRecuperacionListNew.add(dietaRecuperacionListNewDietaRecuperacionToAttach);
+            }
+            dietaRecuperacionListNew = attachedDietaRecuperacionListNew;
+            recuperacion.setDietaRecuperacionList(dietaRecuperacionListNew);
             recuperacion = em.merge(recuperacion);
             if (codAtletaOld != null && !codAtletaOld.equals(codAtletaNew)) {
                 codAtletaOld.getRecuperacionList().remove(recuperacion);
@@ -143,6 +171,23 @@ public class RecuperacionJpaController implements Serializable {
                     if (oldCodRecuperacionOfRutinaRecuperacionListNewRutinaRecuperacion != null && !oldCodRecuperacionOfRutinaRecuperacionListNewRutinaRecuperacion.equals(recuperacion)) {
                         oldCodRecuperacionOfRutinaRecuperacionListNewRutinaRecuperacion.getRutinaRecuperacionList().remove(rutinaRecuperacionListNewRutinaRecuperacion);
                         oldCodRecuperacionOfRutinaRecuperacionListNewRutinaRecuperacion = em.merge(oldCodRecuperacionOfRutinaRecuperacionListNewRutinaRecuperacion);
+                    }
+                }
+            }
+            for (DietaRecuperacion dietaRecuperacionListOldDietaRecuperacion : dietaRecuperacionListOld) {
+                if (!dietaRecuperacionListNew.contains(dietaRecuperacionListOldDietaRecuperacion)) {
+                    dietaRecuperacionListOldDietaRecuperacion.setCodRecuperacion(null);
+                    dietaRecuperacionListOldDietaRecuperacion = em.merge(dietaRecuperacionListOldDietaRecuperacion);
+                }
+            }
+            for (DietaRecuperacion dietaRecuperacionListNewDietaRecuperacion : dietaRecuperacionListNew) {
+                if (!dietaRecuperacionListOld.contains(dietaRecuperacionListNewDietaRecuperacion)) {
+                    Recuperacion oldCodRecuperacionOfDietaRecuperacionListNewDietaRecuperacion = dietaRecuperacionListNewDietaRecuperacion.getCodRecuperacion();
+                    dietaRecuperacionListNewDietaRecuperacion.setCodRecuperacion(recuperacion);
+                    dietaRecuperacionListNewDietaRecuperacion = em.merge(dietaRecuperacionListNewDietaRecuperacion);
+                    if (oldCodRecuperacionOfDietaRecuperacionListNewDietaRecuperacion != null && !oldCodRecuperacionOfDietaRecuperacionListNewDietaRecuperacion.equals(recuperacion)) {
+                        oldCodRecuperacionOfDietaRecuperacionListNewDietaRecuperacion.getDietaRecuperacionList().remove(dietaRecuperacionListNewDietaRecuperacion);
+                        oldCodRecuperacionOfDietaRecuperacionListNewDietaRecuperacion = em.merge(oldCodRecuperacionOfDietaRecuperacionListNewDietaRecuperacion);
                     }
                 }
             }
@@ -189,6 +234,11 @@ public class RecuperacionJpaController implements Serializable {
             for (RutinaRecuperacion rutinaRecuperacionListRutinaRecuperacion : rutinaRecuperacionList) {
                 rutinaRecuperacionListRutinaRecuperacion.setCodRecuperacion(null);
                 rutinaRecuperacionListRutinaRecuperacion = em.merge(rutinaRecuperacionListRutinaRecuperacion);
+            }
+            List<DietaRecuperacion> dietaRecuperacionList = recuperacion.getDietaRecuperacionList();
+            for (DietaRecuperacion dietaRecuperacionListDietaRecuperacion : dietaRecuperacionList) {
+                dietaRecuperacionListDietaRecuperacion.setCodRecuperacion(null);
+                dietaRecuperacionListDietaRecuperacion = em.merge(dietaRecuperacionListDietaRecuperacion);
             }
             em.remove(recuperacion);
             em.getTransaction().commit();

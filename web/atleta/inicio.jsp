@@ -249,7 +249,7 @@
                     </div>
                 </div>
             </div>
-            <jsp:include page="/include/pie.jsp" />        
+            <jsp:include page="/include/pie2.jsp" />        
         </body>
     </html>
 </f:view>

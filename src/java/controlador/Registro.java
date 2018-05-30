@@ -193,11 +193,11 @@ public class Registro {
         Long email = controlAtleta.atletaNumByEmail(atleta.getEmail());
         Long nomUsu = controlAtleta.atletaNumByNomUsuario(atleta.getNomUsuario());
 
-        if (nomUsu == 0) {
+        if (nomUsu != 0) {
             resultadoUsu = "Ya hay un Usuario con ese Nombre de Usuario";
             resultado = "no";
         } else {
-            if (email == 0) {
+            if (email != 0) {
                 resultadoEmail = "Ya hay un Usuario con ese Email.";
                 resultado = "no";
             } else {

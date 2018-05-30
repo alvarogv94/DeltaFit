@@ -53,8 +53,6 @@ public class Entreno implements Serializable {
     private List<DietaEntreno> dietaEntrenoList;
     @OneToMany(mappedBy = "codEntreno")
     private List<RutinaEntreno> rutinaEntrenoList;
-    @OneToMany(mappedBy = "codEntreno")
-    private List<DietaRecuperacion> dietaRecuperacionList;
     @JoinColumn(name = "cod_atleta", referencedColumnName = "cod_atleta")
     @ManyToOne
     private Atleta codAtleta;
@@ -109,15 +107,6 @@ public class Entreno implements Serializable {
 
     public void setRutinaEntrenoList(List<RutinaEntreno> rutinaEntrenoList) {
         this.rutinaEntrenoList = rutinaEntrenoList;
-    }
-
-    @XmlTransient
-    public List<DietaRecuperacion> getDietaRecuperacionList() {
-        return dietaRecuperacionList;
-    }
-
-    public void setDietaRecuperacionList(List<DietaRecuperacion> dietaRecuperacionList) {
-        this.dietaRecuperacionList = dietaRecuperacionList;
     }
 
     public Atleta getCodAtleta() {

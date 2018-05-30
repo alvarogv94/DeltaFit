@@ -14,11 +14,10 @@ import javax.persistence.criteria.Root;
 import DTO.Atleta;
 import DTO.Preparador;
 import DTO.DietaEntreno;
+import DTO.Entreno;
 import java.util.ArrayList;
 import java.util.List;
 import DTO.RutinaEntreno;
-import DTO.DietaRecuperacion;
-import DTO.Entreno;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -43,9 +42,6 @@ public class EntrenoJpaController implements Serializable {
         }
         if (entreno.getRutinaEntrenoList() == null) {
             entreno.setRutinaEntrenoList(new ArrayList<RutinaEntreno>());
-        }
-        if (entreno.getDietaRecuperacionList() == null) {
-            entreno.setDietaRecuperacionList(new ArrayList<DietaRecuperacion>());
         }
         EntityManager em = null;
         try {
@@ -73,12 +69,6 @@ public class EntrenoJpaController implements Serializable {
                 attachedRutinaEntrenoList.add(rutinaEntrenoListRutinaEntrenoToAttach);
             }
             entreno.setRutinaEntrenoList(attachedRutinaEntrenoList);
-            List<DietaRecuperacion> attachedDietaRecuperacionList = new ArrayList<DietaRecuperacion>();
-            for (DietaRecuperacion dietaRecuperacionListDietaRecuperacionToAttach : entreno.getDietaRecuperacionList()) {
-                dietaRecuperacionListDietaRecuperacionToAttach = em.getReference(dietaRecuperacionListDietaRecuperacionToAttach.getClass(), dietaRecuperacionListDietaRecuperacionToAttach.getCodDietaRecuperacion());
-                attachedDietaRecuperacionList.add(dietaRecuperacionListDietaRecuperacionToAttach);
-            }
-            entreno.setDietaRecuperacionList(attachedDietaRecuperacionList);
             em.persist(entreno);
             if (codAtleta != null) {
                 codAtleta.getEntrenoList().add(entreno);
@@ -106,15 +96,6 @@ public class EntrenoJpaController implements Serializable {
                     oldCodEntrenoOfRutinaEntrenoListRutinaEntreno = em.merge(oldCodEntrenoOfRutinaEntrenoListRutinaEntreno);
                 }
             }
-            for (DietaRecuperacion dietaRecuperacionListDietaRecuperacion : entreno.getDietaRecuperacionList()) {
-                Entreno oldCodEntrenoOfDietaRecuperacionListDietaRecuperacion = dietaRecuperacionListDietaRecuperacion.getCodEntreno();
-                dietaRecuperacionListDietaRecuperacion.setCodEntreno(entreno);
-                dietaRecuperacionListDietaRecuperacion = em.merge(dietaRecuperacionListDietaRecuperacion);
-                if (oldCodEntrenoOfDietaRecuperacionListDietaRecuperacion != null) {
-                    oldCodEntrenoOfDietaRecuperacionListDietaRecuperacion.getDietaRecuperacionList().remove(dietaRecuperacionListDietaRecuperacion);
-                    oldCodEntrenoOfDietaRecuperacionListDietaRecuperacion = em.merge(oldCodEntrenoOfDietaRecuperacionListDietaRecuperacion);
-                }
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -137,8 +118,6 @@ public class EntrenoJpaController implements Serializable {
             List<DietaEntreno> dietaEntrenoListNew = entreno.getDietaEntrenoList();
             List<RutinaEntreno> rutinaEntrenoListOld = persistentEntreno.getRutinaEntrenoList();
             List<RutinaEntreno> rutinaEntrenoListNew = entreno.getRutinaEntrenoList();
-            List<DietaRecuperacion> dietaRecuperacionListOld = persistentEntreno.getDietaRecuperacionList();
-            List<DietaRecuperacion> dietaRecuperacionListNew = entreno.getDietaRecuperacionList();
             if (codAtletaNew != null) {
                 codAtletaNew = em.getReference(codAtletaNew.getClass(), codAtletaNew.getCodAtleta());
                 entreno.setCodAtleta(codAtletaNew);
@@ -161,13 +140,6 @@ public class EntrenoJpaController implements Serializable {
             }
             rutinaEntrenoListNew = attachedRutinaEntrenoListNew;
             entreno.setRutinaEntrenoList(rutinaEntrenoListNew);
-            List<DietaRecuperacion> attachedDietaRecuperacionListNew = new ArrayList<DietaRecuperacion>();
-            for (DietaRecuperacion dietaRecuperacionListNewDietaRecuperacionToAttach : dietaRecuperacionListNew) {
-                dietaRecuperacionListNewDietaRecuperacionToAttach = em.getReference(dietaRecuperacionListNewDietaRecuperacionToAttach.getClass(), dietaRecuperacionListNewDietaRecuperacionToAttach.getCodDietaRecuperacion());
-                attachedDietaRecuperacionListNew.add(dietaRecuperacionListNewDietaRecuperacionToAttach);
-            }
-            dietaRecuperacionListNew = attachedDietaRecuperacionListNew;
-            entreno.setDietaRecuperacionList(dietaRecuperacionListNew);
             entreno = em.merge(entreno);
             if (codAtletaOld != null && !codAtletaOld.equals(codAtletaNew)) {
                 codAtletaOld.getEntrenoList().remove(entreno);
@@ -219,23 +191,6 @@ public class EntrenoJpaController implements Serializable {
                     }
                 }
             }
-            for (DietaRecuperacion dietaRecuperacionListOldDietaRecuperacion : dietaRecuperacionListOld) {
-                if (!dietaRecuperacionListNew.contains(dietaRecuperacionListOldDietaRecuperacion)) {
-                    dietaRecuperacionListOldDietaRecuperacion.setCodEntreno(null);
-                    dietaRecuperacionListOldDietaRecuperacion = em.merge(dietaRecuperacionListOldDietaRecuperacion);
-                }
-            }
-            for (DietaRecuperacion dietaRecuperacionListNewDietaRecuperacion : dietaRecuperacionListNew) {
-                if (!dietaRecuperacionListOld.contains(dietaRecuperacionListNewDietaRecuperacion)) {
-                    Entreno oldCodEntrenoOfDietaRecuperacionListNewDietaRecuperacion = dietaRecuperacionListNewDietaRecuperacion.getCodEntreno();
-                    dietaRecuperacionListNewDietaRecuperacion.setCodEntreno(entreno);
-                    dietaRecuperacionListNewDietaRecuperacion = em.merge(dietaRecuperacionListNewDietaRecuperacion);
-                    if (oldCodEntrenoOfDietaRecuperacionListNewDietaRecuperacion != null && !oldCodEntrenoOfDietaRecuperacionListNewDietaRecuperacion.equals(entreno)) {
-                        oldCodEntrenoOfDietaRecuperacionListNewDietaRecuperacion.getDietaRecuperacionList().remove(dietaRecuperacionListNewDietaRecuperacion);
-                        oldCodEntrenoOfDietaRecuperacionListNewDietaRecuperacion = em.merge(oldCodEntrenoOfDietaRecuperacionListNewDietaRecuperacion);
-                    }
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -284,11 +239,6 @@ public class EntrenoJpaController implements Serializable {
             for (RutinaEntreno rutinaEntrenoListRutinaEntreno : rutinaEntrenoList) {
                 rutinaEntrenoListRutinaEntreno.setCodEntreno(null);
                 rutinaEntrenoListRutinaEntreno = em.merge(rutinaEntrenoListRutinaEntreno);
-            }
-            List<DietaRecuperacion> dietaRecuperacionList = entreno.getDietaRecuperacionList();
-            for (DietaRecuperacion dietaRecuperacionListDietaRecuperacion : dietaRecuperacionList) {
-                dietaRecuperacionListDietaRecuperacion.setCodEntreno(null);
-                dietaRecuperacionListDietaRecuperacion = em.merge(dietaRecuperacionListDietaRecuperacion);
             }
             em.remove(entreno);
             em.getTransaction().commit();

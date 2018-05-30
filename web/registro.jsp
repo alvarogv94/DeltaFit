@@ -337,7 +337,9 @@
                                 <p id="textoDeporteComple">
                                     <h:outputLabel for="textDeporteComple">Selecciona el deporte que quieres complementar</h:outputLabel>
                                     <h:selectOneMenu value="#{registro.deporteComplementado}"
-                                                     id="textDeporteComple">                                                     
+                                                     id="textDeporteComple">  
+                                        <f:selectItems value="#{registro.listaDeporte}" />
+
                                     </h:selectOneMenu>  
                                 </p> 
                                 <p>

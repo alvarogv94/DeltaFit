@@ -55,7 +55,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Atleta.findByEnfermedad", query = "SELECT a FROM Atleta a WHERE a.enfermedad = :enfermedad"),
     @NamedQuery(name = "Atleta.findByObservacionesAtleta", query = "SELECT a FROM Atleta a WHERE a.observacionesAtleta = :observacionesAtleta"),
     @NamedQuery(name = "Atleta.findByFotoPerfil", query = "SELECT a FROM Atleta a WHERE a.fotoPerfil = :fotoPerfil"),
-    @NamedQuery(name = "Atleta.findByFotoPerfil", query = "SELECT a FROM Atleta a WHERE a.fotoPerfil = :fotoPerfil"),
     @NamedQuery(name = "Atleta.atletaNumByEmail", query = "SELECT count(a) FROM Atleta a WHERE a.email = :email"),
     @NamedQuery(name = "Atleta.atletaNumByNomUsuario", query = "SELECT count(a) FROM Atleta a WHERE a.nomUsuario = :nomUsuario")})
 public class Atleta implements Serializable {

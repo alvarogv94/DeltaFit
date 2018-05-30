@@ -84,14 +84,13 @@ public class Login {
         this.contexto = contexto;
     }
 
-    public String logout() {
+    public void logout() {
         ExternalContext ctx = FacesContext.getCurrentInstance().getExternalContext();
         try {
             ((HttpSession) ctx.getSession(false)).invalidate();
             login = false;
-            return "ok";
+            redireccionar("../index.jsp");
         } catch (Exception ex) {
-            return "no";
         }
     }
 

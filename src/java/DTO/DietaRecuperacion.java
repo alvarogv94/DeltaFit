@@ -48,9 +48,9 @@ public class DietaRecuperacion implements Serializable {
     private String almuerzo;
     @Column(name = "cena")
     private String cena;
-    @JoinColumn(name = "cod_entreno", referencedColumnName = "cod_entreno")
+    @JoinColumn(name = "cod_recuperacion", referencedColumnName = "cod_recuperacion")
     @ManyToOne
-    private Entreno codEntreno;
+    private Recuperacion codRecuperacion;
 
     public DietaRecuperacion() {
     }
@@ -99,12 +99,12 @@ public class DietaRecuperacion implements Serializable {
         this.cena = cena;
     }
 
-    public Entreno getCodEntreno() {
-        return codEntreno;
+    public Recuperacion getCodRecuperacion() {
+        return codRecuperacion;
     }
 
-    public void setCodEntreno(Entreno codEntreno) {
-        this.codEntreno = codEntreno;
+    public void setCodRecuperacion(Recuperacion codRecuperacion) {
+        this.codRecuperacion = codRecuperacion;
     }
 
     @Override

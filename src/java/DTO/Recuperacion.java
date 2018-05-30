@@ -57,6 +57,8 @@ public class Recuperacion implements Serializable {
     private Preparador codPreparador;
     @OneToMany(mappedBy = "codRecuperacion")
     private List<RutinaRecuperacion> rutinaRecuperacionList;
+    @OneToMany(mappedBy = "codRecuperacion")
+    private List<DietaRecuperacion> dietaRecuperacionList;
 
     public Recuperacion() {
     }
@@ -112,6 +114,15 @@ public class Recuperacion implements Serializable {
 
     public void setRutinaRecuperacionList(List<RutinaRecuperacion> rutinaRecuperacionList) {
         this.rutinaRecuperacionList = rutinaRecuperacionList;
+    }
+
+    @XmlTransient
+    public List<DietaRecuperacion> getDietaRecuperacionList() {
+        return dietaRecuperacionList;
+    }
+
+    public void setDietaRecuperacionList(List<DietaRecuperacion> dietaRecuperacionList) {
+        this.dietaRecuperacionList = dietaRecuperacionList;
     }
 
     @Override

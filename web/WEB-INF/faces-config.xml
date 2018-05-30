@@ -52,11 +52,21 @@
         <managed-bean-class>controlador.GraficoAtleta</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>RealizaPreparacion</managed-bean-name>
+        <managed-bean-class>controlador.RealizaPreparacion</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>seleccionaAtleta</managed-bean-name>
+        <managed-bean-class>controlador.SeleccionaAtleta</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
     <navigation-rule>
-        <from-view-id>/perfil.jsp</from-view-id>
+        <from-view-id>/preparador/inicio.jsp</from-view-id>
         <navigation-case>
             <from-outcome>ok</from-outcome>
-            <to-view-id>/login.jsp</to-view-id>
+            <to-view-id>/preparador/preparacion.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

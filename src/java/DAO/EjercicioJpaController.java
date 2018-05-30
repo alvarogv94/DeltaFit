@@ -164,5 +164,20 @@ public class EjercicioJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<Ejercicio> ejerciciosByMusculo(String nombreMusculo) {
+        EntityManager em = getEntityManager();
+        List<Ejercicio> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("Ejercicio.findByMusculo", Ejercicio.class);
+            Musculo musculo = new Musculo(nombreMusculo);
+            qu.setParameter("nombreMusculo", musculo);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista;
+    }
+
 }

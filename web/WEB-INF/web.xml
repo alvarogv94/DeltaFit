@@ -47,4 +47,13 @@
         <servlet-name>AltaPeso</servlet-name>
         <url-pattern>/AltaPeso</url-pattern>
     </servlet-mapping>
+    
+        <servlet>
+        <servlet-name>ConsultaEvento</servlet-name>
+        <servlet-class>controlador.ConsultaEventos</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConsultaEvento</servlet-name>
+        <url-pattern>/ConsultaEvento</url-pattern>
+    </servlet-mapping>
 </web-app>

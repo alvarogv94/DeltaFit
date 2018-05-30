@@ -94,19 +94,24 @@
                 messages: {
                     nombre: {
                         required: "Nombre es obligatorio",
-                        rangelength: "El nombre tiene que tener minimo 4 caracteres y maximo 15."
+                        rangelength: "El nombre tiene que tener minimo 4 caracteres y maximo 15.",
+                        maxlength: jQuery.validator.format("Debe introducir menos de {0} caracteres."),
+                        minlength: jQuery.validator.format("Debe introducir mas de {0} caracteres.")
                     },
                     apellidos: {
                         required: "Apellido es obligatorio",
-                        rangelength: "El Apellido tiene que tener minimo 4 caracteres y maximo 15."
+                        maxlength: jQuery.validator.format("Debe introducir menos de {0} caracteres."),
+                        minlength: jQuery.validator.format("Debe introducir mas de {0} caracteres.")
                     },
                     localidad: {
                         required: "La localidad es obligatorio",
-                        rangelength: "La localidad tiene un minimo de 3 caracteres y maximo 15"
+                        maxlength: jQuery.validator.format("Debe introducir menos de {0} caracteres."),
+                        minlength: jQuery.validator.format("Debe introducir mas de {0} caracteres.")
                     },
                     edad: {
                         required: "La edad debe ser obligatoria",
-                        range: "La edad esta comprendida entre 18 y 99."
+                        max: jQuery.validator.format("La edad debe ser igual o menor que {0}."),
+                        min: jQuery.validator.format("La edad debe ser igual o mayor que {0}.")
                     },
                     sexo: {
                         required: "El sexo es obligatorio"
@@ -116,7 +121,8 @@
                     },
                     titulacion: {
                         required: "Es obligatorio el campo de titulacion",
-                        rangelength: "La titulacion tiene un mínimo de 10 caracteres y un maximo de 200"
+                        maxlength: jQuery.validator.format("Debe introducir menos de {0} caracteres."),
+                        minlength: jQuery.validator.format("Debe introducir mas de {0} caracteres.")
                     },
                     experiencia: {
                         required: "El campo de experiencia es obligatorio",
