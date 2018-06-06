@@ -25,6 +25,7 @@
     <class>DTO.Ejercicio</class>
     <class>DTO.Preparador</class>
     <class>DTO.Pago</class>
+    <class>DTO.PreparacionAtleta</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/deltafit?zeroDateTimeBehavior=convertToNull"/>

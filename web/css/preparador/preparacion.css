@@ -16,3 +16,11 @@ and open the template in the editor.
 #fichaAtleta {
     display: none;
 }
+
+.okEjercicio {
+    color: green;
+}
+
+.errorEjercicio {
+    color: red;
+}

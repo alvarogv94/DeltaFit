@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Pago.findAll", query = "SELECT p FROM Pago p"),
     @NamedQuery(name = "Pago.findByCodPago", query = "SELECT p FROM Pago p WHERE p.codPago = :codPago"),
     @NamedQuery(name = "Pago.findByFechProxPago", query = "SELECT p FROM Pago p WHERE p.fechProxPago = :fechProxPago"),
-    @NamedQuery(name = "Pago.findByFechUltPago", query = "SELECT p FROM Pago p WHERE p.fechUltPago = :fechUltPago")})
+    @NamedQuery(name = "Pago.findByFechUltPago", query = "SELECT p FROM Pago p WHERE p.fechUltPago = :fechUltPago"),
+    @NamedQuery(name = "Pago.findByImporte", query = "SELECT p FROM Pago p WHERE p.importe = :importe")})
 public class Pago implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,6 +48,8 @@ public class Pago implements Serializable {
     @Column(name = "fech_ult_pago")
     @Temporal(TemporalType.DATE)
     private Date fechUltPago;
+    @Column(name = "importe")
+    private Integer importe;
     @JoinColumn(name = "cod_atleta", referencedColumnName = "cod_atleta")
     @ManyToOne
     private Atleta codAtleta;
@@ -80,6 +83,14 @@ public class Pago implements Serializable {
 
     public void setFechUltPago(Date fechUltPago) {
         this.fechUltPago = fechUltPago;
+    }
+
+    public Integer getImporte() {
+        return importe;
+    }
+
+    public void setImporte(Integer importe) {
+        this.importe = importe;
     }
 
     public Atleta getCodAtleta() {

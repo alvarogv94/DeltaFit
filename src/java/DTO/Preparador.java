@@ -48,6 +48,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Preparador.findByFechIncorporacion", query = "SELECT p FROM Preparador p WHERE p.fechIncorporacion = :fechIncorporacion"),
     @NamedQuery(name = "Preparador.findByFotoPerfil", query = "SELECT p FROM Preparador p WHERE p.fotoPerfil = :fotoPerfil")})
 public class Preparador implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -301,5 +302,5 @@ public class Preparador implements Serializable {
     public String toString() {
         return "DTO.Preparador[ codPreparador=" + codPreparador + " ]";
     }
-    
+
 }

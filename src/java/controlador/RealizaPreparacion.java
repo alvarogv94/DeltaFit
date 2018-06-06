@@ -5,14 +5,21 @@
  */
 package controlador;
 
+import DAO.DietaEntrenoJpaController;
+import DAO.DietaRecuperacionJpaController;
 import DAO.EjercicioJpaController;
+import DAO.EntrenoJpaController;
 import DAO.MusculoJpaController;
+import DAO.RecuperacionJpaController;
+import DAO.RutinaEntrenoJpaController;
+import DAO.RutinaRecuperacionJpaController;
 import DTO.Atleta;
 import DTO.DietaEntreno;
 import DTO.DietaRecuperacion;
 import DTO.Ejercicio;
 import DTO.Entreno;
 import DTO.Musculo;
+import DTO.Preparador;
 import DTO.Recuperacion;
 import DTO.RutinaEntreno;
 import DTO.RutinaRecuperacion;
@@ -33,6 +40,7 @@ public class RealizaPreparacion {
     private EntityManagerFactory emf;
     private ExternalContext contexto;
 
+    private Preparador preparador;
     private Entreno entreno;
     private Recuperacion recuperacion;
 
@@ -60,6 +68,10 @@ public class RealizaPreparacion {
     private MusculoJpaController musculoControl;
     private String musculo;
 
+    //Objetos de error
+    private String errorEjercicio;
+    private String clase;
+
     /**
      * Creates a new instance of Preparacion
      */
@@ -67,6 +79,7 @@ public class RealizaPreparacion {
         emf = Persistence.createEntityManagerFactory("DeltaFitPU");
         contexto = FacesContext.getCurrentInstance().getExternalContext();
         atleta = (Atleta) contexto.getSessionMap().get("atletaPreparacion");
+        preparador = (Preparador) contexto.getSessionMap().get("usuActivo");
         musculoControl = new MusculoJpaController(emf);
         listaMusculo = musculoControl.findMusculoEntities();
 
@@ -89,6 +102,34 @@ public class RealizaPreparacion {
         //Variables para controlar cada ejercicio, y saber el orden y el dia
         dia = 1;
         orden = 1;
+
+        //objeto de error
+        errorEjercicio = "";
+        clase = "";
+    }
+
+    public Preparador getPreparador() {
+        return preparador;
+    }
+
+    public void setPreparador(Preparador preparador) {
+        this.preparador = preparador;
+    }
+
+    public String getClase() {
+        return clase;
+    }
+
+    public void setClase(String clase) {
+        this.clase = clase;
+    }
+
+    public String getErrorEjercicio() {
+        return errorEjercicio;
+    }
+
+    public void setErrorEjercicio(String errorEjercicio) {
+        this.errorEjercicio = errorEjercicio;
     }
 
     public void setDia(int dia) {
@@ -278,21 +319,36 @@ public class RealizaPreparacion {
     //Añade un ejercicio a la lista de rutinaRecuperacion
     public void añadeEjercicioLesion() {
 
-        rutinaRecuperacion.setDia(dia);
-        rutinaRecuperacion.setOrden(orden);
-        listaEntrenoLesion.add(rutinaRecuperacion);
-        orden++;
-        rutinaRecuperacion = new RutinaRecuperacion();
+        if (!rutinaRecuperacion.getEjercicio().equals("")) {
+            rutinaRecuperacion.setDia(dia);
+            rutinaRecuperacion.setOrden(orden);
+            listaEntrenoLesion.add(rutinaRecuperacion);
+            orden++;
+            rutinaRecuperacion = new RutinaRecuperacion();
+            errorEjercicio = "Ejercicio Añadido Correctamente.";
+            clase = "okEjercicio";
+        } else {
+            errorEjercicio = "Debes seleccionar algún ejercicio";
+            clase = "errorEjercicio";
+        }
     }
 
     //Añadira un ejercicio a la lista de rutinaEntreno
     public void añadeEjercicioNoLesion() {
 
-        rutinaEntreno.setDia(dia);
-        rutinaEntreno.setOrden(orden);
-        listaEntreno.add(rutinaEntreno);
-        orden++;
-        rutinaEntreno = new RutinaEntreno();
+        if (!rutinaEntreno.getEjercicio().equals("")) {
+            rutinaEntreno.setDia(dia);
+            rutinaEntreno.setOrden(orden);
+            listaEntreno.add(rutinaEntreno);
+            orden++;
+            rutinaEntreno = new RutinaEntreno();
+            errorEjercicio = "Ejercicio Añadido Correctamente.";
+            clase = "okEjercicio";
+        } else {
+            errorEjercicio = "Debes seleccionar algún ejercicio";
+            clase = "errorEjercicio";
+        }
+
     }
 
     //metodo que cambiará al siguiente dia, y empezara de nuevo el orden
@@ -302,20 +358,57 @@ public class RealizaPreparacion {
     }
 
     public String guardaPlanLesion() {
-
         /*
-         Este metodo guardara el plan completo en el atleta lesionado
-        
+         Este metodo guardara el plan completo en el atleta lesionado        
          */
+
+        //Damos de alta un nuevo plan de recuperacion por el preparador activo en la sesion
+        RecuperacionJpaController recuperacionControl = new RecuperacionJpaController(emf);
+        recuperacion.setCodPreparador(preparador);
+        recuperacion.setCodAtleta(atleta);
+        recuperacionControl.create(recuperacion);
+
+        //Y recuperamos dicho plan para poder recuperar su codigo de recuperacion y añadirselo tanto a la dieta como al entreno
+        Recuperacion ultimaRecuperacion = recuperacionControl.recuperacionUltimaPreparador(preparador);
+        
+        DietaRecuperacionJpaController dietaControl = new DietaRecuperacionJpaController(emf);
+        dietaRecuperacion.setCodRecuperacion(ultimaRecuperacion);
+        dietaControl.create(dietaRecuperacion);
+
+        RutinaRecuperacionJpaController rutinaControl = new RutinaRecuperacionJpaController(emf);
+
+        for (int i = 0; i < listaEntrenoLesion.size(); i++) {
+            listaEntrenoLesion.get(i).setCodRecuperacion(ultimaRecuperacion);
+            rutinaControl.create(listaEntrenoLesion.get(i));
+        }
         return "ok";
     }
 
     public String guardaPlanLesionNo() {
-
         /*
          Este metodo guardara el plan completo en el atleta que no esta lesionado
-        
          */
+
+        //Damos de alta un nuevo entreno por el preparador activo en la sesion
+        EntrenoJpaController entrenoControl = new EntrenoJpaController(emf);
+        entreno.setCodPreparador(preparador);
+        entreno.setCodAtleta(atleta);
+        entrenoControl.create(entreno);
+
+        //Y recuperamos dicho plan para poder recuperar su codigo de recuperacion y añadirselo tanto a la dieta como al entreno
+        Entreno ultimoEntreno = entrenoControl.entrenoUltimaPreparador(preparador);
+        
+        DietaEntrenoJpaController dietaControl = new DietaEntrenoJpaController(emf);
+        dietaEntreno.setCodEntreno(ultimoEntreno);
+        dietaControl.create(dietaEntreno);
+        
+        RutinaEntrenoJpaController rutinaControl = new RutinaEntrenoJpaController(emf);
+        
+        for(int i = 0; i < listaEntreno.size(); i++) {
+            listaEntreno.get(i).setCodEntreno(ultimoEntreno);
+            rutinaControl.create(listaEntreno.get(i));            
+        }
+        
         return "ok";
     }
 }

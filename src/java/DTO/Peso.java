@@ -29,8 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Peso.findByCodPeso", query = "SELECT p FROM Peso p WHERE p.pesoPK.codPeso = :codPeso"),
     @NamedQuery(name = "Peso.findByPeso", query = "SELECT p FROM Peso p WHERE p.peso = :peso"),
     @NamedQuery(name = "Peso.findByMes", query = "SELECT p FROM Peso p WHERE p.mes = :mes"),
+    @NamedQuery(name = "Peso.ultCodPesoAtleta", query = "SELECT count(p) FROM Peso p WHERE p.pesoPK.codAtleta = :codAtleta"),
     @NamedQuery(name = "Peso.findByCodAtleta", query = "SELECT p FROM Peso p WHERE p.pesoPK.codAtleta = :codAtleta")})
 public class Peso implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected PesoPK pesoPK;
@@ -110,5 +112,5 @@ public class Peso implements Serializable {
     public String toString() {
         return "DTO.Peso[ pesoPK=" + pesoPK + " ]";
     }
-    
+
 }

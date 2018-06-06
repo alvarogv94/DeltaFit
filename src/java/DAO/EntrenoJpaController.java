@@ -294,5 +294,19 @@ public class EntrenoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public Entreno entrenoUltimaPreparador(Preparador codPreparador) {
+        EntityManager em = getEntityManager();
+        List<Entreno> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("Entreno.findUltimoPlan", Entreno.class);
+            qu.setParameter("codPreparador", codPreparador);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista.get(0);
+    }
+
 }

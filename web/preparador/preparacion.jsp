@@ -59,6 +59,7 @@
                         <p>Altura ${sessionScope.atletaPreparacion.altura}</p>
                         <p>Deporte ${sessionScope.atletaPreparacion.deporte}</p>
                         <p>Lesion ${sessionScope.atletaPreparacion.lesionSi}</p>
+                        <p>Objetivo ${sessionScope.atletaPreparacion.objetivo}</p>
                     </div>
                     <div id="menuPreparacion">
                         <h:form rendered="#{RealizaPreparacion.lesionNo()}">
@@ -97,7 +98,7 @@
                                 </p> 
                             </div> 
                             <p>
-                                <h:commandButton value="Añadir Dieta a la Preparacion" action="#{RealizaPreparacion.guardaPlan()}"/>
+                                <h:commandButton value="Añadir Dieta a la Preparacion" action="#{RealizaPreparacion.añadeDieta()}"/>
                             </p>
                         </h:form>
 
@@ -127,7 +128,7 @@
                                 </p>  
                             </div>
                             <p>
-                                <h:commandButton value="Añadir Dieta a la Preparacion" action="#{RealizaPreparacion.guardaPlan()}"/>
+                                <h:commandButton value="Añadir Dieta a la Preparacion" action="#{RealizaPreparacion.añadeDieta()}"/>
                             </p>
                         </h:form>
                         <div id="rutina">
@@ -152,12 +153,14 @@
                                         <f:selectItems value="#{RealizaPreparacion.listaEjercicios}" 
                                                        var="c" itemLabel="#{c.nombre}" itemValue="#{c.nombre}"/>
                                     </h:selectOneMenu> <br /> 
+                                    <h:inputText value="#{RealizaPreparacion.rutinaEntreno.ejercicio}" />
                                 </p>
                                 <p>
                                     <h:inputText value="#{RealizaPreparacion.rutinaEntreno.anotacion}" id="anotacion" />
                                 </p>
                                 <p>                                    
                                     <h:commandButton value="Añadir Ejercicio" action="#{RealizaPreparacion.añadeEjercicioNoLesion()}"/>
+                                    <h:outputText value="#{RealizaPreparacion.errorEjercicio}" styleClass="#{RealizaPreparacion.clase}"/>
                                 </p>
                                 <p>                                    
                                     <h:commandButton value="Finalizar Día" action="#{RealizaPreparacion.siguienteDia()}"/>
@@ -171,12 +174,15 @@
                                         <f:selectItems value="#{RealizaPreparacion.listaEjercicios}" 
                                                        var="c" itemLabel="#{c.nombre}" itemValue="#{c.nombre}"/>
                                     </h:selectOneMenu> <br /> 
+                                    <h:inputText value="#{RealizaPreparacion.rutinaEntreno.ejercicio}" />
+
                                 </p>
                                 <p>
                                     <h:inputText value="#{RealizaPreparacion.rutinaRecuperacion.anotacion}" id="anotacion" />
                                 </p>
                                 <p>                                    
                                     <h:commandButton value="Añadir Ejercicio" action="#{RealizaPreparacion.añadeEjercicioLesion()}"/>
+                                    <h:outputText value="#{RealizaPreparacion.errorEjercicio}" styleClass="#{RealizaPreparacion.clase}"/>
                                 </p>
                                 <p>                                    
                                     <h:commandButton value="Finalizar Día" action="#{RealizaPreparacion.siguienteDia()}"/>
@@ -184,7 +190,6 @@
                             </h:form>
                         </div>
 
-                        <p id="muestra">Mostrar Plan de Entrenamiento Actual</p>
                         <div id="resumenPreparacion">
                             <h1>Plan de Entrenamiento</h1>
                             <div id="resumenDieta">

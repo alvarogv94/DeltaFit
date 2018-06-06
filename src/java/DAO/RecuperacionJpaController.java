@@ -294,5 +294,19 @@ public class RecuperacionJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public Recuperacion recuperacionUltimaPreparador(Preparador codPreparador) {
+        EntityManager em = getEntityManager();
+        List<Recuperacion> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("Recuperacion.findUltimoPlan", Recuperacion.class);
+            qu.setParameter("codPreparador", codPreparador);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista.get(0);
+    }
+
 }

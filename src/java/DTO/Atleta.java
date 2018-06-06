@@ -424,5 +424,5 @@ public class Atleta implements Serializable {
     public String toString() {
         return "DTO.Atleta[ codAtleta=" + codAtleta + " ]";
     }
-    
+
 }

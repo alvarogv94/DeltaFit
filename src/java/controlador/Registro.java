@@ -226,6 +226,7 @@ public class Registro {
                     }
 
                     try {
+                        
                         controlAtleta.create(atleta);
                         resultado = "ok";
                         resultadoAlta = "El Registro se hizo correctamente.";

@@ -61,9 +61,10 @@
                     function getDatos(datos, status, xhr) {
                         var longitud = Object.keys(datos);
 
+                        longitud.sort();
                         for (var i = 0; i < longitud.length; i++) {
 
-                            var mes = dameMes(longitud[i]);
+                            var mes = dameMes(longitud[i].split("/")[1]);
                             lab[i] = mes;
                             pesos[i] = datos[longitud[i]];
                         }
@@ -129,18 +130,34 @@
                                     if (peso == "") {
                                         $("#dialog").append("<p id ='errorPeso' style='color: red;'>Debes indicar algún peso</p>")
                                     } else {
-                                        //Obtenemos el valor de la longitud de las etiquetas
-                                        var i = grafico.data.labels.length;
+                                        //peticion ajax para dar de alta el peso
+                                        $.ajax({
+                                            dataType: "json",
+                                            url: "../AltaPeso",
+                                            async: true,
+                                            type: "POST",
+                                            data: {Peso: peso},
+                                            success: altaPeso,
+                                            error: function (datos, status, xhr) {
+                                                console.log("error en la peticion:" + xhr)
+                                            }
+                                        });
 
-                                        var date = new Date();
-                                        var mes = dameMes(date.getMonth() + 1);
-                                        grafico.data.labels[i] = mes;
+                                        function altaPeso() {
 
-                                        //Obtenemos el valor de la longitu de los datos
-                                        var j = Object.keys(grafico.data.datasets[0].data).length;
-                                        grafico.data.datasets[0].data[j] = peso;
-                                        grafico.update();
-                                        $("#errorPeso").remove();
+                                            //Obtenemos el valor de la longitud de las etiquetas
+                                            var i = grafico.data.labels.length;
+
+                                            var date = new Date();
+                                            var mes = dameMes(date.getMonth() + 1);
+                                            grafico.data.labels[i] = mes;
+
+                                            //Obtenemos el valor de la longitud de los datos
+                                            var j = Object.keys(grafico.data.datasets[0].data).length;
+                                            grafico.data.datasets[0].data[j] = peso;
+                                            grafico.update();
+                                            $("#errorPeso").remove();
+                                        } //Fin alta peso
                                         $(this).dialog("close");
                                     }
                                 }
@@ -238,8 +255,7 @@
                             </button>
                             <div id="dialog" title="Confirmación alta de Peso">
                                 <input id="spinner"><input id="gramos" value="0">                                        
-                                <p id="textoDialogo">Recuerda, que si ya has añadido un peso este mes será sustituido por este.</p>
-
+                                <p id="textoDialogo">Si añades varios pesos en el mismo mes, estos no serán sustituídos, podrás añadir varios pesos en un mismo mes.</p>
                             </div>
                         </div>
                         <h3>Mensajes con mi Preparador</h3>

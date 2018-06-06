@@ -44,7 +44,7 @@
                 <jsp:include page="/include/menuPerfil.jsp" />
                 <div id="contenido">
                     <h:form prependId="false">
-                        <h:dataTable binding="#{seleccionaAtleta.tabla}" value="#{seleccionaAtleta.prep.atletaList}" var="campo" border="1" >
+                        <h:dataTable binding="#{seleccionaAtleta.tabla}" value="#{seleccionaAtleta.listaAtletas}" var="campo" border="1" >
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Nombre Atleta"/>
@@ -71,6 +71,14 @@
                             <h:outputText value="#{campo.objetivo}" />
                         </h:column>
 
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha del Ultimo Pago" />
+                                </f:facet>
+                                <h:outputText value="#{campo.fechUltPago}">         
+                                <f:convertDateTime pattern="dd/MM/YYYY" />
+                                </h:outputText>
+                            </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Preparar" />                            

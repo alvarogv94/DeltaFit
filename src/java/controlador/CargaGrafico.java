@@ -5,14 +5,10 @@
  */
 package controlador;
 
-import DAO.AtletaJpaController;
 import DTO.Atleta;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.math.BigDecimal;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,7 +46,10 @@ public class CargaGrafico extends HttpServlet {
             for (int i = 0; i < atleta.getPesoList().size(); i++) {
 
                 try {
-                    obj.put(atleta.getPesoList().get(i).getMes().toString(), atleta.getPesoList().get(i).getPeso());
+                    String clave = String.valueOf(atleta.getPesoList().get(i).getPesoPK().getCodPeso()) +"/"+ atleta.getPesoList().get(i).getMes();                  
+                    BigDecimal valor = atleta.getPesoList().get(i).getPeso();
+                    
+                    obj.put(clave, valor);
 
                 } catch (JSONException ex) {
                     out.write(ex.getMessage());

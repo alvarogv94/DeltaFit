@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Recuperacion.findAll", query = "SELECT r FROM Recuperacion r"),
     @NamedQuery(name = "Recuperacion.findByCodRecuperacion", query = "SELECT r FROM Recuperacion r WHERE r.codRecuperacion = :codRecuperacion"),
     @NamedQuery(name = "Recuperacion.findByFechaProxima", query = "SELECT r FROM Recuperacion r WHERE r.fechaProxima = :fechaProxima"),
+    @NamedQuery(name = "Recuperacion.findUltimoPlan", query = "SELECT r FROM Recuperacion r WHERE r.codPreparador = :codPreparador ORDER BY r.codRecuperacion DESC"),
     @NamedQuery(name = "Recuperacion.findByAnotacion", query = "SELECT r FROM Recuperacion r WHERE r.anotacion = :anotacion")})
 public class Recuperacion implements Serializable {
     private static final long serialVersionUID = 1L;

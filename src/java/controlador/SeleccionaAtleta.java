@@ -5,8 +5,12 @@
  */
 package controlador;
 
+import DAO.AtletaJpaController;
+import DAO.PreparacionAtletaJpaController;
 import DTO.Atleta;
+import DTO.PreparacionAtleta;
 import DTO.Preparador;
+import java.util.List;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -19,6 +23,8 @@ import javax.persistence.Persistence;
  */
 public class SeleccionaAtleta {
 
+    private List<PreparacionAtleta> listaAtletas;
+    private PreparacionAtletaJpaController listaControl;
     private Preparador prep;
     private Atleta atleta;
     private HtmlDataTable tabla;
@@ -33,6 +39,16 @@ public class SeleccionaAtleta {
         contexto = FacesContext.getCurrentInstance().getExternalContext();
         atleta = new Atleta();
         prep = (Preparador) contexto.getSessionMap().get("usuActivo");
+        listaControl = new PreparacionAtletaJpaController(emf);
+        listaAtletas = listaControl.findPreparacionAtletaEntities();
+    }
+
+    public List<PreparacionAtleta> getListaAtletas() {
+        return listaAtletas;
+    }
+
+    public void setListaAtletas(List<PreparacionAtleta> listaAtletas) {
+        this.listaAtletas = listaAtletas;
     }
 
     public Preparador getPrep() {
@@ -78,7 +94,9 @@ public class SeleccionaAtleta {
     public String seleccionaAtleta() {
         
         contexto = FacesContext.getCurrentInstance().getExternalContext();
-        Atleta atl = (Atleta) tabla.getRowData();
+        AtletaJpaController atletaControl = new AtletaJpaController(emf);
+        PreparacionAtleta atlPrep = (PreparacionAtleta) tabla.getRowData();
+        Atleta atl = atletaControl.atletaByNomUsuario(atlPrep.getNomUsuario());
         contexto.getSessionMap().put("atletaPreparacion", atl);
 
         return "ok";

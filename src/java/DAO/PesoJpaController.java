@@ -176,5 +176,19 @@ public class PesoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public Long pesoCodByAtleta(Integer codAtleta) {
+        EntityManager em = getEntityManager();
+        List<Long> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("Peso.ultCodPesoAtleta", Peso.class);
+            qu.setParameter("codAtleta", codAtleta);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista.get(0);
+    }
+
 }
