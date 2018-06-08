@@ -48,7 +48,7 @@
         <url-pattern>/AltaPeso</url-pattern>
     </servlet-mapping>
     
-        <servlet>
+    <servlet>
         <servlet-name>ConsultaEvento</servlet-name>
         <servlet-class>controlador.ConsultaEventos</servlet-class>
     </servlet>
@@ -56,4 +56,14 @@
         <servlet-name>ConsultaEvento</servlet-name>
         <url-pattern>/ConsultaEvento</url-pattern>
     </servlet-mapping>
+        
+        
+        <filter>
+    <filter-name>PrimeFaces FileUpload Filter</filter-name>
+    <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+</filter>
+<filter-mapping>
+<filter-name>PrimeFaces FileUpload Filter</filter-name>
+    <servlet-name>Faces Servlet</servlet-name>
+</filter-mapping>
 </web-app>

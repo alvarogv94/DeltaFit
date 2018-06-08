@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" href="../css/reseteo.css" />
+        <link rel="stylesheet" href="../css/font.css" />
+        <link rel="stylesheet" href="../css/comun.css" />
+        <link rel="stylesheet" href="../css/perfil.css" />
+        <link rel="stylesheet" href="../css/atleta/perfil.css" />
+        <link rel="stylesheet" href="../css/jquery-ui.min.css" />
+        <script src="../js/Chart.bundle.min.js"></script>     
+        <title>Mi Perfil</title>
+        <script>
+            $(document).ready(function () {
+                //Click en el icono de tu perfil para desplegar el menu
+                $("#der").click(function () {
+                    $("#menuPer").slideToggle("fast");
+                });
+
+
+            });
+        </script>
+    </h:head>
+    <h:body>
+        <div id="contenedor">
+            <header id="menu">
+                <nav>
+                    <div id="izq">
+                        <h:form>
+                            <h:commandLink action="inicio">
+                                <h:graphicImage value="/img/logo.png" />
+                            </h:commandLink>
+                        </h:form>
+                    </div>
+                    <div id="centro">
+                        <p>${sessionScope.usuActivo.nombre} ${sessionScope.usuActivo.apellidos}</p>
+                    </div>
+                    <div id="der">
+                        <h:graphicImage rendered="#{sessionScope.usuActivo.fotoSi()}" value="/img/perfil/#{sessionScope.usuActivo.codAtleta}/#{sessionScope.usuActivo.fotoPerfil}" />                            
+                        <h:graphicImage rendered="#{sessionScope.usuActivo.fotoNo()}" value="/img/perfil/no-image.png" />
+                        <div id="menuPer">
+                            <div id="menuSuperior">
+
+                                <p>${sessionScope.usuActivo.nombre}</p>
+                                <p>${sessionScope.usuActivo.deporte}</p>
+                            </div>
+                            <div id="menuInferior">
+                                <ul>
+                                    <li><h:form><h:commandLink action="inicio">Inicio</h:commandLink></h:form></li>                                
+                                    <li><a href="../atleta/perfil.xhtml">Mi Perfil</a></li>
+                                    <li><h:form><h:commandLink action="plan">Mi Plan</h:commandLink></h:form></li>
+                                    <li><h:form><h:commandLink action="chat">Chat</h:commandLink></h:form></li>
+                                    <li><h:form><h:commandLink action="ajustes">Ajustes</h:commandLink></h:form></li>
+                                    <li><h:form><h:commandLink action="#{login.logout()}">Salir</h:commandLink></h:form></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <div id="contenido">
+                <h1>Mi Perfil</h1>
+                <div id="datosPersonales">
+                    <h1>Mis Datos Personales</h1>
+                    <p>Nombre: <span><h:outputText value="#{sessionScope.usuActivo.nombre}" /></span></p>
+                    <p>Apellidos: <span><h:outputText value="#{sessionScope.usuActivo.apellidos}" /></span></p>
+                    <p>Peso Actual: <span><h:outputText value="#{sessionScope.usuActivo.pesoActual}" /></span></p>
+                    <p>Nombre de Usuario: <span><h:outputText value="#{sessionScope.usuActivo.nomUsuario}" /></span></p>
+                    <p>Lesionado: <span>
+                            <c:if test="${sessionScope.usuActivo.lesionSi eq 0}">
+                                No Lesionado
+                            </c:if>
+                            <c:if test="${sessionScope.usuActivo.lesionSi eq 1}">
+                                Lesionado
+                            </c:if>
+                        </span>
+                    </p>
+                    <p>Enfermedad que le dificulte el deporte: <span><h:outputText value="#{sessionScope.usuActivo.enfermedad}" /></span></p>                        
+                    <p>Alergia a alguna comida: <span><h:outputText value="#{sessionScope.usuActivo.alergia}" /></span></p>
+                    <p>Comida que no me gusta: <span><h:outputText value="#{sessionScope.usuActivo.comidaNoGusta}" /></span></p>
+                </div>
+
+                <div id="datosPlan">
+                    <h1>Datos Sobre mi Plan de Entrenamiento</h1>
+                    <p>Deporte que practica: <span><h:outputText value="#{sessionScope.usuActivo.deporte}" /></span></p>
+                    <p>Deporte complementario: <span>
+                            <c:if test="${sessionScope.usuActivo.lesionSi eq ''}">
+                                Ninguno
+                            </c:if>
+                            <c:if test="${sessionScope.usuActivo.lesionSi ne ''}">
+                                <h:outputText value="#{sessionScope.usuActivo.deporteComplementado}" />
+                            </c:if>
+                        </span>                        
+                    </p>
+                    <p>Suplementacion: <span>
+                            <c:choose>
+                                <c:when test="${sessionScope.usuActivo.suplementacion eq 0}">
+                                    No
+                                </c:when>
+
+                                <c:when test="${sessionScope.usuActivo.suplementacion eq 1}">
+                                    Si - Solo antes del entrenamiento
+                                </c:when>
+                                <c:when test="${sessionScope.usuActivo.suplementacion eq 2}">
+                                    Si - Antes y después del entrenamiento
+                                </c:when>
+                            </c:choose>                                
+                        </span></p>
+                </div>
+
+
+                <div id="modificacionDatos">
+                    <h1>Modificacion de Datos</h1>
+                    <h:form id="fileUpoad" prependId="false" enctype="multipart/form-data">
+                        <h:outputLabel for="fileIdResume" value="Sube tu Nueva Imagen de Perfil" />
+                        <p:fileUpload label="Examinar" id="fileIdResume"  value="#{fileUploadBean.resume}" mode="simple" skinSimple="true" />
+                        <p:commandButton value="Subir" ajax="false" action="#{fileUploadBean.uploadResume}"/>   
+                    </h:form>  
+                    <p:separator/>            
+                    <h:form id="fileUpoad2" prependId="false" enctype="multipart/form-data">     
+                        <h:outputLabel for="fileIdPhoto" value="Sube 3 imágenes. Perfil, Espalda y De frente" /><br />                                               
+                        <h:outputLabel for="fileIdPhoto" value="Recuerda que puedes arrastrar la imagen desde tu escritorio o buscar la imágen desde el boton buscar." />                                               
+                        <p:fileUpload label="Examinar" 
+                                      cancelLabel="Cancelar" 
+                                      uploadLabel="Subir"
+                                      id="fileIdPhoto"  
+                                      fileUploadListener="#{fileUploadBean.uploadPhoto}" 
+                                      mode="advanced" 
+                                      dragDropSupport="true"
+                                      multiple="true" 
+                                      update="messages" 
+                                      sizeLimit="10000000" 
+                                      fileLimit="3" 
+                                      allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                        <p:messages id="messages" autoUpdate="true" closable="true" />
+                    </h:form>    
+                </div>
+
+                <div id="sobreMiPlan">
+                    <div id="planActual">
+                        <h1>Mi Plan Actual</h1>
+                    </div>
+
+                    <div id="planesAnteriores">
+                        <h1>Todos mis planes</h1>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </h:body>
+</html>

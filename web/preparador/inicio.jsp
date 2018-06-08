@@ -27,7 +27,6 @@
             <link rel="stylesheet" href="../css/jquery.e-calendar.css">                      
             <script src="../js/jquery.js"></script>
             <script src="../js/jquery-ui.min.js"></script>
-            <script src="../js/jquery.e-calendar.js"></script>
 
             <script>
                 $(document).ready(function () {

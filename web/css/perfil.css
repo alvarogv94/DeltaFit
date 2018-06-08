@@ -52,7 +52,7 @@ and open the template in the editor.
 }
 
 #der img {
-    width: 3em;
+    width: 50px;
     border-radius: 100px;
     margin: 1% 5% 0 0;
     cursor: pointer;

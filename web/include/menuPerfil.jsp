@@ -13,7 +13,7 @@
     <nav>
         <div id="izq">
             <h:form>
-                <h:commandLink action="perfil">
+                <h:commandLink action="inicio">
                     <h:graphicImage value="/img/logo.png" />
                 </h:commandLink>
             </h:form>
@@ -32,11 +32,11 @@
                         </div>
                         <div id="menuInferior">
                             <ul>
-                                <li><h:form><h:commandLink action="atleta/inicio">Inicio</h:commandLink></h:form></li>
-                                <li><h:form><h:commandLink action="atleta/perfil">Mi Perfil</h:commandLink></h:form></li>
-                                <li><h:form><h:commandLink action="atleta/plan">Mi Plan</h:commandLink></h:form></li>
-                                <li><h:form><h:commandLink action="atleta/chat">Chat</h:commandLink></h:form></li>
-                                <li><h:form><h:commandLink action="atleta/ajustes">Ajustes</h:commandLink></h:form></</li>
+                                <li><h:form><h:commandLink action="inicio">Inicio</h:commandLink></h:form></li>                                
+                                <li><a href="../atleta/perfil.xhtml">Mi Perfil</a></li>
+                                <li><h:form><h:commandLink action="plan">Mi Plan</h:commandLink></h:form></li>
+                                <li><h:form><h:commandLink action="chat">Chat</h:commandLink></h:form></li>
+                                <li><h:form><h:commandLink action="ajustes">Ajustes</h:commandLink></h:form></</li>
                                 <li><h:form><h:commandLink action="#{login.logout()}">Salir</h:commandLink></h:form></li>
                             </ul>
                                 </div>
@@ -47,11 +47,11 @@
                     </div>
                     <div id="menuInferior">
                         <ul>
-                            <li><h:form><h:commandLink action="preparador/inicio">Inicio</h:commandLink></h:form></li>
-                            <li><h:form><h:commandLink action="preparador/perfil">Mi Perfil</h:commandLink></h:form></li>
-                            <li><h:form><h:commandLink action="preparador/atletas">Mis Atletas</h:commandLink></h:form></li>
-                            <li><h:form><h:commandLink action="preparador/chat">Chat</h:commandLink></h:form></li>
-                            <li><h:form><h:commandLink action="preparador/ajustes">Ajustes</h:commandLink></h:form></li>
+                            <li><h:form><h:commandLink action="inicio">Inicio</h:commandLink></h:form></li>
+                            <li><h:form><h:commandLink action="perfil">Mi Perfil</h:commandLink></h:form></li>
+                            <li><h:form><h:commandLink action="atletas">Mis Atletas</h:commandLink></h:form></li>
+                            <li><h:form><h:commandLink action="chat">Chat</h:commandLink></h:form></li>
+                            <li><h:form><h:commandLink action="ajustes">Ajustes</h:commandLink></h:form></li>
                             <li><h:form><h:commandLink action="#{login.logout()}">Salir</h:commandLink></h:form></li>
                         </ul>
                     </div>

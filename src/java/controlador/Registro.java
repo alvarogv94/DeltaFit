@@ -15,6 +15,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.servlet.ServletContext;
 
 /**
  *
@@ -231,6 +232,7 @@ public class Registro {
                         resultado = "ok";
                         resultadoAlta = "El Registro se hizo correctamente.";
                         clase = "ok";
+                        
                     } catch (Exception ex) {
                         resultado = "no";
                         clase = "no";

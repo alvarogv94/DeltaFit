@@ -69,4 +69,29 @@
             <to-view-id>/preparador/preparacion.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>subeImagenPerfil</managed-bean-name>
+        <managed-bean-class>controlador.SubeImagenPerfil</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>subeImagenPerfil1</managed-bean-name>
+        <managed-bean-class>controlador.SubeImagenPerfil</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>fileUploadBean</managed-bean-name>
+        <managed-bean-class>controlador.FileUploadBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>editorUsuarioFoto</managed-bean-name>
+        <managed-bean-class>controlador.EditorUsuarioFotoBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>fileUploadBean1</managed-bean-name>
+        <managed-bean-class>controlador.FileUploadBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

@@ -58,6 +58,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Atleta.atletaNumByEmail", query = "SELECT count(a) FROM Atleta a WHERE a.email = :email"),
     @NamedQuery(name = "Atleta.atletaNumByNomUsuario", query = "SELECT count(a) FROM Atleta a WHERE a.nomUsuario = :nomUsuario")})
 public class Atleta implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -425,4 +426,19 @@ public class Atleta implements Serializable {
         return "DTO.Atleta[ codAtleta=" + codAtleta + " ]";
     }
 
+    public boolean fotoSi() {
+        if (!fotoPerfil.equals("")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean fotoNo() {
+        if (fotoPerfil.equals("")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

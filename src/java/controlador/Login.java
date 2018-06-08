@@ -9,10 +9,12 @@ import DAO.AtletaJpaController;
 import DAO.PreparadorJpaController;
 import DTO.Atleta;
 import DTO.Preparador;
+import java.io.File;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -109,6 +111,18 @@ public class Login {
                 contexto.getSessionMap().put("usuActivo", atl);
                 contexto.getSessionMap().put("tipoUsuario", "atleta");
                 login = true;
+                ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+                String filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/"+atl.getCodAtleta());
+                File carpeta = new File(filePath);
+                
+                if(!carpeta.exists()) {
+                    carpeta.mkdir();
+                }
+                filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/"+atl.getCodAtleta()+"/seguimiento/");
+                File seguimiento = new File(filePath);
+                if(!seguimiento.exists()) {
+                    seguimiento.mkdir();
+                }
                 url = "atleta/inicio.jsp";
                 redireccionar(url);
             }
