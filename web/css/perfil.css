@@ -32,6 +32,13 @@ and open the template in the editor.
 #izq img {
     width: 3em;
     cursor: pointer;
+    float: left;
+}
+
+#izq span {
+    line-height: 35px;
+    float: left;
+    color: white;
 }
 
 /*Parte central menu*/

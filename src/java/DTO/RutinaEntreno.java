@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RutinaEntreno.findByAnotacion", query = "SELECT r FROM RutinaEntreno r WHERE r.anotacion = :anotacion"),
     @NamedQuery(name = "RutinaEntreno.findByOrden", query = "SELECT r FROM RutinaEntreno r WHERE r.orden = :orden")})
 public class RutinaEntreno implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -131,5 +132,5 @@ public class RutinaEntreno implements Serializable {
     public String toString() {
         return "DTO.RutinaEntreno[ codRutinaEntreno=" + codRutinaEntreno + " ]";
     }
-    
+
 }

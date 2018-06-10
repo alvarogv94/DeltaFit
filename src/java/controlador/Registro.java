@@ -7,8 +7,10 @@ package controlador;
 
 import DAO.AtletaJpaController;
 import DAO.DeporteJpaController;
+import DAO.PreparadorJpaController;
 import DTO.Atleta;
 import DTO.Deporte;
+import DTO.Preparador;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.context.ExternalContext;
@@ -227,6 +229,15 @@ public class Registro {
                     }
 
                     try {
+                        
+                        /*si el usuario es de tipo 1 o 2 le asignamos un preparador aleatoriamente*/
+                        if(atleta.getTipoUsuario() == 1 || atleta.getTipoUsuario() == 2){
+                            PreparadorJpaController controlPreparador = new PreparadorJpaController(emf);
+                            List<Preparador> todosPreparadores = controlPreparador.findPreparadorEntities();
+                            int preparadorAleatorio = (int) Math.floor(Math.random()*todosPreparadores.size() + 0);                            
+                            Preparador preparador = todosPreparadores.get(preparadorAleatorio);
+                            atleta.setCodPreparador(preparador);
+                        }
                         
                         controlAtleta.create(atleta);
                         resultado = "ok";

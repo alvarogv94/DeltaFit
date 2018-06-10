@@ -32,8 +32,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Mensaje.findAll", query = "SELECT m FROM Mensaje m"),
     @NamedQuery(name = "Mensaje.findByCodMensaje", query = "SELECT m FROM Mensaje m WHERE m.codMensaje = :codMensaje"),
+    @NamedQuery(name = "Mensaje.mensajesNoLeidosPreparador", query = "SELECT count(m) FROM Mensaje m WHERE m.estado = '3' AND m.codAtleta = :codAtleta"),
+    @NamedQuery(name = "Mensaje.mensajesNoLeidosAtleta", query = "SELECT count(m) FROM Mensaje m WHERE m.estado = '1' AND m.codAtleta = :codAtleta"),
     @NamedQuery(name = "Mensaje.findByFechaEnvio", query = "SELECT m FROM Mensaje m WHERE m.fechaEnvio = :fechaEnvio"),
     @NamedQuery(name = "Mensaje.findByTexto", query = "SELECT m FROM Mensaje m WHERE m.texto = :texto"),
+    @NamedQuery(name = "Mensaje.dameChat", query = "SELECT m FROM Mensaje m WHERE m.codAtleta = :codAtleta AND m.codPreparador = :codPreparador"),
     @NamedQuery(name = "Mensaje.findByEstado", query = "SELECT m FROM Mensaje m WHERE m.estado = :estado")})
 public class Mensaje implements Serializable {
     private static final long serialVersionUID = 1L;

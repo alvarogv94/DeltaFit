@@ -5,13 +5,24 @@
  */
 package DTO;
 
+import DAO.AtletaJpaController;
+import DAO.ConversacionJpaController;
+import DAO.MensajeJpaController;
+import DAO.PreparadorJpaController;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +31,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -441,4 +453,67 @@ public class Atleta implements Serializable {
             return false;
         }
     }
+
+    public Long getMensajesNoLeidosCant() {
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("DeltaFitPU");
+
+        ExternalContext contexto = FacesContext.getCurrentInstance().getExternalContext();
+
+        MensajeJpaController mensajecontrol = new MensajeJpaController(emf);
+        AtletaJpaController atletaControl = new AtletaJpaController(emf);
+        return mensajecontrol.mensajesNoLeidosAtleta(this);
+    }
+
+    public List<Conversacion> getMensajesNoLeidos() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("DeltaFitPU");
+
+        MensajeJpaController controlMensaje = new MensajeJpaController(emf);
+        PreparadorJpaController controlPreparador = new PreparadorJpaController(emf);
+        Preparador prep = controlPreparador.findPreparador(this.getCodPreparador().getCodPreparador());
+
+        List<Mensaje> mensaje = controlMensaje.chatByUsuarioByPreparador(this, prep);
+        List<Conversacion> chat = new ArrayList<>();
+
+        for (int i = 0; i < mensaje.size(); i++) {
+            Conversacion conversacion = new Conversacion();
+            conversacion.setCodAtleta(mensaje.get(i).getCodAtleta().getCodAtleta());
+            conversacion.setNomUsuario(mensaje.get(i).getCodAtleta().getNomUsuario());
+            conversacion.setFotoPerfil(mensaje.get(i).getCodAtleta().getFotoPerfil());
+            conversacion.setCodMensaje(mensaje.get(i).getCodMensaje());
+            conversacion.setFechaEnvio(mensaje.get(i).getFechaEnvio());
+            conversacion.setEstado(mensaje.get(i).getEstado());
+            conversacion.setTexto(mensaje.get(i).getTexto());
+            conversacion.setCodPreparador(mensaje.get(i).getCodPreparador().getCodPreparador());
+            conversacion.setNomUsuarioPrep(mensaje.get(i).getCodPreparador().getNomUsuario());
+            conversacion.setFotoPerfilPreparador(mensaje.get(i).getCodPreparador().getFotoPerfil());
+            chat.add(conversacion);
+        }
+
+        for (int i = 0; i < mensaje.size(); i++) {
+
+            if (mensaje.get(i).getEstado() == '1') {
+                Mensaje mensajeEdit = new Mensaje();
+                mensajeEdit.setCodAtleta(mensaje.get(i).getCodAtleta());
+                mensajeEdit.setCodMensaje(mensaje.get(i).getCodMensaje());
+                mensajeEdit.setCodPreparador(mensaje.get(i).getCodPreparador());
+                mensajeEdit.setEstado('2');
+                mensajeEdit.setFechaEnvio(mensaje.get(i).getFechaEnvio());
+                mensajeEdit.setTexto(mensaje.get(i).getTexto());
+                try {
+                    controlMensaje.edit(mensajeEdit);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }
+        return chat;
+    }
+
+    public String getFech(Date date) {
+
+        DateFormat dfDateMedium = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        return dfDateMedium.format(date);
+    }
+
 }

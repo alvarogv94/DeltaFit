@@ -7,6 +7,7 @@ package DTO;
 
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -28,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PreparacionAtleta.findAll", query = "SELECT p FROM PreparacionAtleta p"),
+    @NamedQuery(name = "PreparacionAtleta.findByCodPreparador", query = "SELECT p FROM PreparacionAtleta p WHERE p.codPreparador = :codPreparador"),
     @NamedQuery(name = "PreparacionAtleta.findByCodAtleta", query = "SELECT p FROM PreparacionAtleta p WHERE p.codAtleta = :codAtleta"),
     @NamedQuery(name = "PreparacionAtleta.findByNombre", query = "SELECT p FROM PreparacionAtleta p WHERE p.nombre = :nombre"),
     @NamedQuery(name = "PreparacionAtleta.findByNomUsuario", query = "SELECT p FROM PreparacionAtleta p WHERE p.nomUsuario = :nomUsuario"),
@@ -35,8 +37,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PreparacionAtleta.findByObjetivo", query = "SELECT p FROM PreparacionAtleta p WHERE p.objetivo = :objetivo"),
     @NamedQuery(name = "PreparacionAtleta.findByFechUltPago", query = "SELECT p FROM PreparacionAtleta p WHERE p.fechUltPago = :fechUltPago")})
 public class PreparacionAtleta implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @Column(name = "cod_preparador")
+    private Integer codPreparador;
     @Basic(optional = false)
     @Column(name = "cod_atleta")
     private int codAtleta;
@@ -53,6 +58,14 @@ public class PreparacionAtleta implements Serializable {
     private Date fechUltPago;
 
     public PreparacionAtleta() {
+    }
+
+    public Integer getCodPreparador() {
+        return codPreparador;
+    }
+
+    public void setCodPreparador(Integer codPreparador) {
+        this.codPreparador = codPreparador;
     }
 
     public int getCodAtleta() {
@@ -95,13 +108,23 @@ public class PreparacionAtleta implements Serializable {
         this.objetivo = objetivo;
     }
 
-    public String getFechUltPago() {        
+    public String getFechUltPago() {
         DateFormat dfDateMedium = DateFormat.getDateInstance(DateFormat.MEDIUM);
         return dfDateMedium.format(fechUltPago);
+    }
+
+    public String getFechPrep() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fechUltPago);
+        calendar.add(Calendar.DAY_OF_YEAR, 5);
+        
+        Date fechaPrep = calendar.getTime();
+        DateFormat dfDateMedium = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        return dfDateMedium.format(fechaPrep);
     }
 
     public void setFechUltPago(Date fechUltPago) {
         this.fechUltPago = fechUltPago;
     }
-    
+
 }

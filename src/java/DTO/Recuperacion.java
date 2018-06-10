@@ -6,6 +6,7 @@
 package DTO;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -39,6 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Recuperacion.findUltimoPlan", query = "SELECT r FROM Recuperacion r WHERE r.codPreparador = :codPreparador ORDER BY r.codRecuperacion DESC"),
     @NamedQuery(name = "Recuperacion.findByAnotacion", query = "SELECT r FROM Recuperacion r WHERE r.anotacion = :anotacion")})
 public class Recuperacion implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -146,9 +148,15 @@ public class Recuperacion implements Serializable {
         return true;
     }
 
+    public String getFech() {
+
+        DateFormat dfDateMedium = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        return dfDateMedium.format(fechaProxima);
+    }
+
     @Override
     public String toString() {
         return "DTO.Recuperacion[ codRecuperacion=" + codRecuperacion + " ]";
     }
-    
+
 }

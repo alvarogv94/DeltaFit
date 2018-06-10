@@ -26,8 +26,6 @@
             <link rel="stylesheet" href="../css/jquery-ui.min.css">
             <script src="../js/jquery.js"></script>
             <script src="../js/jquery-ui.min.js"></script>
-            <script src="../js/jquery.e-calendar.js"></script>
-
             <script>
                 $(document).ready(function () {
                     //Click en el icono de tu perfil para desplegar el menu
@@ -46,26 +44,34 @@
             <div id="contenedor">
                 <jsp:include page="/include/menuPerfil.jsp" />
                 <div id="contenido">
-                    <p id="muestra">Mostrar Ficha de Atleta</p>
+                    <p id="muestra">Ficha de Atleta <span class="ui-icon ui-icon-extlink"></span></p>
                     <div id="fichaAtleta">
-                        <p>Nombre ${sessionScope.atletaPreparacion.nombre}</p>
-                        <p>Apellidos ${sessionScope.atletaPreparacion.apellidos}</p>
-                        <p>Localidad ${sessionScope.atletaPreparacion.localidad}</p>
-                        <p>Edad ${sessionScope.atletaPreparacion.edad}</p>
-                        <p>Sexo ${sessionScope.atletaPreparacion.sexo}</p>
-                        <p>Nombre de Usuario ${sessionScope.atletaPreparacion.nomUsuario}</p>
-                        <p>Email ${sessionScope.atletaPreparacion.nomUsuario}</p>
-                        <p>Peso Actual ${sessionScope.atletaPreparacion.pesoActual}</p>
-                        <p>Altura ${sessionScope.atletaPreparacion.altura}</p>
-                        <p>Deporte ${sessionScope.atletaPreparacion.deporte}</p>
-                        <p>Lesion ${sessionScope.atletaPreparacion.lesionSi}</p>
-                        <p>Objetivo ${sessionScope.atletaPreparacion.objetivo}</p>
+                        <div id="datosPersonales">
+                            <h1>Datos Personales</h1>
+                            <p>Nombre <span>${sessionScope.atletaPreparacion.nombre}</span></p>
+                            <p>Apellidos <span>${sessionScope.atletaPreparacion.apellidos}</span></p>
+                            <p>Localidad <span>${sessionScope.atletaPreparacion.localidad}</span></p>
+                            <p>Edad <span>${sessionScope.atletaPreparacion.edad}</span></p>
+                            <p>Sexo <span>${sessionScope.atletaPreparacion.sexo}</span></p>
+                            <p>Email <span>${sessionScope.atletaPreparacion.email}</span></p>
+                        </div>
+                        <div id="datosFisicos">  
+                            <h1>Datos Físicos</h1>
+                            <p>Peso Actual <span>${sessionScope.atletaPreparacion.pesoActual}</span></p>
+                            <p>Altura <span>${sessionScope.atletaPreparacion.altura}</span></p>
+                            <p>Lesion <span>${sessionScope.atletaPreparacion.lesionSi}</span></p>
+                        </div>
+                        <div id="datosPlan">
+                            <h1>Datos Sobre el Plan de Entrenamiento</h1>
+                            <p>Deporte <span>${sessionScope.atletaPreparacion.deporte}</span></p>
+                            <p>Objetivo <span>${sessionScope.atletaPreparacion.objetivo}</span></p>
+                        </div>
                     </div>
-                    <div id="menuPreparacion">
-                        <h:form rendered="#{RealizaPreparacion.lesionNo()}">
-                            <h1>Preparación para Atleta No Lesionado</h1>
-                            <div id="dieta">
-                                <h1>Dieta</h1>
+                    <div id="preparacion">
+
+                        <div id="dieta">
+                            <h1>Dieta</h1>
+                            <h:form rendered="#{RealizaPreparacion.lesionNo()}">
                                 <p>
                                     <h:outputLabel for="desayuno">Desayuno </h:outputLabel>
                                     <h:inputText value="#{RealizaPreparacion.dietaEntreno.desayuno}" 
@@ -96,16 +102,12 @@
                                     <h:inputText value="#{RealizaPreparacion.dietaEntreno.cena}" 
                                                  id="cena" /><br />
                                 </p> 
-                            </div> 
-                            <p>
-                                <h:commandButton value="Añadir Dieta a la Preparacion" action="#{RealizaPreparacion.añadeDieta()}"/>
-                            </p>
-                        </h:form>
+                                <p id="dietaAdd">
+                                    <h:commandButton styleClass="btn" value="Añadir Dieta a la Preparacion" action="#{RealizaPreparacion.añadeDieta()}"/>
+                                </p>
+                            </h:form>
 
-                        <h:form rendered="#{RealizaPreparacion.lesionSi()}">
-                            <h1>Preparación para Atleta No Lesionado</h1>
-                            <div id="dieta">
-                                <h1>Dieta</h1>
+                            <h:form rendered="#{RealizaPreparacion.lesionSi()}">
                                 <p>
                                     <h:outputLabel for="desayuno">Desayuno </h:outputLabel>
                                     <h:inputText value="#{RealizaPreparacion.dietaRecuperacion.desayuno}" 
@@ -126,12 +128,13 @@
                                     <h:inputText value="#{RealizaPreparacion.dietaRecuperacion.cena}" 
                                                  id="cena" /><br />
                                 </p>  
-                            </div>
-                            <p>
-                                <h:commandButton value="Añadir Dieta a la Preparacion" action="#{RealizaPreparacion.añadeDieta()}"/>
-                            </p>
-                        </h:form>
+                                <p id="dietaAdd">
+                                    <h:commandButton styleClass="btn" value="Añadir Dieta a la Preparacion" action="#{RealizaPreparacion.añadeDieta()}"/>
+                                </p>
+                            </h:form>
+                        </div>
                         <div id="rutina">
+                            <h1>Rutina de Ejercicios</h1>                        
                             <p>Ejercicios para el dia <h:outputText value="#{RealizaPreparacion.dia}" /> de entrenamiento</p>
                             <h:form id="rutinaMusculo">
                                 <p>
@@ -153,17 +156,21 @@
                                         <f:selectItems value="#{RealizaPreparacion.listaEjercicios}" 
                                                        var="c" itemLabel="#{c.nombre}" itemValue="#{c.nombre}"/>
                                     </h:selectOneMenu> <br /> 
-                                    <h:inputText value="#{RealizaPreparacion.rutinaEntreno.ejercicio}" />
                                 </p>
                                 <p>
+                                    <h:outputLabel for="ejercicioAlternativo">Ejercicio Alternativo</h:outputLabel>
+                                    <h:inputText value="#{RealizaPreparacion.ejercicioAlternativo}" id="ejercicioAlternativo" />
+                                </p>
+                                <p>
+                                    <h:outputLabel for="anotacion">Anotacion </h:outputLabel>
                                     <h:inputText value="#{RealizaPreparacion.rutinaEntreno.anotacion}" id="anotacion" />
                                 </p>
-                                <p>                                    
-                                    <h:commandButton value="Añadir Ejercicio" action="#{RealizaPreparacion.añadeEjercicioNoLesion()}"/>
+                                <p id="aEjercicio">                                    
+                                    <h:commandButton styleClass="btn" value="Añadir Ejercicio" action="#{RealizaPreparacion.añadeEjercicioNoLesion()}"/>
                                     <h:outputText value="#{RealizaPreparacion.errorEjercicio}" styleClass="#{RealizaPreparacion.clase}"/>
                                 </p>
-                                <p>                                    
-                                    <h:commandButton value="Finalizar Día" action="#{RealizaPreparacion.siguienteDia()}"/>
+                                <p id="finalizarDia">                                    
+                                    <h:commandButton styleClass="btn" value="Finalizar Día" action="#{RealizaPreparacion.siguienteDia()}"/>
                                 </p>
                             </h:form>
                             <h:form id="rutinaEjercicioLesion" rendered="#{RealizaPreparacion.lesionSi()}">
@@ -178,156 +185,158 @@
 
                                 </p>
                                 <p>
+                                    <h:outputLabel for="anotacion">Anotación: </h:outputLabel>
                                     <h:inputText value="#{RealizaPreparacion.rutinaRecuperacion.anotacion}" id="anotacion" />
                                 </p>
-                                <p>                                    
-                                    <h:commandButton value="Añadir Ejercicio" action="#{RealizaPreparacion.añadeEjercicioLesion()}"/>
+                                <p id="aEjercicio">                                    
+                                    <h:commandButton styleClass="btn" value="Añadir Ejercicio" action="#{RealizaPreparacion.añadeEjercicioLesion()}"/>
                                     <h:outputText value="#{RealizaPreparacion.errorEjercicio}" styleClass="#{RealizaPreparacion.clase}"/>
                                 </p>
-                                <p>                                    
-                                    <h:commandButton value="Finalizar Día" action="#{RealizaPreparacion.siguienteDia()}"/>
+                                <p id="finalizarDia">                                    
+                                    <h:commandButton styleClass="btn" value="Finalizar Día" action="#{RealizaPreparacion.siguienteDia()}"/>
                                 </p>
                             </h:form>
                         </div>
 
-                        <div id="resumenPreparacion">
-                            <h1>Plan de Entrenamiento</h1>
-                            <div id="resumenDieta">
-                                <h1>Resumen Dieta</h1>
-                                <h:dataTable rendered="#{RealizaPreparacion.lesionNo()}" value="#{RealizaPreparacion.dietaEntreno}" var="campo" border="1" >
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Desayuno"/>
-                                        </f:facet>
-                                        <h:outputText value="#{campo.desayuno}"/>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Media Mañana" />
-                                        </f:facet>
-                                        <h:outputText value="#{campo.mediaManhana}" />
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Almuerzo"/>
-                                        </f:facet>
-                                        <h:outputText value="#{campo.almuerzo}" />
-                                    </h:column>
+                    </div>
+                    <div id="resumenPreparacion">
+                        <div id="resumenDieta">
+                            <h1>Resumen Dieta</h1>
+                            <h:dataTable rendered="#{RealizaPreparacion.lesionNo()}" value="#{RealizaPreparacion.dietaEntreno}" var="campo" border="1" >
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Desayuno"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.desayuno}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Media Mañana" />
+                                    </f:facet>
+                                    <h:outputText value="#{campo.mediaManhana}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Almuerzo"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.almuerzo}" />
+                                </h:column>
 
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Pre Entreno" />
-                                        </f:facet>
-                                        <h:outputText value="#{campo.preEntreno}" />
-                                    </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Pre Entreno" />
+                                    </f:facet>
+                                    <h:outputText value="#{campo.preEntreno}" />
+                                </h:column>
 
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Post Entreno" />
-                                        </f:facet>
-                                        <h:outputText value="#{campo.postEntreno}" />
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Cena" />
-                                        </f:facet>
-                                        <h:outputText value="#{campo.cena}" />
-                                    </h:column>
-                                </h:dataTable>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Post Entreno" />
+                                    </f:facet>
+                                    <h:outputText value="#{campo.postEntreno}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Cena" />
+                                    </f:facet>
+                                    <h:outputText value="#{campo.cena}" />
+                                </h:column>
+                            </h:dataTable>
 
-                                <h:dataTable rendered="#{RealizaPreparacion.lesionSi()}" value="#{RealizaPreparacion.dietaRecuperacion}" var="campo" border="1" >
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Desayuno"/>
-                                        </f:facet>
-                                        <h:outputText value="#{campo.desayuno}"/>
-                                    </h:column>
+                            <h:dataTable rendered="#{RealizaPreparacion.lesionSi()}" value="#{RealizaPreparacion.dietaRecuperacion}" var="campo" border="1" >
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Desayuno"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.desayuno}"/>
+                                </h:column>
 
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Media Mañana" />
-                                        </f:facet>
-                                        <h:outputText value="#{campo.mediaManhana}" />
-                                    </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Media Mañana" />
+                                    </f:facet>
+                                    <h:outputText value="#{campo.mediaManhana}" />
+                                </h:column>
 
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Almuerzo"/>
-                                        </f:facet>
-                                        <h:outputText value="#{campo.almuerzo}" />
-                                    </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Almuerzo"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.almuerzo}" />
+                                </h:column>
 
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Cena" />
-                                        </f:facet>
-                                        <h:outputText value="#{campo.cena}" />
-                                    </h:column>
-                                </h:dataTable>
-                            </div>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Cena" />
+                                    </f:facet>
+                                    <h:outputText value="#{campo.cena}" />
+                                </h:column>
+                            </h:dataTable>
+                        </div>
 
-                            <div id="resumenRutina">
-                                <h1>Resumen Rutina de Entrenamiento</h1>
-                                <h:dataTable rendered="#{RealizaPreparacion.lesionNo()}" value="#{RealizaPreparacion.listaEntreno}" var="campo" border="1" >
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Dia"/>
-                                        </f:facet>
-                                        <h:outputText value="#{campo.dia}"/>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Ejercicio" />
-                                        </f:facet>
-                                        <h:outputText value="#{campo.ejercicio}" />
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Anotacion"/>
-                                        </f:facet>
-                                        <h:outputText value="#{campo.anotacion}" />
-                                    </h:column>
+                        <div id="resumenRutina">
+                            <h1>Resumen Rutina de Entrenamiento</h1>
+                            <h:dataTable rendered="#{RealizaPreparacion.lesionNo()}" value="#{RealizaPreparacion.listaEntreno}" var="campo" border="1" >
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Dia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.dia}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Orden" />
+                                    </f:facet>
+                                    <h:outputText value="#{campo.orden}" />
+                                </h:column> 
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Ejercicio" />
+                                    </f:facet>
+                                    <h:outputText value="#{campo.ejercicio}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Anotacion"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.anotacion}" />
+                                </h:column>
 
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Orden" />
-                                        </f:facet>
-                                        <h:outputText value="#{campo.orden}" />
-                                    </h:column>                                   
-                                </h:dataTable>
+                            </h:dataTable>
 
-                                <h:dataTable rendered="#{RealizaPreparacion.lesionSi()}" value="#{RealizaPreparacion.listaEntrenoLesion}" var="campo" border="1" >
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Dia"/>
-                                        </f:facet>
-                                        <h:outputText value="#{campo.dia}"/>
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Ejercicio" />
-                                        </f:facet>
-                                        <h:outputText value="#{campo.ejercicio}" />
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Anotacion"/>
-                                        </f:facet>
-                                        <h:outputText value="#{campo.anotacion}" />
-                                    </h:column>
-
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Orden" />
-                                        </f:facet>
-                                        <h:outputText value="#{campo.orden}" />
-                                    </h:column>                                   
-                                </h:dataTable>
-                            </div>
+                            <h:dataTable rendered="#{RealizaPreparacion.lesionSi()}" value="#{RealizaPreparacion.listaEntrenoLesion}" var="campo" border="1" >
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Dia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.dia}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Orden" />
+                                    </f:facet>
+                                    <h:outputText value="#{campo.orden}" />
+                                </h:column>  
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Ejercicio" />
+                                    </f:facet>
+                                    <h:outputText value="#{campo.ejercicio}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Anotacion"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.anotacion}" />
+                                </h:column>                                 
+                            </h:dataTable>
                             <h:form id="guardaPlan" prependId="false">
-                                <p>
-                                    <h:commandButton rendered="#{RealizaPreparacion.lesionSi()}" value="Guardar Preparacion" action="#{RealizaPreparacion.guardaPlanLesion()}"/>
-                                    <h:commandButton rendered="#{RealizaPreparacion.lesionNo()}" value="Guardar Preparacion" action="#{RealizaPreparacion.guardaPlanLesionNo()}"/>
+                                <p id="guardaPlanBoton">
+                                    <h:commandButton styleClass="btn" rendered="#{RealizaPreparacion.lesionSi()}" value="Guardar Preparacion" action="#{RealizaPreparacion.guardaPlanLesion()}"/>
+                                    <h:commandButton styleClass="btn" rendered="#{RealizaPreparacion.lesionNo()}" value="Guardar Preparacion" action="#{RealizaPreparacion.guardaPlanLesionNo()}"/>
+                                </p>
+                                <p id="volver">
+                                    <h:commandButton styleClass="btn" value="Volver" action="#{RealizaPreparacion.volver()}"/>
                                 </p>
                             </h:form>
                         </div>

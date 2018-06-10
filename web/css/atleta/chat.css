@@ -4,52 +4,56 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 23-may-2018, 20:36:59
+    Created on : 10-jun-2018, 10:26:40
     Author     : Alvaro
 */
 
-#formPreparacion {
+#mensajePreparador {
+    position: relative;
     width: 80%;
-    margin: 0 auto;
-    padding: 1%;
+    margin: 3% 0 3% 3%;
 }
 
-table {
-    width: 100%;
-    margin: 2% 0 2% 0;
-    border-collapse: collapse;
-    border-radius: 1em;
-    overflow: hidden;
+#mensajeAtleta {
+    position: relative;
+    width: 80%;
+    margin: 3% 0 3% 15%;
 }
 
-th, td {
-    border-bottom: 3px solid #e6e6e6;
+.preparador {
+    float: left;
+    text-align: left;
+    border-radius: 5px;
+    background-color: #06f;
+    color: #ededed;
+    padding: 10px;
+    width: 50%;
 }
 
-th a {
-    color: white;
-    line-height: 30px;
+
+.atleta {
+    float: right;
+    border-radius: 5px;
+    background-color: #ededed;
+    color: #06f;
+    padding: 10px;
+    width: 50%;
 }
 
-thead {
-    height: 35px;
+.derecha {
+    float: right;
 }
 
-thead tr {
-    background: #06f;
+#mandaMensaje {
+    float: right;
+    width: 30%;
+    margin: 2%;
 }
 
-tbody tr td {
-    padding: 1%;
+#boton {
+    float: right;
 }
 
-tbody tr:hover td {
-    background: #eeeeee;
-    border-bottom: 0px;
-    border-radius: 0px;
-}
-
-/*Clase para boton*/
 .btn {
     background: #06f;
     background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -65,7 +69,6 @@ tbody tr:hover td {
     text-decoration: none;
     color:white;
     font-family: 'UbuntuBold';
-    cursor: pointer;
 }
 
 .btn:hover {
@@ -76,5 +79,14 @@ tbody tr:hover td {
     background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
     background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
     text-decoration: none;
+}
 
+#textoMandaMensaje {
+    border: #06f 1px solid;
+    width: 310px;
+    margin: 2% 0 0 0;
+}
+
+.derecha {
+    float: right;
 }

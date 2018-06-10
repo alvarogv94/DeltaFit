@@ -94,4 +94,37 @@
         <managed-bean-class>controlador.FileUploadBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <navigation-rule>
+        <from-view-id>/preparador/preparacion.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/preparador/preparacion.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>vuelve</from-outcome>
+            <to-view-id>/preparador/inicio.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>chat</managed-bean-name>
+        <managed-bean-class>controlador.Chat</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>seleccionaChat</managed-bean-name>
+        <managed-bean-class>controlador.SeleccionaChat</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/preparador/chat.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/preparador/conversacion.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>exportarPlan</managed-bean-name>
+        <managed-bean-class>controlador.ExportarPlan</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>

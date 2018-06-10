@@ -66,7 +66,7 @@ public class FileUploadBean implements Serializable {
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         
         UploadedFile uploadedPhoto = getResume();
-        String filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/"+atleta.getCodAtleta()+"/");
+        String filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/a"+atleta.getCodAtleta()+"/");
         byte[] bytes = null;
 
         if (null != uploadedPhoto) {
@@ -94,7 +94,7 @@ public class FileUploadBean implements Serializable {
 
         UploadedFile uploadedPhoto = e.getFile();
             
-        String filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/"+atleta.getCodAtleta()+"/seguimiento/");        
+        String filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/a"+atleta.getCodAtleta()+"/seguimiento/");        
         byte[] bytes = null;
 
         if (null != uploadedPhoto) {

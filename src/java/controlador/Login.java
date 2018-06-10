@@ -112,15 +112,15 @@ public class Login {
                 contexto.getSessionMap().put("tipoUsuario", "atleta");
                 login = true;
                 ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-                String filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/"+atl.getCodAtleta());
+                String filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/a" + atl.getCodAtleta());
                 File carpeta = new File(filePath);
-                
-                if(!carpeta.exists()) {
+
+                if (!carpeta.exists()) {
                     carpeta.mkdir();
                 }
-                filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/"+atl.getCodAtleta()+"/seguimiento/");
+                filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/a" + atl.getCodAtleta() + "/seguimiento/");
                 File seguimiento = new File(filePath);
-                if(!seguimiento.exists()) {
+                if (!seguimiento.exists()) {
                     seguimiento.mkdir();
                 }
                 url = "atleta/inicio.jsp";
@@ -132,6 +132,14 @@ public class Login {
                     contexto.getSessionMap().put("usuActivo", prep);
                     contexto.getSessionMap().put("tipoUsuario", "preparador");
                     login = true;
+                    ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+                    String filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/p" + prep.getCodPreparador());
+                    File carpeta = new File(filePath);
+
+                    if (!carpeta.exists()) {
+                        carpeta.mkdir();
+                    }
+
                     url = "preparador/inicio.jsp";
                     redireccionar(url);
                 }
@@ -140,8 +148,7 @@ public class Login {
                 resultado = "no";
             }
         }
-        
-        
+
         return resultado;
     }
 

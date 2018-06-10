@@ -258,13 +258,35 @@
                                 <p id="textoDialogo">Si añades varios pesos en el mismo mes, estos no serán sustituídos, podrás añadir varios pesos en un mismo mes.</p>
                             </div>
                         </div>
-                        <h3>Mensajes con mi Preparador</h3>
+                        <h3>Mensajes con mi Preparador <span>${sessionScope.usuActivo.mensajesNoLeidosCant}</span></h3>
                         <div>
-                            <p>Aquí irá los mensajes sin leer</p>
+                            <c:if test="${sessionScope.usuActivo.mensajesNoLeidosCant eq 0}">
+                                <p>No tienes Ningún Mensaje Nuevo.</p>
+                            </c:if>
+                            <c:if test="${sessionScope.usuActivo.mensajesNoLeidosCant ne 0}">
+
+                                <c:forEach items="${sessionScope.usuActivo.mensajesNoLeidos}" var="item">
+                                    <c:if test="${item.estado.toString() eq '1'}">
+                                        <p class="no_leido preparador">${item.nomUsuarioPrep}: ${item.texto} ${item.fechaEnvio}</p>
+                                    </c:if>                                    
+                                </c:forEach>
+
+                                <div id="mandaMensaje">
+                                    <h:form id="formMandaMensaje" prependId="false">
+                                        <h:inputText value="#{chat.mensaje.texto}" 
+                                                     id="mensaje"
+                                                     required="true"
+                                                     requiredMessage="debe escribir algún mensaje" />
+                                        <p id="boton">
+                                            <h:commandButton value="Enviar" styleClass="btn" action="#{chat.mandaMensajeAtleta()}"/>
+                                        </p>
+                                    </h:form>
+                                </div>                            
+                            </c:if>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             <jsp:include page="/include/pie2.jsp" />        
         </body>
     </html>

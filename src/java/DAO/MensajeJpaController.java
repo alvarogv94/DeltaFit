@@ -193,5 +193,47 @@ public class MensajeJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<Mensaje> chatByUsuarioByPreparador(Atleta codAtleta, Preparador codPreparador) {
+        EntityManager em = getEntityManager();
+        List<Mensaje> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("Mensaje.dameChat", Mensaje.class);
+            qu.setParameter("codAtleta", codAtleta);
+            qu.setParameter("codPreparador", codPreparador);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista;
+    }
+
+    public Long mensajesNoLeidos(Atleta codAtleta) {
+        EntityManager em = getEntityManager();
+        List<Long> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("Mensaje.mensajesNoLeidosPreparador", Mensaje.class);
+            qu.setParameter("codAtleta", codAtleta);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista.get(0);
+    }
+
+    public Long mensajesNoLeidosAtleta(Atleta codAtleta) {
+        EntityManager em = getEntityManager();
+        List<Long> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("Mensaje.mensajesNoLeidosAtleta", Mensaje.class);
+            qu.setParameter("codAtleta", codAtleta);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista.get(0);
+    }
 }

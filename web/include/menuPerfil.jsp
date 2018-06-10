@@ -16,13 +16,22 @@
                 <h:commandLink action="inicio">
                     <h:graphicImage value="/img/logo.png" />
                 </h:commandLink>
+                <span>Delta Fit</span>
+
             </h:form>
         </div>
         <div id="centro">
             <p>${sessionScope.usuActivo.nombre} ${sessionScope.usuActivo.apellidos}</p>
         </div>
         <div id="der">
-            <h:graphicImage value="/img/perfil/no-image.png" />
+            <c:if test="${sessionScope.tipoUsuario eq 'atleta'}">
+                <h:graphicImage rendered="#{sessionScope.usuActivo.fotoSi()}" value="/img/perfil/a#{sessionScope.usuActivo.codAtleta}/#{sessionScope.usuActivo.fotoPerfil}" />                            
+                <h:graphicImage rendered="#{sessionScope.usuActivo.fotoNo()}" value="/img/perfil/no-image.png" /> 
+            </c:if> 
+            <c:if test="${sessionScope.tipoUsuario eq 'preparador'}">
+                <h:graphicImage rendered="#{sessionScope.usuActivo.fotoSi()}" value="/img/perfil/p#{sessionScope.usuActivo.codPreparador}/#{sessionScope.usuActivo.fotoPerfil}" />                            
+                <h:graphicImage rendered="#{sessionScope.usuActivo.fotoNo()}" value="/img/perfil/no-image.png" /> 
+            </c:if>  
             <div id="menuPer">
                 <div id="menuSuperior">
                     <c:choose>
@@ -33,12 +42,10 @@
                         <div id="menuInferior">
                             <ul>
                                 <li><h:form><h:commandLink action="inicio">Inicio</h:commandLink></h:form></li>                                
-                                <li><a href="../atleta/perfil.xhtml">Mi Perfil</a></li>
-                                <li><h:form><h:commandLink action="plan">Mi Plan</h:commandLink></h:form></li>
+                                        <li><a href="../atleta/perfil.xhtml">Mi Perfil</a></li>
                                 <li><h:form><h:commandLink action="chat">Chat</h:commandLink></h:form></li>
-                                <li><h:form><h:commandLink action="ajustes">Ajustes</h:commandLink></h:form></</li>
                                 <li><h:form><h:commandLink action="#{login.logout()}">Salir</h:commandLink></h:form></li>
-                            </ul>
+                                    </ul>
                                 </div>
                     </c:when>
                     <c:when test = "${sessionScope.tipoUsuario eq 'preparador'}">
@@ -51,10 +58,9 @@
                             <li><h:form><h:commandLink action="perfil">Mi Perfil</h:commandLink></h:form></li>
                             <li><h:form><h:commandLink action="atletas">Mis Atletas</h:commandLink></h:form></li>
                             <li><h:form><h:commandLink action="chat">Chat</h:commandLink></h:form></li>
-                            <li><h:form><h:commandLink action="ajustes">Ajustes</h:commandLink></h:form></li>
                             <li><h:form><h:commandLink action="#{login.logout()}">Salir</h:commandLink></h:form></li>
-                        </ul>
-                    </div>
+                                </ul>
+                            </div>
 
                 </c:when>
             </c:choose>

@@ -1,9 +1,8 @@
 <%-- 
-    Document   : chat
-    Created on : 10-jun-2018, 20:31:41
+    Document   : conversacion
+    Created on : 10-jun-2018, 10:06:04
     Author     : Alvaro
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,12 +17,12 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Chat</title>
+            <title>Conversacion</title>
             <link rel="stylesheet" href="../css/reseteo.css">
             <link rel="stylesheet" href="../css/font.css">
             <link rel="stylesheet" href="../css/comun.css">
             <link rel="stylesheet" href="../css/perfil.css">
-            <link rel="stylesheet" href="../css/atleta/chat.css">
+            <link rel="stylesheet" href="../css/preparador/conversacion.css">
             <link rel="stylesheet" href="../css/jquery-ui.min.css">
             <script src="../js/jquery.js"></script>
             <script src="../js/jquery-ui.min.js"></script>
@@ -42,7 +41,7 @@
                 <div id="contenido">
 
                     <div id="chat">
-                        <c:forEach items="${sessionScope.usuActivo.mensajesNoLeidos}" var="item">
+                        <c:forEach items="${sessionScope.conversacion}" var="item">
                             <c:if test="${item.estado.toString() eq '1'}">
                                 <div id="mensajePreparador">
                                     <p class="no_leido preparador">${item.nomUsuarioPrep}: ${item.texto} <span class="derecha">${usuActivo.getFech(item.fechaEnvio)} <span class="ui-icon ui-icon-mail-closed"</span></span></p><br />

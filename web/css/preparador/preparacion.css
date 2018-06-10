@@ -11,10 +11,53 @@ and open the template in the editor.
 
 #muestra {
     cursor: pointer;
+    font-family: "UbuntuRegular";
+    font-weight: bolder;
+    margin: 2% 0 2% 2%;
 }
 
 #fichaAtleta {
     display: none;
+    width: 80%;
+    margin: 0 auto;
+    height: 145px;
+}
+
+#fichaAtleta div h1{
+    font-size: 1em;
+    border-bottom: 1px solid #e6e6e6;
+
+}
+
+#datosPersonales {
+    float: left;
+    width: 30%;
+    margin: 0 2% 0 0;
+}
+
+#datosFisicos {
+    float: left;
+    width: 30%; 
+    margin: 0 2% 0 0;
+}
+
+#datosPlan {
+    float: left;
+    width: 30%;  
+}
+#fichaAtleta p {
+    font-family: "UbuntuLight";
+    font-weight: bold;
+}
+
+#fichaAtleta p span{
+    font-family: "UbuntuLight";
+    font-weight: normal;
+}
+
+label {
+    font-family: "UbuntuRegular";
+
 }
 
 .okEjercicio {
@@ -23,4 +66,159 @@ and open the template in the editor.
 
 .errorEjercicio {
     color: red;
+}
+
+table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+th, td {
+    border-bottom: 3px solid #e6e6e6;
+}
+
+th{
+    color: white;
+    line-height: 30px;
+}
+
+thead {
+    height: 35px;
+}
+
+thead tr {
+    background: #06f;
+}
+
+tbody tr td {
+    padding: 1%;
+    text-align: center;
+}
+
+/*Clase para boton*/
+.btn {
+    background: #06f;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 7;
+    -moz-border-radius: 7;
+    border-radius: 7px;
+    font-size: 15px;
+    padding: 4px 15px 4px 15px;
+    text-decoration: none;
+    color:white;
+    font-family: 'UbuntuBold';
+    cursor: pointer;
+
+}
+
+.btn:hover {
+    background: #71aaff;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+#preparacion {
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    height: 300px;
+    margin-bottom: 3%;
+}
+
+#dieta {
+    float: left;
+    width: 40%;
+}
+
+#dieta h1 {
+    border-bottom: 3px solid #e6e6e6;
+    margin-bottom: 5%;
+}
+
+#dieta form p {
+    width: 100%;
+    margin: 1%;
+}
+
+#dieta form p#dietaAdd {
+    margin: 5% 0 0 0;    
+}
+
+#dieta form label {
+    width: 120px;
+    display:block;
+    float:left;
+}
+
+#rutina {
+    float: right;
+    width: 40%;
+}
+
+#rutina h1 {
+    border-bottom: 3px solid #e6e6e6;
+    margin-bottom: 5%;
+}
+
+#rutina h1 ~ p {
+    margin-bottom: 5%;
+}
+
+#rutina form p {
+    width: 99%;
+    margin: 1%;
+}
+#rutina form label {
+    width: 200px;
+    display:block;
+    float:left;
+}
+
+#resumenPreparacion {
+    position: relative;
+    border-top: 3px solid #e6e6e6;
+    margin: 5% 0 0 0;
+}
+
+#resumenDieta {
+    margin-bottom: 5%;
+}
+
+#guardaPlanBoton {
+    float: right;
+    margin: 2% 5% 3% 0;
+}
+
+input[type=text]:focus, select:focus{
+    border: 1px solid #06f;
+}
+
+
+#rutina form p#aEjercicio {
+    display: block;
+    width: 160px;
+    margin: 5% 0 0 0;
+    float: left;
+}
+
+#rutina form p#finalizarDia {
+    display: block;
+    width: 160px;
+    margin: 5% 0 0 0;
+    float:left;
+}
+
+#volver {
+    float: left;
+    margin: 2% 0% 3% 5%;
 }

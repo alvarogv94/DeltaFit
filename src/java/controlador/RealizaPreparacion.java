@@ -67,6 +67,7 @@ public class RealizaPreparacion {
     private List<Ejercicio> listaEjercicios;
     private MusculoJpaController musculoControl;
     private String musculo;
+    private String ejercicioAlternativo;
 
     //Objetos de error
     private String errorEjercicio;
@@ -108,6 +109,14 @@ public class RealizaPreparacion {
         clase = "";
     }
 
+    public String getEjercicioAlternativo() {
+        return ejercicioAlternativo;
+    }
+
+    public void setEjercicioAlternativo(String ejercicioAlternativo) {
+        this.ejercicioAlternativo = ejercicioAlternativo;
+    }
+    
     public Preparador getPreparador() {
         return preparador;
     }
@@ -318,8 +327,10 @@ public class RealizaPreparacion {
 
     //Añade un ejercicio a la lista de rutinaRecuperacion
     public void añadeEjercicioLesion() {
-
         if (!rutinaRecuperacion.getEjercicio().equals("")) {
+            if(!ejercicioAlternativo.equals("")) {
+                rutinaRecuperacion.setEjercicio(ejercicioAlternativo);
+            }
             rutinaRecuperacion.setDia(dia);
             rutinaRecuperacion.setOrden(orden);
             listaEntrenoLesion.add(rutinaRecuperacion);
@@ -337,6 +348,9 @@ public class RealizaPreparacion {
     public void añadeEjercicioNoLesion() {
 
         if (!rutinaEntreno.getEjercicio().equals("")) {
+            if(!ejercicioAlternativo.equals("")) {
+                rutinaEntreno.setEjercicio(ejercicioAlternativo);
+            }
             rutinaEntreno.setDia(dia);
             rutinaEntreno.setOrden(orden);
             listaEntreno.add(rutinaEntreno);
@@ -410,5 +424,32 @@ public class RealizaPreparacion {
         }
         
         return "ok";
+    }
+    
+    public String volver() {
+        
+        listaMusculo = musculoControl.findMusculoEntities();
+        
+        //Objetos donde almacenaremos cada recuperacion y cada entreno
+        recuperacion = new Recuperacion();
+        entreno = new Entreno();
+
+        //Listas donde iremos almacenando cada ejercicio
+        listaEntreno = new ArrayList<>();
+        listaEntrenoLesion = new ArrayList<>();
+
+        //Objetos donde iremos almacenando la dieta
+        dietaEntreno = new DietaEntreno();
+        dietaRecuperacion = new DietaRecuperacion();
+
+        //Objetos donde iremos almacenando cada ejercicio
+        rutinaEntreno = new RutinaEntreno();
+        rutinaRecuperacion = new RutinaRecuperacion();
+
+        //Variables para controlar cada ejercicio, y saber el orden y el dia
+        dia = 1;
+        orden = 1;        
+        errorEjercicio = "";
+        return "vuelve";
     }
 }

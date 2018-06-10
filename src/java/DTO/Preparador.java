@@ -6,6 +6,7 @@
 package DTO;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -296,6 +297,28 @@ public class Preparador implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public boolean fotoSi() {
+        if (!fotoPerfil.equals("")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean fotoNo() {
+        if (fotoPerfil.equals("")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String getFech(Date date) {
+
+        DateFormat dfDateMedium = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        return dfDateMedium.format(date);
     }
 
     @Override

@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import DAO.AtletaJpaController;
 import DAO.PesoJpaController;
 import DTO.Atleta;
 import DTO.Peso;
@@ -50,7 +51,8 @@ public class AltaPeso extends HttpServlet {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("DeltaFitPU");
         PesoJpaController controlPeso = new PesoJpaController(emf);
-
+        AtletaJpaController controlAtleta = new AtletaJpaController(emf);
+        
         Calendar fecha = Calendar.getInstance();
         int mes = fecha.get(Calendar.MONTH) + 1;
 
@@ -61,6 +63,7 @@ public class AltaPeso extends HttpServlet {
         } catch(Exception ex) {
             System.out.println(ex.getMessage());
         }
+        //Aqui le sumamos 1 al ultimo codigo de peso de un atleta
         Integer cod = Integer.valueOf(codL.intValue()) + 1;
         
         PesoPK pesoPk = new PesoPK(cod, atleta.getCodAtleta());
@@ -71,6 +74,8 @@ public class AltaPeso extends HttpServlet {
 
         try {
             controlPeso.create(peso);
+            atleta.setPesoActual(pesoPar);
+            controlAtleta.edit(atleta);
             obj.put("ok", 1);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

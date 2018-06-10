@@ -7,8 +7,8 @@ package DAO;
 
 import DAO.exceptions.NonexistentEntityException;
 import DAO.exceptions.PreexistingEntityException;
-import DTO.PreparacionAtleta;
 import DTO.Preparador;
+import DTO.SeleccionChatAtleta;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -22,9 +22,9 @@ import javax.persistence.criteria.Root;
  *
  * @author Alvaro
  */
-public class PreparacionAtletaJpaController implements Serializable {
+public class SeleccionChatAtletaJpaController implements Serializable {
 
-    public PreparacionAtletaJpaController(EntityManagerFactory emf) {
+    public SeleccionChatAtletaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -33,16 +33,16 @@ public class PreparacionAtletaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(PreparacionAtleta preparacionAtleta) throws PreexistingEntityException, Exception {
+    public void create(SeleccionChatAtleta seleccionChatAtleta) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(preparacionAtleta);
+            em.persist(seleccionChatAtleta);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findPreparacionAtleta(preparacionAtleta.getCodPreparador()) != null) {
-                throw new PreexistingEntityException("PreparacionAtleta " + preparacionAtleta + " already exists.", ex);
+            if (findSeleccionChatAtleta(seleccionChatAtleta.getCodPreparador()) != null) {
+                throw new PreexistingEntityException("SeleccionChatAtleta " + seleccionChatAtleta + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -52,19 +52,19 @@ public class PreparacionAtletaJpaController implements Serializable {
         }
     }
 
-    public void edit(PreparacionAtleta preparacionAtleta) throws NonexistentEntityException, Exception {
+    public void edit(SeleccionChatAtleta seleccionChatAtleta) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            preparacionAtleta = em.merge(preparacionAtleta);
+            seleccionChatAtleta = em.merge(seleccionChatAtleta);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = preparacionAtleta.getCodPreparador();
-                if (findPreparacionAtleta(id) == null) {
-                    throw new NonexistentEntityException("The preparacionAtleta with id " + id + " no longer exists.");
+                Integer id = seleccionChatAtleta.getCodPreparador();
+                if (findSeleccionChatAtleta(id) == null) {
+                    throw new NonexistentEntityException("The seleccionChatAtleta with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -80,14 +80,14 @@ public class PreparacionAtletaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            PreparacionAtleta preparacionAtleta;
+            SeleccionChatAtleta seleccionChatAtleta;
             try {
-                preparacionAtleta = em.getReference(PreparacionAtleta.class, id);
-                preparacionAtleta.getCodPreparador();
+                seleccionChatAtleta = em.getReference(SeleccionChatAtleta.class, id);
+                seleccionChatAtleta.getCodPreparador();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The preparacionAtleta with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The seleccionChatAtleta with id " + id + " no longer exists.", enfe);
             }
-            em.remove(preparacionAtleta);
+            em.remove(seleccionChatAtleta);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -96,19 +96,19 @@ public class PreparacionAtletaJpaController implements Serializable {
         }
     }
 
-    public List<PreparacionAtleta> findPreparacionAtletaEntities() {
-        return findPreparacionAtletaEntities(true, -1, -1);
+    public List<SeleccionChatAtleta> findSeleccionChatAtletaEntities() {
+        return findSeleccionChatAtletaEntities(true, -1, -1);
     }
 
-    public List<PreparacionAtleta> findPreparacionAtletaEntities(int maxResults, int firstResult) {
-        return findPreparacionAtletaEntities(false, maxResults, firstResult);
+    public List<SeleccionChatAtleta> findSeleccionChatAtletaEntities(int maxResults, int firstResult) {
+        return findSeleccionChatAtletaEntities(false, maxResults, firstResult);
     }
 
-    private List<PreparacionAtleta> findPreparacionAtletaEntities(boolean all, int maxResults, int firstResult) {
+    private List<SeleccionChatAtleta> findSeleccionChatAtletaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(PreparacionAtleta.class));
+            cq.select(cq.from(SeleccionChatAtleta.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -120,20 +120,20 @@ public class PreparacionAtletaJpaController implements Serializable {
         }
     }
 
-    public PreparacionAtleta findPreparacionAtleta(Integer id) {
+    public SeleccionChatAtleta findSeleccionChatAtleta(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(PreparacionAtleta.class, id);
+            return em.find(SeleccionChatAtleta.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getPreparacionAtletaCount() {
+    public int getSeleccionChatAtletaCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<PreparacionAtleta> rt = cq.from(PreparacionAtleta.class);
+            Root<SeleccionChatAtleta> rt = cq.from(SeleccionChatAtleta.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -142,13 +142,13 @@ public class PreparacionAtletaJpaController implements Serializable {
         }
     }
 
-    public List<PreparacionAtleta> atletasByPreparador(Preparador prep) {
+    public List<SeleccionChatAtleta> atletasByPreparador(Integer prep) {
         EntityManager em = getEntityManager();
-        List<PreparacionAtleta> lista = null;
+        List<SeleccionChatAtleta> lista = null;
         try {
 
-            Query qu = em.createNamedQuery("PreparacionAtleta.findByCodPreparador", PreparacionAtleta.class);
-            qu.setParameter("codPreparador", prep.getCodPreparador());
+            Query qu = em.createNamedQuery("SeleccionChatAtleta.findByCodPreparador", SeleccionChatAtleta.class);
+            qu.setParameter("codPreparador", prep);
             lista = qu.getResultList();
         } finally {
             em.close();

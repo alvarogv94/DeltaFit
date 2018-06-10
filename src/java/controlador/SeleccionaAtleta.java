@@ -44,6 +44,8 @@ public class SeleccionaAtleta {
     }
 
     public List<PreparacionAtleta> getListaAtletas() {
+        PreparacionAtletaJpaController controlPreparacion = new PreparacionAtletaJpaController(emf);
+        listaAtletas = controlPreparacion.atletasByPreparador(prep);
         return listaAtletas;
     }
 
