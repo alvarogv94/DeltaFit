@@ -56,7 +56,15 @@
         <servlet-name>ConsultaEvento</servlet-name>
         <url-pattern>/ConsultaEvento</url-pattern>
     </servlet-mapping>
-        
+      
+    <servlet>
+        <servlet-name>ExportaPDF</servlet-name>
+        <servlet-class>controlador.ExportaPDF</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ExportaPDF</servlet-name>
+        <url-pattern>/ExportaPDF</url-pattern>
+    </servlet-mapping>  
               
         
     <filter>

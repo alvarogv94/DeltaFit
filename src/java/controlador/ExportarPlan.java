@@ -18,8 +18,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -95,22 +93,32 @@ public class ExportarPlan {
         }
         document.open();
 
-        Font fuenteNormal = new Font(Font.FontFamily.HELVETICA, 30, Font.BOLD, BaseColor.BLACK);
-        Font fuentetitulo = new Font(Font.FontFamily.HELVETICA, 25, Font.NORMAL, BaseColor.BLACK);
+        Font font1 = new Font(Font.FontFamily.TIMES_ROMAN, 15, Font.BOLD);//negrita
+        Font fuentetitulo = new Font(Font.FontFamily.TIMES_ROMAN, 15, Font.NORMAL, BaseColor.BLACK);
 
-        Phrase encabezado = new Phrase("Entreno del usuario" + atleta.getNomUsuario() + " para la fecha " + entreno.getFech());
-        encabezado.setFont(fuenteNormal);
+        Phrase encabezado = new Phrase("Entreno del usuario " + atleta.getNomUsuario() + " para la fecha " + entreno.getFech(),font1);
 
-        Phrase titulo = new Phrase("Anotacion del Entreno " + entreno.getAnotacion());
-        titulo.setFont(fuentetitulo);
+        Phrase titulo = new Phrase("Anotacion del Entreno " + entreno.getAnotacion(),fuentetitulo);
 
         Phrase tituloTabla = new Phrase("Entreno");
         tituloTabla.setFont(fuentetitulo);
         PdfPTable tablaEntreno = new PdfPTable(4);
+        PdfPCell titulo1 = new PdfPCell(new Phrase("Dia de Entreno",font1));
+        PdfPCell titulo2 = new PdfPCell(new Phrase("Orden",font1));
+        PdfPCell titulo3 = new PdfPCell(new Phrase("Ejercicio",font1));
+        PdfPCell titulo4 = new PdfPCell(new Phrase("Anotacion",font1));
+        tablaEntreno.addCell(titulo1);
+        tablaEntreno.addCell(titulo2);
+        tablaEntreno.addCell(titulo3);
+        tablaEntreno.addCell(titulo4);
 
+        
         for (int i = 0; i < entreno.getRutinaEntrenoList().size(); i++) {
-            PdfPCell celda = new PdfPCell(new Phrase(entreno.getRutinaEntrenoList().get(i).getDia()));
-            PdfPCell celda2 = new PdfPCell(new Phrase(entreno.getRutinaEntrenoList().get(i).getOrden()));
+            
+            String dia = String.valueOf(entreno.getRutinaEntrenoList().get(i).getDia());
+            String orden = String.valueOf(entreno.getRutinaEntrenoList().get(i).getOrden());
+            PdfPCell celda = new PdfPCell(new Phrase(dia));
+            PdfPCell celda2 = new PdfPCell(new Phrase(orden));
             PdfPCell celda3 = new PdfPCell(new Phrase(entreno.getRutinaEntrenoList().get(i).getEjercicio()));
             PdfPCell celda4 = new PdfPCell(new Phrase(entreno.getRutinaEntrenoList().get(i).getAnotacion()));
 
@@ -122,6 +130,10 @@ public class ExportarPlan {
 
         try {
             document.add(encabezado);
+            document.add(titulo);
+            document.add(tituloTabla);
+            document.add(tablaEntreno);
+            document.close();
         } catch (DocumentException ex) {
             System.out.println(ex.getMessage());
         }

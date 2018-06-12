@@ -127,4 +127,9 @@
         <managed-bean-class>controlador.ExportarPlan</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>seleccionaPlanPredeterminado</managed-bean-name>
+        <managed-bean-class>controlador.SeleccionaPlanPredeterminado</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
 </faces-config>

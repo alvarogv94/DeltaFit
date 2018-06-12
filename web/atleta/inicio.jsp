@@ -22,8 +22,8 @@
             <link rel="stylesheet" href="../css/font.css">
             <link rel="stylesheet" href="../css/comun.css">
             <link rel="stylesheet" href="../css/perfil.css">
+            <link rel="stylesheet" href="../css/jquery-ui.min.css">            
             <link rel="stylesheet" href="../css/atleta/inicio.css">
-            <link rel="stylesheet" href="../css/jquery-ui.min.css">
             <script src="../js/jquery.js"></script>
             <script src="../js/jquery-ui.min.js"></script>
             <script src="../js/Chart.bundle.min.js"></script>     
@@ -222,11 +222,106 @@
                                     <li><a href="#tabs-4">Día 4</a></li>
                                     <li><a href="#tabs-5">Día 5</a></li>
                                 </ul>
-                                <div id="tabs-1"></div>
-                                <div id="tabs-2"></div>
-                                <div id="tabs-3"></div>
-                                <div id="tabs-4"></div>
-                                <div id="tabs-5"></div>
+                                <div id="tabs-1">
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}">     
+                                        <c:forEach items="${sessionScope.usuActivo.ultEntrenoPred}" var="item" >
+                                            <c:if test="${item.dia == 1}">
+                                                <p>Ejercicio: ${item.ejercicio}</p>
+                                                <span>Anotacion: ${item.anotacion}</span>
+                                            </c:if>
+                                        </c:forEach>       
+                                    </c:if>
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
+                                            <c:forEach items="${sessionScope.usuActivo.ultEntreno}" var="item" >
+                                                <c:if test="${item.dia == 1}">
+                                                    <p>Ejercicio: ${item.ejercicio}</p>
+                                                    <span>Anotacion: ${item.anotacion}</span>
+                                                </c:if>
+                                            </c:forEach>                                            
+                                        </c:if>
+                                    </c:if>
+                                </div>
+                                <div id="tabs-2">
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}">    
+                                        <c:forEach items="${sessionScope.usuActivo.ultEntrenoPred}" var="item" >
+                                            <c:if test="${item.dia == 2}">
+                                                <p>Ejercicio: ${item.ejercicio}</p>
+                                                <span>Anotacion: ${item.anotacion}</span>
+                                            </c:if>
+                                        </c:forEach>  
+                                    </c:if>
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
+                                            <c:forEach items="${sessionScope.usuActivo.ultEntreno}" var="item" >
+                                                <c:if test="${item.dia == 2}">
+                                                    <p>Ejercicio: ${item.ejercicio}</p>
+                                                    <span>Anotacion: ${item.anotacion}</span>
+                                                </c:if>
+                                            </c:forEach>                                            
+                                        </c:if>
+                                    </c:if>
+                                </div>
+                                <div id="tabs-3">
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}">  
+                                        <c:forEach items="${sessionScope.usuActivo.ultEntrenoPred}" var="item" >
+                                            <c:if test="${item.dia == 3}">
+                                                <p>Ejercicio: ${item.ejercicio}</p>
+                                                <span>Anotacion: ${item.anotacion}</span>
+                                            </c:if>
+                                        </c:forEach>  
+                                    </c:if>
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
+                                            <c:forEach items="${sessionScope.usuActivo.ultEntreno}" var="item" >
+                                                <c:if test="${item.dia == 3}">
+                                                    <p>Ejercicio: ${item.ejercicio}</p>
+                                                    <span>Anotacion: ${item.anotacion}</span>
+                                                </c:if>
+                                            </c:forEach>                                            
+                                        </c:if>
+                                    </c:if>
+                                </div>
+                                <div id="tabs-4">
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}">
+                                        <c:forEach items="${sessionScope.usuActivo.ultEntrenoPred}" var="item" >
+                                            <c:if test="${item.dia == 4}">
+                                                <p>Ejercicio: ${item.ejercicio}</p>
+                                                <span>Anotacion: ${item.anotacion}</span>
+                                            </c:if>
+                                        </c:forEach>  
+                                    </c:if>
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
+                                            <c:forEach items="${sessionScope.usuActivo.ultEntreno}" var="item" >
+                                                <c:if test="${item.dia == 4}">
+                                                    <p>Ejercicio: ${item.ejercicio}</p>
+                                                    <span>Anotacion: ${item.anotacion}</span>
+                                                </c:if>
+                                            </c:forEach>                                            
+                                        </c:if>
+                                    </c:if>
+                                </div>
+                                <div id="tabs-5">
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}">   
+                                        <c:forEach items="${sessionScope.usuActivo.ultEntrenoPred}" var="item" >
+                                            <c:if test="${item.dia == 5}">
+                                                <p>Ejercicio: ${item.ejercicio}</p>
+                                                <span>Anotacion: ${item.anotacion}</span>
+                                            </c:if>
+                                        </c:forEach>  
+                                    </c:if>
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
+                                            <c:forEach items="${sessionScope.usuActivo.ultEntreno}" var="item" >
+                                                <c:if test="${item.dia == 5}">
+                                                    <p>Ejercicio: ${item.ejercicio}</p>
+                                                    <span>Anotacion: ${item.anotacion}</span>
+                                                </c:if>
+                                            </c:forEach>                                            
+                                        </c:if>
+                                    </c:if>
+                                </div>
                             </div>
                             <h2 class="demoHeaders">Dieta</h2>
 
@@ -239,12 +334,54 @@
                                     <li><a href="#tabs-5">Post Entreno</a></li>
                                     <li><a href="#tabs-6">Cena</a></li>
                                 </ul>
-                                <div id="tabs-1"></div>
-                                <div id="tabs-2"></div>
-                                <div id="tabs-3"></div>
-                                <div id="tabs-4"></div>
-                                <div id="tabs-5"></div>
-                                <div id="tabs-6"></div>
+                                <div id="tabs-1">
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}">    
+                                        <p>${sessionScope.usuActivo.ultDietaPred.desayuno}</p>
+                                    </c:if>
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
+                                        <p>${sessionScope.usuActivo.ultDieta.desayuno}</p>
+                                    </c:if>
+                                </div>
+                                <div id="tabs-2">
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}">  
+                                        <p>${sessionScope.usuActivo.ultDietaPred.mediaManhana}</p>
+                                    </c:if>
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
+                                        <p>${sessionScope.usuActivo.ultDieta.mediaManhana}</p>
+                                    </c:if>
+                                </div>
+                                <div id="tabs-3">
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}">   
+                                        <p>${sessionScope.usuActivo.ultDietaPred.almuerzo}</p>
+                                    </c:if>
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
+                                        <p>${sessionScope.usuActivo.ultDieta.almuerzo}</p>
+                                    </c:if>
+                                </div>
+                                <div id="tabs-4">
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}">   
+                                       <p>${sessionScope.usuActivo.ultDietaPred.preEntreno}</p>
+                                    </c:if>
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
+                                        <p>${sessionScope.usuActivo.ultDieta.preEntreno}</p>
+                                    </c:if>
+                                </div>
+                                <div id="tabs-5">
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}"> 
+                                       <p>${sessionScope.usuActivo.ultDietaPred.postEntreno}</p>
+                                    </c:if>
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
+                                        <p>${sessionScope.usuActivo.ultDieta.postEntreno}</p>
+                                    </c:if>
+                                </div>
+                                <div id="tabs-6">
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}">  
+                                        <p>${sessionScope.usuActivo.ultDietaPred.cena}</p>
+                                    </c:if>
+                                    <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
+                                        <p>${sessionScope.usuActivo.ultDieta.cena}</p>
+                                    </c:if>
+                                </div>
                             </div>
                         </div>
                         <h3>Mi Progresión</h3>
@@ -258,35 +395,70 @@
                                 <p id="textoDialogo">Si añades varios pesos en el mismo mes, estos no serán sustituídos, podrás añadir varios pesos en un mismo mes.</p>
                             </div>
                         </div>
-                        <h3>Mensajes con mi Preparador <span>${sessionScope.usuActivo.mensajesNoLeidosCant}</span></h3>
-                        <div>
-                            <c:if test="${sessionScope.usuActivo.mensajesNoLeidosCant eq 0}">
-                                <p>No tienes Ningún Mensaje Nuevo.</p>
-                            </c:if>
-                            <c:if test="${sessionScope.usuActivo.mensajesNoLeidosCant ne 0}">
+                        <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}">
+                            <h3>Seleccion de Plan Predeterminado</h3>
+                            <div>
+                                <h:form id="formPlan" prependId="false">
+                                    <h:dataTable id="tablaPlan" 
+                                                 binding="#{seleccionaPlanPredeterminado.tabla}" 
+                                                 value="#{seleccionaPlanPredeterminado.damePlan}" 
+                                                 var="campo" 
+                                                 border="1" >
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Deporte del Plan"/>
+                                            </f:facet>
+                                            <h:outputText value="#{campo.deporte}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Objetivo del Plan" />
+                                            </f:facet>
+                                            <h:outputText value="#{campo.objetivo}" />
+                                        </h:column>
 
-                                <c:forEach items="${sessionScope.usuActivo.mensajesNoLeidos}" var="item">
-                                    <c:if test="${item.estado.toString() eq '1'}">
-                                        <p class="no_leido preparador">${item.nomUsuarioPrep}: ${item.texto} ${item.fechaEnvio}</p>
-                                    </c:if>                                    
-                                </c:forEach>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Seleccionar" />                            
+                                            </f:facet>
+                                            <h:commandButton value="Seleccionar" styleClass="btn" action="#{seleccionaPlanPredeterminado.cambiaPlan()}"/>
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:form>
 
-                                <div id="mandaMensaje">
-                                    <h:form id="formMandaMensaje" prependId="false">
-                                        <h:inputText value="#{chat.mensaje.texto}" 
-                                                     id="mensaje"
-                                                     required="true"
-                                                     requiredMessage="debe escribir algún mensaje" />
-                                        <p id="boton">
-                                            <h:commandButton value="Enviar" styleClass="btn" action="#{chat.mandaMensajeAtleta()}"/>
-                                        </p>
-                                    </h:form>
-                                </div>                            
-                            </c:if>
                             </div>
-                        </div>
+                        </c:if>
+                        <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
+                            <h3>Mensajes con mi Preparador <span>${sessionScope.usuActivo.mensajesNoLeidosCant}</span></h3>
+                            <div>
+                                <c:if test="${sessionScope.usuActivo.mensajesNoLeidosCant eq 0}">
+                                    <p>No tienes Ningún Mensaje Nuevo.</p>
+                                </c:if>
+                                <c:if test="${sessionScope.usuActivo.mensajesNoLeidosCant ne 0}">
+
+                                    <c:forEach items="${sessionScope.usuActivo.mensajesNoLeidos}" var="item">
+                                        <c:if test="${item.estado.toString() eq '1'}">
+                                            <p class="no_leido preparador">${item.nomUsuarioPrep}: ${item.texto} ${item.fechaEnvio}</p>
+                                        </c:if>                                    
+                                    </c:forEach>
+
+                                    <div id="mandaMensaje">
+                                        <h:form id="formMandaMensaje" prependId="false">
+                                            <h:inputText value="#{chat.mensaje.texto}" 
+                                                         id="mensaje"
+                                                         required="true"
+                                                         requiredMessage="debe escribir algún mensaje" />
+                                            <p id="boton">
+                                                <h:commandButton value="Enviar" styleClass="btn" action="#{chat.mandaMensajeAtleta()}"/>
+                                            </p>
+                                        </h:form>
+                                    </div>                            
+                                </c:if>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
+            </div>
             <jsp:include page="/include/pie2.jsp" />        
         </body>
     </html>

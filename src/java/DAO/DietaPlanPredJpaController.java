@@ -164,5 +164,18 @@ public class DietaPlanPredJpaController implements Serializable {
             em.close();
         }
     }
+        public DietaPlanPred rutinaByEntreno(PlanPred codEntreno) {
+        EntityManager em = getEntityManager();
+        List<DietaPlanPred> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("DietaPlanPred.findByEntreno", DietaPlanPred.class);
+            qu.setParameter("codPlanPred", codEntreno);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista.get(0);
+    }
     
 }

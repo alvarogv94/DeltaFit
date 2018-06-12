@@ -14,7 +14,10 @@
         <link rel="stylesheet" href="../css/perfil.css" />
         <link rel="stylesheet" href="../css/atleta/perfil.css" />
         <link rel="stylesheet" href="../css/jquery-ui.min.css" />
+        <link rel="stylesheet" href="../css/jquery.fancybox.min.css" />
         <script src="../js/Chart.bundle.min.js"></script>     
+        <script src="../js/jquery.fancybox.min.js"></script>      
+
         <title>Mi Perfil</title>
         <script>
             $(document).ready(function () {
@@ -22,7 +25,17 @@
                 $("#der").click(function () {
                     $("#menuPer").slideToggle("fast");
                 });
-
+                $().fancybox({
+                    selector: '[data-fancybox="gallery"]',
+                    loop: true,
+                    arrows: true,
+                    buttons: [
+                        "zoom",
+                        "fullScreen",
+                        "download",
+                        "close"
+                    ],
+                });
 
             });
         </script>
@@ -33,9 +46,7 @@
                 <nav>
                     <div id="izq">
                         <h:form>
-                            <h:commandLink action="inicio">
-                                <h:graphicImage value="/img/logo.png" />
-                            </h:commandLink>
+                            <a href="../atleta/inicio.jsp"><h:graphicImage value="/img/logo.png" /></a>
                             <span>Delta Fit</span>
                         </h:form>
                     </div>
@@ -132,61 +143,74 @@
                 </div>
 
                 <div id="sobreMiPlan">
+                    <div id="progreso">
+                        <h1>Mi Progresión en Fotos</h1>
+                        <c:forEach items="${sessionScope.usuActivo.imagenList}" var="value">                        
+                            <a href="/DeltaFit/img/perfil/a${sessionScope.usuActivo.codAtleta}/seguimiento/${value.nombreImagen}" data-fancybox="gallery" data-caption="${value.fech}">
+                                <img src="/DeltaFit/img/perfil/a${sessionScope.usuActivo.codAtleta}/seguimiento/${value.nombreImagen}" />
+                            </a>        
+                        </c:forEach>
+                    </div>
+
                     <div id="planesAnteriores">
                         <h1>Todos mis planes</h1>
                         <h1>Entrenos</h1>
-                        <h:dataTable binding="#{exportarPlan.tabla}" value="#{sessionScope.usuActivo.entrenoList}" var="campo" border="1" >
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Cod Entreno"/>
-                                </f:facet>
-                                <h:outputText value="#{campo.codEntreno}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Realizado durante"/>
-                                </f:facet>
-                                <h:outputText value="#{campo.fech}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Anotacion del Plan"/>
-                                </f:facet>
-                                <h:outputText value="#{campo.anotacion}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Exportar"/>
-                                </f:facet>
-                                <h:commandButton action="#{exportarPlan.exportaEntreno()}"/>
-                            </h:column>
-                        </h:dataTable>
+                        <h:form id="formTablaRutina" prependId="false">
+                            <h:dataTable binding="#{exportarPlan.tabla}" value="#{sessionScope.usuActivo.entrenoList}" var="campo" border="1" >
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Cod Entreno"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.codEntreno}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Realizado durante"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.fech}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Anotacion del Plan"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.anotacion}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Exportar"/>
+                                    </f:facet>
+                                    <h:commandButton id="exportar" value="Enviar" action="#{exportarPlan.exportaEntreno()}"/>
+                                </h:column>
+                            </h:dataTable>
+                        </h:form>
                         <h1>Recuperaciones</h1>
-                        <h:dataTable value="#{sessionScope.usuActivo.recuperacionList}" var="campo" border="1" >
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Cod Recuperacion"/>
-                                </f:facet>
-                                <h:outputText value="#{campo.codEntreno}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Realizado durante"/>
-                                </f:facet>
-                                <h:outputText value="#{campo.fech}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Anotacion del Plan"/>
-                                </f:facet>
-                                <h:outputText value="#{campo.anotacion}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Exportar"/>
-                                </f:facet>
-                            </h:column>
-                        </h:dataTable>
+                        <h:form id="formTablaRecuperacion" prependId="false">
+                            <h:dataTable value="#{sessionScope.usuActivo.recuperacionList}" var="campo" border="1" >
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Cod Recuperacion"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.codEntreno}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Realizado durante"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.fech}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Anotacion del Plan"/>
+                                    </f:facet>
+                                    <h:outputText value="#{campo.anotacion}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Exportar"/>
+                                    </f:facet>
+                                </h:column>
+                            </h:dataTable>
+                        </h:form>
                     </div>
                 </div>
 

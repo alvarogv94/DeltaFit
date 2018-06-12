@@ -6,6 +6,7 @@
 package DTO;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -35,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Imagen.findByNombreImagen", query = "SELECT i FROM Imagen i WHERE i.nombreImagen = :nombreImagen"),
     @NamedQuery(name = "Imagen.findByFecha", query = "SELECT i FROM Imagen i WHERE i.fecha = :fecha")})
 public class Imagen implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -113,5 +115,10 @@ public class Imagen implements Serializable {
     public String toString() {
         return "DTO.Imagen[ codImagen=" + codImagen + " ]";
     }
-    
+
+    public String getFech() {
+
+        DateFormat dfDateMedium = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        return dfDateMedium.format(fecha);
+    }
 }

@@ -231,14 +231,20 @@ public class Registro {
                     try {
                         
                         /*si el usuario es de tipo 1 o 2 le asignamos un preparador aleatoriamente*/
-                        if(atleta.getTipoUsuario() == 1 || atleta.getTipoUsuario() == 2){
+                        if(atleta.getTipoUsuario() == 2 || atleta.getTipoUsuario() == 3){
                             PreparadorJpaController controlPreparador = new PreparadorJpaController(emf);
                             List<Preparador> todosPreparadores = controlPreparador.findPreparadorEntities();
-                            int preparadorAleatorio = (int) Math.floor(Math.random()*todosPreparadores.size() + 0);                            
+                            int preparadorAleatorio = (int) Math.floor(Math.random()*todosPreparadores.size() + 1);                            
                             Preparador preparador = todosPreparadores.get(preparadorAleatorio);
                             atleta.setCodPreparador(preparador);
                         }
                         
+                        if(atleta.getTipoUsuario() == 1) {
+                            PreparadorJpaController controlPreparador = new PreparadorJpaController(emf);
+                            List<Preparador> todosPreparadores = controlPreparador.findPreparadorEntities();
+                            Preparador preparador = todosPreparadores.get(0);
+                            atleta.setCodPreparador(preparador);
+                        }
                         controlAtleta.create(atleta);
                         resultado = "ok";
                         resultadoAlta = "El Registro se hizo correctamente.";

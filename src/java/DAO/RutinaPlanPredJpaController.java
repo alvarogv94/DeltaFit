@@ -165,4 +165,17 @@ public class RutinaPlanPredJpaController implements Serializable {
         }
     }
     
+    public List<RutinaPlanPred> rutinaByEntreno(PlanPred codPlanPred) {
+        EntityManager em = getEntityManager();
+        List<RutinaPlanPred> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("RutinaPlanPred.findByEntreno", RutinaPlanPred.class);
+            qu.setParameter("codPlanPred", codPlanPred);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista;
+    }
 }

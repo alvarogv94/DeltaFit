@@ -6,12 +6,15 @@
 package controlador;
 
 import DAO.AtletaJpaController;
+import DAO.ImagenJpaController;
 import DTO.Atleta;
+import DTO.Imagen;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -90,6 +93,8 @@ public class FileUploadBean implements Serializable {
     /*Subida multiple*/
     public void uploadPhoto(FileUploadEvent e) throws IOException {
         
+        ImagenJpaController controlImagen = new ImagenJpaController(emf);
+        
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 
         UploadedFile uploadedPhoto = e.getFile();
@@ -100,6 +105,11 @@ public class FileUploadBean implements Serializable {
         if (null != uploadedPhoto) {
             bytes = uploadedPhoto.getContents();
             String filename = FilenameUtils.getName(uploadedPhoto.getFileName());
+            Imagen imagen = new Imagen();
+            imagen.setCodAtleta(atleta);
+            imagen.setFecha(new Date());
+            imagen.setNombreImagen(filename);
+            controlImagen.create(imagen);
             BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath + filename)));
             stream.write(bytes);
             stream.close();

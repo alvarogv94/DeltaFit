@@ -6,14 +6,17 @@
 package DTO;
 
 import DAO.AtletaJpaController;
-import DAO.ConversacionJpaController;
+import DAO.DietaEntrenoJpaController;
+import DAO.DietaPlanPredJpaController;
 import DAO.MensajeJpaController;
+import DAO.PlanPredJpaController;
 import DAO.PreparadorJpaController;
+import DAO.RutinaEntrenoJpaController;
+import DAO.RutinaPlanPredJpaController;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.faces.context.ExternalContext;
@@ -139,7 +142,7 @@ public class Atleta implements Serializable {
     private List<Exito> exitoList;
     @OneToMany(mappedBy = "codAtleta")
     private List<Mensaje> mensajeList;
-    @OneToMany(mappedBy = "codAtleta")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codAtleta")
     private List<Entreno> entrenoList;
 
     public Atleta() {
@@ -516,4 +519,55 @@ public class Atleta implements Serializable {
         return dfDateMedium.format(date);
     }
 
+    public DietaEntreno getUltDieta() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("DeltaFitPU");
+        DietaEntrenoJpaController dietaControl = new DietaEntrenoJpaController(emf);
+        int ultimo = entrenoList.size() - 1;
+        try {
+            Entreno codEntreno = entrenoList.get(ultimo);
+            return dietaControl.dietaByEntreno(codEntreno);
+
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            return new DietaEntreno();
+        }
+
+    }
+
+    public List<RutinaEntreno> getUltEntreno() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("DeltaFitPU");
+        RutinaEntrenoJpaController rutinaControl = new RutinaEntrenoJpaController(emf);
+        int ultimo = entrenoList.size() - 1;
+        try {
+            Entreno codEntreno = entrenoList.get(ultimo);
+            return rutinaControl.rutinaByEntreno(codEntreno);
+
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            return new ArrayList<RutinaEntreno>();
+
+        }
+    }
+
+    public DietaPlanPred getUltDietaPred() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("DeltaFitPU");
+        DietaPlanPredJpaController dietaControl = new DietaPlanPredJpaController(emf);
+        PlanPredJpaController controlPlanPred = new PlanPredJpaController(emf);
+        PlanPred plan = controlPlanPred.findPlanPred(codEntrenamiento);
+        try {
+            return dietaControl.rutinaByEntreno(plan);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            return new DietaPlanPred();
+        }
+    }
+
+    public List<RutinaPlanPred> getUltEntrenoPred() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("DeltaFitPU");
+        RutinaPlanPredJpaController rutinaControl = new RutinaPlanPredJpaController(emf);
+        PlanPredJpaController controlPlanPred = new PlanPredJpaController(emf);
+        PlanPred plan = controlPlanPred.findPlanPred(codEntrenamiento);
+        try {
+            return rutinaControl.rutinaByEntreno(plan);            
+        } catch(ArrayIndexOutOfBoundsException ex) {
+            return new ArrayList<RutinaPlanPred>();
+        }
+    }
 }

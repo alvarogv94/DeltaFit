@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "DietaPlanPred.findAll", query = "SELECT d FROM DietaPlanPred d"),
+    @NamedQuery(name = "DietaPlanPred.findByEntreno", query = "SELECT d FROM DietaPlanPred d WHERE d.codPlanPred = :codPlanPred"),
     @NamedQuery(name = "DietaPlanPred.findByCodDietaPlanPred", query = "SELECT d FROM DietaPlanPred d WHERE d.codDietaPlanPred = :codDietaPlanPred"),
     @NamedQuery(name = "DietaPlanPred.findByDesayuno", query = "SELECT d FROM DietaPlanPred d WHERE d.desayuno = :desayuno"),
     @NamedQuery(name = "DietaPlanPred.findByMediaManhana", query = "SELECT d FROM DietaPlanPred d WHERE d.mediaManhana = :mediaManhana"),
