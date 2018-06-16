@@ -194,9 +194,13 @@ tbody tr td {
     margin-bottom: 5%;
 }
 
-#guardaPlanBoton {
+#guardaPlanBoton,#anotacion {
     float: right;
     margin: 2% 5% 3% 0;
+}
+
+#anotacion label{
+    margin: 0 10px 0 0;
 }
 
 input[type=text]:focus, select:focus{

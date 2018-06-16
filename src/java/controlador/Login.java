@@ -5,8 +5,10 @@
  */
 package controlador;
 
+import DAO.AdministradorJpaController;
 import DAO.AtletaJpaController;
 import DAO.PreparadorJpaController;
+import DTO.Administrador;
 import DTO.Atleta;
 import DTO.Preparador;
 import java.io.File;
@@ -104,6 +106,7 @@ public class Login {
         String resultado = "";
         Atleta atl = compruebaAtleta();
         Preparador prep = compruebaPreparador();
+        Administrador admin = compruebaAdmin(nomUsuario);
         contexto = FacesContext.getCurrentInstance().getExternalContext();
         String url = "";
         if (atl != null) {
@@ -125,28 +128,42 @@ public class Login {
                 }
                 url = "atleta/inicio.jsp";
                 redireccionar(url);
-            }
-        } else {
-            if (prep != null) {
-                if (prep.getPass().equals(getPass())) {
-                    contexto.getSessionMap().put("usuActivo", prep);
-                    contexto.getSessionMap().put("tipoUsuario", "preparador");
-                    login = true;
-                    ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-                    String filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/p" + prep.getCodPreparador());
-                    File carpeta = new File(filePath);
-
-                    if (!carpeta.exists()) {
-                        carpeta.mkdir();
-                    }
-
-                    url = "preparador/inicio.jsp";
-                    redireccionar(url);
-                }
             } else {
                 mensaje = "Error al entrar revise sus datos.";
                 resultado = "no";
             }
+        } else if (prep != null) {
+            if (prep.getPass().equals(getPass())) {
+                contexto.getSessionMap().put("usuActivo", prep);
+                contexto.getSessionMap().put("tipoUsuario", "preparador");
+                login = true;
+                ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+                String filePath = (String) servletContext.getRealPath("/").concat("/img/perfil/p" + prep.getCodPreparador());
+                File carpeta = new File(filePath);
+
+                if (!carpeta.exists()) {
+                    carpeta.mkdir();
+                }
+
+                url = "preparador/inicio.jsp";
+                redireccionar(url);
+            } else {
+                mensaje = "Error al entrar revise sus datos.";
+                resultado = "no";
+            }
+        } else if (admin != null) {
+            if (admin.getPass().equals(getPass())) {
+                contexto.getSessionMap().put("usuActivo", admin);
+                contexto.getSessionMap().put("tipoUsuario", "admin");
+                url = "admin/inicio.jsp";
+                redireccionar(url);
+            } else {
+                mensaje = "Error al entrar revise sus datos.";
+                resultado = "no";
+            }
+        } else {
+            mensaje = "Error al entrar revise sus datos.";
+            resultado = "no";
         }
 
         return resultado;
@@ -179,6 +196,19 @@ public class Login {
         }
         return preparador;
 
+    }
+
+    public Administrador compruebaAdmin(String usuario) {
+        AdministradorJpaController controlAdmin = new AdministradorJpaController(emf);
+        Administrador admin;
+
+        try {
+            admin = controlAdmin.adminByUser(usuario);
+        } catch (Exception ex) {
+            admin = null;
+            System.out.println(ex.getMessage());
+        }
+        return admin;
     }
 
     public void redireccionar(String url) {

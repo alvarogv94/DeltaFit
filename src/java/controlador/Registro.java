@@ -7,11 +7,15 @@ package controlador;
 
 import DAO.AtletaJpaController;
 import DAO.DeporteJpaController;
+import DAO.PagoJpaController;
 import DAO.PreparadorJpaController;
 import DTO.Atleta;
 import DTO.Deporte;
+import DTO.Pago;
 import DTO.Preparador;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -229,27 +233,40 @@ public class Registro {
                     }
 
                     try {
-                        
-                        /*si el usuario es de tipo 1 o 2 le asignamos un preparador aleatoriamente*/
-                        if(atleta.getTipoUsuario() == 2 || atleta.getTipoUsuario() == 3){
+
+                        /*si el usuario es de tipo 2 o 3 le asignamos un preparador aleatoriamente*/
+                        if (atleta.getTipoUsuario() == 2 || atleta.getTipoUsuario() == 3) {
                             PreparadorJpaController controlPreparador = new PreparadorJpaController(emf);
                             List<Preparador> todosPreparadores = controlPreparador.findPreparadorEntities();
-                            int preparadorAleatorio = (int) Math.floor(Math.random()*todosPreparadores.size() + 1);                            
+                            int preparadorAleatorio = (int) Math.floor(Math.random() * todosPreparadores.size() + 1);
                             Preparador preparador = todosPreparadores.get(preparadorAleatorio);
                             atleta.setCodPreparador(preparador);
                         }
-                        
-                        if(atleta.getTipoUsuario() == 1) {
+
+                        if (atleta.getTipoUsuario() == 1) {
                             PreparadorJpaController controlPreparador = new PreparadorJpaController(emf);
                             List<Preparador> todosPreparadores = controlPreparador.findPreparadorEntities();
                             Preparador preparador = todosPreparadores.get(0);
                             atleta.setCodPreparador(preparador);
                         }
                         controlAtleta.create(atleta);
+                        PagoJpaController pagoControl = new PagoJpaController(emf);
+                        Pago pago = new Pago();
+                        pago.setCodAtleta(atleta);
+                        pago.setFechUltPago(new Date());
+
+                        Date fecha = new Date();
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(fecha); // Configuramos la fecha que se recibe
+
+                        calendar.add(Calendar.DAY_OF_YEAR, 28);  // numero de días a añadir, o restar en caso de días<0
+                        fecha = calendar.getTime();
+                        pago.setFechProxPago(fecha);
+                        pagoControl.create(pago);
                         resultado = "ok";
                         resultadoAlta = "El Registro se hizo correctamente.";
                         clase = "ok";
-                        
+
                     } catch (Exception ex) {
                         resultado = "no";
                         clase = "no";

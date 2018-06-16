@@ -36,7 +36,6 @@
                         "close"
                     ],
                 });
-
             });
         </script>
     </h:head>
@@ -216,6 +215,10 @@
 
                 <div id="modificacionDatos">
                     <h1>Modificacion de Datos</h1>
+                    <h:form id="lesion" prependId="false">
+                        <span><h:outputText value="#{modificaDatosAtleta.lesion}" /></span>
+                        <h:commandButton value="Cambiar Estado" styleClass="btn" action="#{modificaDatosAtleta.cambiaLesion()}"/>
+                    </h:form>
                     <h:form id="fileUpoad" prependId="false" enctype="multipart/form-data">
                         <h:outputLabel for="fileIdResume" value="Sube tu Nueva Imagen de Perfil" />
                         <p:fileUpload label="Examinar" id="fileIdResume"  value="#{fileUploadBean.resume}" mode="simple" skinSimple="true" />
@@ -240,7 +243,6 @@
                         <p:messages id="messages" autoUpdate="true" closable="true" />
                     </h:form>    
                 </div>
-
             </div>
         </div>
     </h:body>

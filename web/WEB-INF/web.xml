@@ -58,15 +58,23 @@
     </servlet-mapping>
       
     <servlet>
-        <servlet-name>ExportaPDF</servlet-name>
-        <servlet-class>controlador.ExportaPDF</servlet-class>
+        <servlet-name>CargaEstadisticas</servlet-name>
+        <servlet-class>controlador.admin.CargaEstadisticas</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ExportaPDF</servlet-name>
-        <url-pattern>/ExportaPDF</url-pattern>
-    </servlet-mapping>  
+        <servlet-name>CargaEstadisticas</servlet-name>
+        <url-pattern>/CargaEstadisticas</url-pattern>
+    </servlet-mapping>
               
-        
+           <servlet>
+        <servlet-name>CargaEstadisticas2</servlet-name>
+        <servlet-class>controlador.admin.CargaEstadisticas2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CargaEstadisticas2</servlet-name>
+        <url-pattern>/CargaEstadisticas2</url-pattern>
+    </servlet-mapping>
+     
     <filter>
         <filter-name>PrimeFaces FileUpload Filter</filter-name>
         <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>

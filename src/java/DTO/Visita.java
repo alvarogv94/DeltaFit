@@ -43,10 +43,10 @@ public class Visita implements Serializable {
     @Column(name = "pais")
     private String pais;
     @Column(name = "hora_inicio")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIME)
     private Date horaInicio;
     @Column(name = "hora_fin")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIME)
     private Date horaFin;
 
     public Visita() {

@@ -5,19 +5,24 @@
  */
 package DTO;
 
+import DAO.PreparadorJpaController;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -326,4 +331,9 @@ public class Preparador implements Serializable {
         return "DTO.Preparador[ codPreparador=" + codPreparador + " ]";
     }
 
+    public String getFech() {
+
+        DateFormat dfDateMedium = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        return dfDateMedium.format(fechIncorporacion);
+    }
 }

@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "PlanPred.findAll", query = "SELECT p FROM PlanPred p"),
     @NamedQuery(name = "PlanPred.findByCodPlanPred", query = "SELECT p FROM PlanPred p WHERE p.codPlanPred = :codPlanPred"),
     @NamedQuery(name = "PlanPred.findByDeporte", query = "SELECT p FROM PlanPred p WHERE p.deporte = :deporte"),
+    @NamedQuery(name = "PlanPred.findUltimoPlan", query = "SELECT p FROM PlanPred p ORDER BY p.codPlanPred DESC"),
     @NamedQuery(name = "PlanPred.findByObjetivo", query = "SELECT p FROM PlanPred p WHERE p.objetivo = :objetivo")})
 public class PlanPred implements Serializable {
     private static final long serialVersionUID = 1L;

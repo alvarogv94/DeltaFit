@@ -11,11 +11,11 @@
 <header id="menu">
     <nav>
         <ul>
-            <li>¿Qué ofrecemos?</li>
-            <li>¿Qué conseguirás?</li>
+            <li><h:form><h:commandLink action="que_ofrecemos">¿Qué ofrecemos?</h:commandLink></h:form></li>
+            <li><h:form><h:commandLink action="que_conseguiras">¿Qué conseguirás?</h:commandLink></h:form></li>
             <li><h:form><h:commandLink action="index"><h:graphicImage value="/img/logo.png" /></h:commandLink></h:form></li>
-            <li>Sobre Nosotros</li>
-            <li>FAQ</li>
+            <li><h:form><h:commandLink action="sobre_nosotros">Sobre Nosotros</h:commandLink></h:form></li>
+            <li><h:form><h:commandLink action="faq">FAQ</h:commandLink></h:form></li>
         </ul>
         <div id="contenedorLogin">
             <h:form><h:commandLink action="login"><h:graphicImage value="/img/user.png" /></h:commandLink></h:form>

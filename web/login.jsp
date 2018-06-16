@@ -50,7 +50,6 @@
                                                requiredMessage="El campo de contraseña es obligatorio">                                
                                 </h:inputSecret><br /><h:message id="reqpass" for="pass" style="color:red"/>
                             </p>
-
                             <p>
                                 <h:commandButton value="Entrar" styleClass="btn" action="#{login.login()}"/>
                             </p>

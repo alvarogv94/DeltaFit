@@ -59,7 +59,15 @@
                             <h1>Datos Físicos</h1>
                             <p>Peso Actual <span>${sessionScope.atletaPreparacion.pesoActual}</span></p>
                             <p>Altura <span>${sessionScope.atletaPreparacion.altura}</span></p>
-                            <p>Lesion <span>${sessionScope.atletaPreparacion.lesionSi}</span></p>
+                            <p>Lesion <span>
+                                    <c:if test="${sessionScope.atletaPreparacion.lesionSi == 0}">
+                                        Está Lesionado
+                                    </c:if>
+                                    <c:if test="${sessionScope.atletaPreparacion.lesionSi == 1}">
+                                        Está Lesionado
+                                    </c:if>
+                                </span>
+                            </p>
                         </div>
                         <div id="datosPlan">
                             <h1>Datos Sobre el Plan de Entrenamiento</h1>
@@ -155,7 +163,7 @@
                                                      id="ejercicio">
                                         <f:selectItems value="#{RealizaPreparacion.listaEjercicios}" 
                                                        var="c" itemLabel="#{c.nombre}" itemValue="#{c.nombre}"/>
-                                    </h:selectOneMenu> <br /> 
+                                    </h:selectOneMenu> 
                                 </p>
                                 <p>
                                     <h:outputLabel for="ejercicioAlternativo">Ejercicio Alternativo</h:outputLabel>
@@ -180,9 +188,12 @@
                                                      id="ejercicio">
                                         <f:selectItems value="#{RealizaPreparacion.listaEjercicios}" 
                                                        var="c" itemLabel="#{c.nombre}" itemValue="#{c.nombre}"/>
-                                    </h:selectOneMenu> <br /> 
-                                    <h:inputText value="#{RealizaPreparacion.rutinaEntreno.ejercicio}" />
+                                    </h:selectOneMenu>
+                                </p>
+                                <p>
+                                    <label for="ejercicioAlternativo">Ejercicio Alternativo: </label>
 
+                                    <h:inputText value="#{RealizaPreparacion.ejercicioAlternativo}" id="ejercicioAlternativo" />
                                 </p>
                                 <p>
                                     <h:outputLabel for="anotacion">Anotación: </h:outputLabel>
@@ -331,12 +342,18 @@
                                 </h:column>                                 
                             </h:dataTable>
                             <h:form id="guardaPlan" prependId="false">
+                                <p id="anotacion">
+                                <h:outputLabel rendered="#{RealizaPreparacion.lesionSi()}" for="anotacionN">Realizar anotación sobre el Plan: </h:outputLabel>
+                                <h:inputText rendered="#{RealizaPreparacion.lesionSi()}" value="#{RealizaPreparacion.recuperacion.anotacion}" id="anotacionN" />
+                                <h:outputLabel rendered="#{RealizaPreparacion.lesionNo()}" for="anotacionS">Realizar anotación sobre el Plan: </h:outputLabel>
+                                <h:inputText rendered="#{RealizaPreparacion.lesionNo()}" value="#{RealizaPreparacion.entreno.anotacion}" id="anotacionS" />
+                                </p>
                                 <p id="guardaPlanBoton">
                                     <h:commandButton styleClass="btn" rendered="#{RealizaPreparacion.lesionSi()}" value="Guardar Preparacion" action="#{RealizaPreparacion.guardaPlanLesion()}"/>
                                     <h:commandButton styleClass="btn" rendered="#{RealizaPreparacion.lesionNo()}" value="Guardar Preparacion" action="#{RealizaPreparacion.guardaPlanLesionNo()}"/>
                                 </p>
                                 <p id="volver">
-                                    <h:commandButton styleClass="btn" value="Volver" action="#{RealizaPreparacion.volver()}"/>
+                                    <h:commandButton styleClass="btn" value="Salir sin Guardar" action="#{RealizaPreparacion.volver()}"/>
                                 </p>
                             </h:form>
                         </div>

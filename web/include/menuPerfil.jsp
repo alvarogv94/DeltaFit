@@ -56,7 +56,6 @@
                         <ul>
                             <li><h:form><h:commandLink action="inicio">Inicio</h:commandLink></h:form></li>
                             <li><h:form><h:commandLink action="perfil">Mi Perfil</h:commandLink></h:form></li>
-                            <li><h:form><h:commandLink action="atletas">Mis Atletas</h:commandLink></h:form></li>
                             <li><h:form><h:commandLink action="chat">Chat</h:commandLink></h:form></li>
                             <li><h:form><h:commandLink action="#{login.logout()}">Salir</h:commandLink></h:form></li>
                                 </ul>

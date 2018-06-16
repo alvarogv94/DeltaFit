@@ -2,29 +2,34 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
+        <Node id="politica_privacidad.jsp" x="900" y="150" zoom="true"/>
+        <Node id="atleta/chat.jsp" x="400" y="600" zoom="true"/>
+        <Node id="atleta/inicio.jsp" x="150" y="900" zoom="true"/>
+        <Node id="preparador/perfil.jsp" x="900" y="300" zoom="true"/>
+        <Node id="que_ofrecemos.jsp" x="400" y="450" zoom="true"/>
+        <Node id="include/menu.jsp" x="650" y="300" zoom="true"/>
+        <Node id="preparador/inicio.jsp" x="400" y="750" zoom="true"/>
+        <Node id="include/pie2.jsp" x="150" y="750" zoom="true"/>
+        <Node id="admin/atletas.jsp" x="900" y="450" zoom="true"/>
         <Node id="include/menuPerfil.jsp" x="650" y="450" zoom="true"/>
         <Node id="politica_cookies.jsp" x="150" y="450" zoom="true"/>
         <Node id="atleta/perfil.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="include/menuAdmin.jsp" x="1150" y="450" zoom="true"/>
         <Node id="registro.jsp" x="914" y="53" zoom="true"/>
-        <Node id="atleta/chat.jsp" x="400" y="600" zoom="true"/>
-        <Node id="politica_privacidad.jsp" x="900" y="150" zoom="true"/>
         <Node id="index.jsp" x="150" y="600" zoom="true"/>
-        <Node id="atleta/inicio.jsp" x="150" y="900" zoom="true"/>
         <Node id="solicitud_preparador.jsp" x="150" y="150" zoom="true"/>
         <Node id="preparador/chat.jsp" x="1650" y="150" zoom="true"/>
-        <Node id="preparador/perfil.jsp" x="900" y="300" zoom="true"/>
         <Node id="preparador/preparacion.jsp" x="439" y="885" zoom="true"/>
         <Node id="login.jsp" x="1150" y="150" zoom="true"/>
-        <Node id="que_ofrecemos.jsp" x="400" y="450" zoom="true"/>
-        <Node id="include/menu.jsp" x="650" y="300" zoom="true"/>
         <Node id="sobre_nosotros.jsp" x="400" y="300" zoom="true"/>
         <Node id="preparador/conversacion.jsp" x="1400" y="300" zoom="true"/>
-        <Node id="preparador/atletas.jsp" x="1150" y="450" zoom="true"/>
-        <Node id="preparador/inicio.jsp" x="400" y="750" zoom="true"/>
-        <Node id="include/pie2.jsp" x="150" y="750" zoom="true"/>
+        <Node id="admin/seleccion.jsp" x="650" y="600" zoom="true"/>
+        <Node id="admin/estadisticas.jsp" x="650" y="750" zoom="true"/>
+        <Node id="admin/preparadores.jsp" x="900" y="600" zoom="true"/>
+        <Node id="admin/inicio.jsp" x="1150" y="300" zoom="true"/>
         <Node id="que_conseguiras.jsp" x="150" y="300" zoom="true"/>
-        <Node id="faq.jsp" x="650" y="150" zoom="true"/>
         <Node id="include/pie.jsp" x="400" y="150" zoom="true"/>
+        <Node id="faq.jsp" x="650" y="150" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

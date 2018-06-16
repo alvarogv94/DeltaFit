@@ -261,8 +261,8 @@
                                                  id="planDeportivo">  
                                     <f:selectItem itemValue = "0" itemLabel = "Selecciona un Plan Deportivo " />                                        
                                     <f:selectItem itemValue = "1" itemLabel = "Básico - Gratis" />
-                                    <f:selectItem itemValue = "2" itemLabel = "Intermedio - 29,99€" />
-                                    <f:selectItem itemValue = "3" itemLabel = "Pro - 39,99€" />
+                                    <f:selectItem itemValue = "2" itemLabel = "Intermedio - 30€" />
+                                    <f:selectItem itemValue = "3" itemLabel = "Pro - 40€" />
                                 </h:selectOneMenu><br /> 
                                 <span id="spanPlan"></span>
                             </p>

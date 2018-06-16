@@ -236,5 +236,17 @@ public class PlanPredJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public PlanPred ultPlan() {
+        EntityManager em = getEntityManager();
+        List<PlanPred> lista = null;
+        try {
+            Query qu = em.createNamedQuery("PlanPred.findUltimoPlan", PlanPred.class);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista.get(0);
+    }
+
 }

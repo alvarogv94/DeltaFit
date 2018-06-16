@@ -4,59 +4,75 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 09-jun-2018, 19:26:21
+    Created on : 13-jun-2018, 19:50:28
     Author     : Alvaro
 */
 
-#contenido {
-    height: 600px;
+#lateral {
+    position: fixed;
+    float: left;
+    background-color: #085394;
+    height: 100%;
+    padding: 1%;
+    left: 0;
+    top: 0;
 }
 
-h1 {
+#lateral p {
     border-bottom: #e6e6e6 1px solid;
 }
 
-#tablaChat {
-    width: 40%;
-    margin: 5% auto;
-    border-radius: 1em;
-
+#lateral h1 {
+    margin: 0 0 5% 0;
 }
-
-#tablaChat td:first-child {
-    width: 25%;
+ul {
+    margin: 10% 0 0 0;
 }
-
-#tablaChat td img{
-    border-radius: 50px;
-    width: 100px;
-}
-
-#tablaChat td{
-    vertical-align: middle;
-}
-
-
-#tablaChat tr:hover{
-    background: lightblue;
-    border-radius: 50px;
-}
-
-#tablaChat p {
-    color: #06f;
-    text-align: center;
-}
-
-#tablaChat span {
-    background-color: #06f;
+p,li, h1,a {
     color: white;
-    display: block;
-    width: 16px;
-    float: right;
-    text-align: center;
-    border-radius: 10px;
 }
 
+li {
+    margin: 20% 0;
+}
+
+table {
+    width: 100%;
+    margin: 2% 0 2% 0;
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+th, td {
+    border-bottom: 3px solid #e6e6e6;
+}
+
+th {
+    color: white;
+    line-height: 30px;
+}
+
+thead {
+    height: 35px;
+}
+
+thead tr {
+    background: #06f;
+}
+
+tbody tr td {
+    padding: 1%;
+    text-align: center;
+}
+
+tbody tr:hover td {
+    background: #eeeeee;
+    border-bottom: 0px;
+    border-radius: 0px;
+}
+
+/*Clase para boton*/
 .btn {
     background: #06f;
     background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -83,35 +99,5 @@ h1 {
     background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
     background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
     text-decoration: none;
-}
 
-
-table {
-    width: 90%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    border-radius: 1em;
-    overflow: hidden;
-}
-
-th, td {
-    border-bottom: 3px solid #e6e6e6;
-}
-
-th{
-    color: white;
-    line-height: 30px;
-}
-
-thead {
-    height: 35px;
-}
-
-thead tr {
-    background: #06f;
-}
-
-tbody tr td {
-    padding: 1%;
-    text-align: center;
 }

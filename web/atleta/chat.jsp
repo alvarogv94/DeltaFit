@@ -45,22 +45,22 @@
                         <c:forEach items="${sessionScope.usuActivo.mensajesNoLeidos}" var="item">
                             <c:if test="${item.estado.toString() eq '1'}">
                                 <div id="mensajePreparador">
-                                    <p class="no_leido preparador">${item.nomUsuarioPrep}: ${item.texto} <span class="derecha">${usuActivo.getFech(item.fechaEnvio)} <span class="ui-icon ui-icon-mail-closed"</span></span></p><br />
+                                    <p class="no_leido preparador">${item.nomUsuarioPrep}: ${item.texto} <span class="derecha">${usuActivo.getFech(item.fechaEnvio)} </span></p><br />
                                 </div>
                             </c:if>
                             <c:if test="${item.estado.toString() eq '2'}">
                                 <div id="mensajePreparador">
-                                    <p class="leido preparador">${item.nomUsuarioPrep}: ${item.texto} <span class="derecha">${usuActivo.getFech(item.fechaEnvio)}<span class="ui-icon ui-icon-mail-open"></span></span></p><br />
+                                    <p class="leido preparador">${item.nomUsuarioPrep}: ${item.texto} <span class="derecha">${usuActivo.getFech(item.fechaEnvio)}</span></p><br />
                                 </div>
                             </c:if>
                             <c:if test="${item.estado.toString() eq '3'}">
                                 <div id="mensajeAtleta">
-                                    <p class="no_leido atleta">${item.nomUsuario}: ${item.texto} <span class="derecha">${usuActivo.getFech(item.fechaEnvio)}</span></p><br />
+                                    <p class="no_leido atleta">${item.nomUsuario}: ${item.texto} <span class="derecha">${usuActivo.getFech(item.fechaEnvio)}<span class="ui-icon ui-icon-mail-closed"</span></span></p><br />
                                 </div>
                             </c:if>
                             <c:if test="${item.estado.toString() eq '4'}">
                                 <div id="mensajeAtleta">
-                                    <p class="leido atleta">${item.nomUsuario}: ${item.texto} <span class="derecha">${usuActivo.getFech(item.fechaEnvio)}</span></p><br />
+                                    <p class="leido atleta">${item.nomUsuario}: ${item.texto} <span class="derecha">${usuActivo.getFech(item.fechaEnvio)}<span class="ui-icon ui-icon-mail-open"></span></span></p><br />
                                 </div>
                             </c:if>
                         </c:forEach>

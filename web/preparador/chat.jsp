@@ -16,6 +16,7 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <title>Chat</title>
             <link rel="stylesheet" href="../css/reseteo.css">
             <link rel="stylesheet" href="../css/font.css">
             <link rel="stylesheet" href="../css/comun.css">
@@ -50,7 +51,7 @@
                                 <span><h:outputText value="#{seleccionaChat.getMensajesNoLeidos(campo.nomUsuario)}"/></span>
                             </h:column>
                             <h:column>
-                                <h:outputText value="#{campo.nomUsuario}"/>
+                                <p><h:outputText value="#{campo.nomUsuario}"/></p>
                             </h:column>
 
                             <h:column>

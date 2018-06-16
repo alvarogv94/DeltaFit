@@ -4,6 +4,11 @@ ESTA ES LA HOJA DE ESTILO DE USO COMUN PARA TODAS LAS PAGINAS DEL SITIO WEB, TOD
 
 /*Estilos generales*/
 
+#menu a {
+    color: white;
+    text-decoration: none;
+}
+
 #contenedor {
 	position: relative;
 	width: 100%;	

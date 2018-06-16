@@ -4,11 +4,40 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 06-jun-2018, 19:01:18
+    Created on : 13-jun-2018, 18:10:24
     Author     : Alvaro
 */
 
 p {
+    margin: 2%;
+}
+
+/*datos personales*/
+#datosPersonales {
+    position: relative;
+    width: 45%;
+    margin: 2%;
+    float: left;
+}
+
+#datosPersonales > h1{
+    font-size: 1.5em;
+    text-align: left;
+    border-bottom: #e4e4e4 1px solid;
+    margin: 0 0 2% 0;
+}
+
+#datosPersonales p {
+    font-family: "UbuntuLight";
+    font-weight: bold;
+}
+
+#datosPersonales p span{
+    font-family: "UbuntuLight";
+    font-weight: normal;
+}
+
+/*Fin de datos personales*/p {
     margin: 2%;
 }
 
@@ -39,107 +68,57 @@ p {
 }
 
 /*Fin de datos personales*/
-/*Datos plan entrenamiento*/
-#datosPlan {
+#datosPersonales {
     position: relative;
     width: 45%;
     margin: 2%;
-    float: right;
+    float: left;
     height: 400px;
 }
 
-#datosPlan > h1{
+#datosPersonales > h1{
     font-size: 1.5em;
     text-align: left;
     border-bottom: #e4e4e4 1px solid;
     margin: 0 0 2% 0;
 }
 
-#datosPlan p {
+#datosPersonales p {
     font-family: "UbuntuLight";
     font-weight: bold;
 }
 
-#datosPlan p span{
+#datosPersonales p span{
     font-family: "UbuntuLight";
     font-weight: normal;
 }
 
-
-/*Fin datos plan entrenamiento*/
-
-#progreso {
-    width: 80%;
-    margin: 0 auto;
-}
-
-#progreso a {
-    margin: 0 2%;
-}
-/*Inicio modificacion de datos*/
+/*Fin de datos personales*/
 #modificacionDatos {
     position: relative;
-    width: 80%;
-    margin: 2% auto;
+    width: 45%;
+    margin: 2%;
+    float: left;
+    height: 400px;
 }
 
 #modificacionDatos > h1{
     font-size: 1.5em;
-    text-align: right;
+    text-align: left;
     border-bottom: #e4e4e4 1px solid;
     margin: 0 0 2% 0;
 }
 
 #modificacionDatos label {
     font-family: "UbuntuLight";
-    font-weight: bold;  
+    font-weight: bold;
+    width: 260px;
+    display: block;
+    float: left;
+    margin: 1%;
 }
 
 
-#fileUpoad label {
-    margin: 0 2% 0 0;
-}
-/*Fin modificacion de datos*/
-
-
-#sobreMiPlan {
-
-}
-
-#sobreMiPlan table {
-    width: 100%;
-    margin: 2% 0 2% 0;
-    border-collapse: collapse;
-    border-radius: 1em;
-    overflow: hidden;
-}
-
-#sobreMiPlan table th, td {
-    border-bottom: 3px solid #e6e6e6;
-}
-
-th {
-    color: white;
-    line-height: 30px;
-}
-
-thead {
-    height: 35px;
-}
-
-thead tr {
-    background: #06f;
-}
-
-tbody tr td {
-    padding: 1%;
-}
-
-tbody tr:hover td {
-    background: #eeeeee;
-    border-bottom: 0px;
-    border-radius: 0px;
-}
 
 .btn {
     background: #06f;

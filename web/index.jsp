@@ -55,7 +55,7 @@
                             <li><img src="img/slider/1.jpg" alt=""></li>
                             <li><img src="img/slider/2.jpg" alt=""></li>
                         </ul>
-
+                        <h:form id="registro" prependId="false"><h:commandLink styleClass="registro" value="REGISTRARSE" action="registro"></h:commandLink></h:form>
                     </div>
 
                     <div id="quienes_somos">

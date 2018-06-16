@@ -26,6 +26,7 @@
             <div id="contenedor">
 
                 <jsp:include page="/include/menu.jsp" />
+                sobre nosotros
             </div>
             <jsp:include page="/include/pie.jsp" />
         </body>

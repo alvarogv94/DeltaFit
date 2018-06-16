@@ -132,4 +132,36 @@
         <managed-bean-class>controlador.SeleccionaPlanPredeterminado</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>modificaDatosAtleta</managed-bean-name>
+        <managed-bean-class>controlador.ModificaDatosAtleta</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>modificaDatosPreparador</managed-bean-name>
+        <managed-bean-class>controlador.ModificaDatosPreparador</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>datosTablas</managed-bean-name>
+        <managed-bean-class>controlador.admin.DatosTablas</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>altaPlanPred</managed-bean-name>
+        <managed-bean-class>controlador.admin.AltaPlanPred</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/admin/inicio.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>vuelve</from-outcome>
+            <to-view-id>/admin/inicio.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>addNuevoEjercicio</managed-bean-name>
+        <managed-bean-class>controlador.admin.AddNuevoEjercicio</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>
