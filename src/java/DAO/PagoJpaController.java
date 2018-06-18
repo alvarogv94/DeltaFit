@@ -165,4 +165,18 @@ public class PagoJpaController implements Serializable {
         }
     }
     
+    public Pago ultPagoAtleta(Atleta codAtleta) {
+        EntityManager em = getEntityManager();
+        List<Pago> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("Pago.findByCodPagoAtleta", Pago.class);
+            qu.setParameter("codAtleta", codAtleta);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista.get(0);
+    }
+    
 }

@@ -262,6 +262,16 @@ public class Registro {
                         calendar.add(Calendar.DAY_OF_YEAR, 28);  // numero de días a añadir, o restar en caso de días<0
                         fecha = calendar.getTime();
                         pago.setFechProxPago(fecha);
+
+                        if (atleta.getTipoUsuario() == 1) {
+                            pago.setImporte(0);
+                        }
+                        if (atleta.getTipoUsuario() == 2) {
+                            pago.setImporte(30);
+                        }
+                        if (atleta.getTipoUsuario() == 3) {
+                            pago.setImporte(40);
+                        }
                         pagoControl.create(pago);
                         resultado = "ok";
                         resultadoAlta = "El Registro se hizo correctamente.";

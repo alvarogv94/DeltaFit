@@ -66,7 +66,7 @@ and open the template in the editor.
 }
 
 #der #menuPer {
-    background: lightgray;
+    background: gainsboro;
     position: absolute;
     width: 20%;
     right: 10px;
@@ -75,6 +75,17 @@ and open the template in the editor.
     display: none;
     z-index: 10;
 }
+
+#der #menuPer a{
+    text-decoration: none;
+    color: #06f;
+    transition: all .2s ease-in-out; 
+}
+
+#der #menuPer a:hover{
+    transform: scale(1.05);
+}
+
 
 #der #menuPer #menuSuperior {
     text-align: center;
@@ -115,4 +126,12 @@ h1 {
 #resumen {
     width: 90%;
     margin: 5% auto;   
+}
+
+#formTablaRutina td {
+    text-align: center;
+}
+
+#formTablaRecuperacion td {
+    text-align: center;
 }

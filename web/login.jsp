@@ -15,13 +15,40 @@
 <f:view>
     <html>
         <head>
+            <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>Login</title>
             <link rel="stylesheet" href="css/reseteo.css">
             <link rel="stylesheet" href="css/font.css">
             <link rel="stylesheet" href="css/comun.css">
             <link rel="stylesheet" href="css/login.css">
+            <link rel="stylesheet" href="css/movil/login.css">
+            <link rel="stylesheet" href="css/tablet/login.css">
             <script src="js/jquery.js"></script>
+            <script>
+                $(document).ready(function () {
+                    
+                    var contador = 1;
+
+                    $('.menu_bar').click(function () {
+                        // $('nav').toggle(); 
+
+                        if (contador == 1) {
+                            $('nav').animate({
+                                left: '0'
+                            });
+                            contador = 0;
+                        } else {
+                            contador = 1;
+                            $('nav').animate({
+                                left: '-100%'
+                            });
+                        }
+
+                    });
+
+                });
+            </script>
         </head>
         <body>
             <div id="contenedor">

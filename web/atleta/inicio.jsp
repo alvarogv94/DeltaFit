@@ -17,6 +17,8 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
             <title>Perfil Personal</title>
             <link rel="stylesheet" href="../css/reseteo.css">
             <link rel="stylesheet" href="../css/font.css">
@@ -24,6 +26,8 @@
             <link rel="stylesheet" href="../css/perfil.css">
             <link rel="stylesheet" href="../css/jquery-ui.min.css">            
             <link rel="stylesheet" href="../css/atleta/inicio.css">
+            <link rel="stylesheet" href="../css/movil/perfil.css">
+            <link rel="stylesheet" href="../css/tablet/perfil.css">
             <script src="../js/jquery.js"></script>
             <script src="../js/jquery-ui.min.js"></script>
             <script src="../js/Chart.bundle.min.js"></script>     
@@ -240,6 +244,14 @@
                                                 </c:if>
                                             </c:forEach>                                            
                                         </c:if>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 1}">                                        
+                                            <c:forEach items="${sessionScope.usuActivo.ultRec}" var="item" >
+                                                <c:if test="${item.dia == 1}">
+                                                    <p>Ejercicio: ${item.ejercicio}</p>
+                                                    <span>Anotacion: ${item.anotacion}</span>
+                                                </c:if>
+                                            </c:forEach>                                            
+                                        </c:if>
                                     </c:if>
                                 </div>
                                 <div id="tabs-2">
@@ -254,6 +266,14 @@
                                     <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
                                         <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
                                             <c:forEach items="${sessionScope.usuActivo.ultEntreno}" var="item" >
+                                                <c:if test="${item.dia == 2}">
+                                                    <p>Ejercicio: ${item.ejercicio}</p>
+                                                    <span>Anotacion: ${item.anotacion}</span>
+                                                </c:if>
+                                            </c:forEach>                                            
+                                        </c:if>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 1}">                                        
+                                            <c:forEach items="${sessionScope.usuActivo.ultRec}" var="item" >
                                                 <c:if test="${item.dia == 2}">
                                                     <p>Ejercicio: ${item.ejercicio}</p>
                                                     <span>Anotacion: ${item.anotacion}</span>
@@ -280,6 +300,14 @@
                                                 </c:if>
                                             </c:forEach>                                            
                                         </c:if>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 1}">                                        
+                                            <c:forEach items="${sessionScope.usuActivo.ultRec}" var="item" >
+                                                <c:if test="${item.dia == 3}">
+                                                    <p>Ejercicio: ${item.ejercicio}</p>
+                                                    <span>Anotacion: ${item.anotacion}</span>
+                                                </c:if>
+                                            </c:forEach>                                            
+                                        </c:if>
                                     </c:if>
                                 </div>
                                 <div id="tabs-4">
@@ -294,6 +322,14 @@
                                     <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
                                         <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
                                             <c:forEach items="${sessionScope.usuActivo.ultEntreno}" var="item" >
+                                                <c:if test="${item.dia == 4}">
+                                                    <p>Ejercicio: ${item.ejercicio}</p>
+                                                    <span>Anotacion: ${item.anotacion}</span>
+                                                </c:if>
+                                            </c:forEach>                                            
+                                        </c:if>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 1}">                                        
+                                            <c:forEach items="${sessionScope.usuActivo.ultRec}" var="item" >
                                                 <c:if test="${item.dia == 4}">
                                                     <p>Ejercicio: ${item.ejercicio}</p>
                                                     <span>Anotacion: ${item.anotacion}</span>
@@ -320,6 +356,14 @@
                                                 </c:if>
                                             </c:forEach>                                            
                                         </c:if>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 1}">                                        
+                                            <c:forEach items="${sessionScope.usuActivo.ultRec}" var="item" >
+                                                <c:if test="${item.dia == 5}">
+                                                    <p>Ejercicio: ${item.ejercicio}</p>
+                                                    <span>Anotacion: ${item.anotacion}</span>
+                                                </c:if>
+                                            </c:forEach>                                            
+                                        </c:if>
                                     </c:if>
                                 </div>
                             </div>
@@ -339,7 +383,12 @@
                                         <p>${sessionScope.usuActivo.ultDietaPred.desayuno}</p>
                                     </c:if>
                                     <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
-                                        <p>${sessionScope.usuActivo.ultDieta.desayuno}</p>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
+                                            <p>${sessionScope.usuActivo.ultDieta.desayuno}</p>
+                                        </c:if>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 1}">                                        
+                                            <p>${sessionScope.usuActivo.ultDietaRec.desayuno}</p>
+                                        </c:if>
                                     </c:if>
                                 </div>
                                 <div id="tabs-2">
@@ -347,7 +396,12 @@
                                         <p>${sessionScope.usuActivo.ultDietaPred.mediaManhana}</p>
                                     </c:if>
                                     <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
-                                        <p>${sessionScope.usuActivo.ultDieta.mediaManhana}</p>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
+                                            <p>${sessionScope.usuActivo.ultDieta.mediaManhana}</p>
+                                        </c:if>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 1}">                                        
+                                            <p>${sessionScope.usuActivo.ultDietaRec.mediaManhana}</p>
+                                        </c:if>
                                     </c:if>
                                 </div>
                                 <div id="tabs-3">
@@ -355,23 +409,32 @@
                                         <p>${sessionScope.usuActivo.ultDietaPred.almuerzo}</p>
                                     </c:if>
                                     <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
-                                        <p>${sessionScope.usuActivo.ultDieta.almuerzo}</p>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
+                                            <p>${sessionScope.usuActivo.ultDieta.almuerzo}</p>
+                                        </c:if>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 1}">                                        
+                                            <p>${sessionScope.usuActivo.ultDietaRec.almuerzo}</p>
+                                        </c:if>
                                     </c:if>
                                 </div>
                                 <div id="tabs-4">
                                     <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}">   
-                                       <p>${sessionScope.usuActivo.ultDietaPred.preEntreno}</p>
+                                        <p>${sessionScope.usuActivo.ultDietaPred.preEntreno}</p>
                                     </c:if>
                                     <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
-                                        <p>${sessionScope.usuActivo.ultDieta.preEntreno}</p>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
+                                            <p>${sessionScope.usuActivo.ultDieta.preEntreno}</p>
+                                        </c:if>
                                     </c:if>
                                 </div>
                                 <div id="tabs-5">
                                     <c:if test="${sessionScope.usuActivo.tipoUsuario eq 1}"> 
-                                       <p>${sessionScope.usuActivo.ultDietaPred.postEntreno}</p>
+                                        <p>${sessionScope.usuActivo.ultDietaPred.postEntreno}</p>
                                     </c:if>
                                     <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
-                                        <p>${sessionScope.usuActivo.ultDieta.postEntreno}</p>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
+                                            <p>${sessionScope.usuActivo.ultDieta.postEntreno}</p>
+                                        </c:if>
                                     </c:if>
                                 </div>
                                 <div id="tabs-6">
@@ -379,7 +442,12 @@
                                         <p>${sessionScope.usuActivo.ultDietaPred.cena}</p>
                                     </c:if>
                                     <c:if test="${sessionScope.usuActivo.tipoUsuario > 1}">
-                                        <p>${sessionScope.usuActivo.ultDieta.cena}</p>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 0}">                                        
+                                            <p>${sessionScope.usuActivo.ultDieta.cena}</p>
+                                        </c:if>
+                                        <c:if test="${sessionScope.usuActivo.lesionSi == 1}">                                        
+                                            <p>${sessionScope.usuActivo.ultDietaRec.cena}</p>
+                                        </c:if>
                                     </c:if>
                                 </div>
                             </div>

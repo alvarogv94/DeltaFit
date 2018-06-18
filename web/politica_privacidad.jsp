@@ -20,6 +20,7 @@
             <link rel="stylesheet" href="css/reseteo.css">
             <link rel="stylesheet" href="css/font.css">
             <link rel="stylesheet" href="css/comun.css">
+            <link rel="stylesheet" href="css/politica_privacidad.css">
             <script src="js/jquery.js"></script>
         </head>
         <body>

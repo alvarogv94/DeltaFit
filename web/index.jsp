@@ -54,21 +54,37 @@
                         <ul class="rslides">
                             <li><img src="img/slider/1.jpg" alt=""></li>
                             <li><img src="img/slider/2.jpg" alt=""></li>
+                            <li><img src="img/slider/3.png" alt=""></li>
                         </ul>
-                        <h:form id="registro" prependId="false"><h:commandLink styleClass="registro" value="REGISTRARSE" action="registro"></h:commandLink></h:form>
+                        <h:form id="registro" prependId="false">
+                            <h:commandLink styleClass="registro" value="REGÍSTRATE" action="registro"></h:commandLink>
+                        </h:form>
                     </div>
 
                     <div id="quienes_somos">
                         <h1>¿Quiénes somos?</h1>
                         <p>Somos asesores deportivos que no solo buscamos la mejora estética de un cuerpo, buscamos la satisfacción del atleta por haber conseguido el objetivo propuesto al trabajar con nosotros.</p>
+                        <img src="img/index/izq.png" alt="" />
+                        <h:form id="quienesSomos" prependId="false">
+                            <h:commandLink styleClass="registro" value="Saber Más" action="sobre_nosotros" />
+                        </h:form>
                     </div>
                     <div id="que_ofrecemos">
                         <h1>¿Qué ofrecemos?</h1>
                         <p>Ofrecemos distintos planes de entrenamientos que se adapten en todos los sentidos con el atleta, con un plan básico, intermedio o pro. El plan intermedio y pro es totalmente personalizado para el atleta.</p>
+                        <img src="img/index/cen.png" alt="" />
+
+                        <h:form id="queOfrecemos" prependId="false">
+                            <h:commandLink styleClass="registro" value="Saber Más" action="que_ofrecemos" />
+                        </h:form>
                     </div>
                     <div id="que_conseguiras">
                         <h1>¿Qué conseguirás?</h1>
                         <p>Conseguirás tu objetivo, ya sea pérdida o ganancia de peso, mejora del rendimiento y/o mejora de la salud, cualquier objetivo es bueno para una mayor calidad de vida.</p>
+                        <img src="img/index/der.png" alt="" />
+                        <h:form id="queConseguiras" prependId="false">
+                            <h:commandLink styleClass="registro" value="Saber Más" action="que_conseguiras" />
+                        </h:form>
                     </div>
                 </div>
 

@@ -1,6 +1,6 @@
 #slider {
     text-align:center;
-    margin: 0 0 4% 0;
+    margin: 6% 0 4% 0;
     position: relative;
 }
 
@@ -30,21 +30,17 @@
 }
 
 .rslides img {
-    width: 95%;
+    width: 93%;
+    height: 410px;
     border: 2px solid black;
     border-radius: 10px;
 }
 
 #registro {
     position: absolute;
-    top: 30%;
+    top: 10%;
     right: 5%;
     z-index: 2;
-
-}
-
-.registro {
-    
 }
 /************************* FIN SLIDER IMAGENES **************************/
 
@@ -55,48 +51,79 @@
     width: 30%;
     float:left;
     margin: 0 0 0 5%;
+    position: relative;
+
 }
 
+#quienes_somos img{
+    width: 100%;
+}
 
+#quienesSomos {
+    position: absolute;
+    left: 17%;
+    bottom: 10%;
+}
 #que_ofrecemos {
     width: 30%;
     float:left;
+    position: relative;
+}
 
+#que_ofrecemos img{
+    width: 100%;
+}
+
+#queOfrecemos {
+    position: absolute;
+    left: 33%;
+    bottom: 7%;
 }
 
 #que_conseguiras {
     width: 30%;
     float:left;
+    position: relative;
 
 }
+
+#que_conseguiras img{
+    width: 100%;
+}
+
+#queConseguiras {
+    position: absolute;
+    left: 50%;
+    bottom: 9%;
+}
 .registro {
-  background: #f7f7f7;
-  background-image: -webkit-linear-gradient(top, #f7f7f7, #ebebeb);
-  background-image: -moz-linear-gradient(top, #f7f7f7, #ebebeb);
-  background-image: -ms-linear-gradient(top, #f7f7f7, #ebebeb);
-  background-image: -o-linear-gradient(top, #f7f7f7, #ebebeb);
-  background-image: linear-gradient(to bottom, #f7f7f7, #ebebeb);
-  -webkit-border-radius: 5;
-  -moz-border-radius: 5;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 1px 3px #000000;
-  -moz-box-shadow: 0px 1px 3px #000000;
-  box-shadow: 0px 1px 3px #000000;
-  color: #0033ff;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
+    background: #f7f7f7;
+    background-image: -webkit-linear-gradient(top, #f7f7f7, #ebebeb);
+    background-image: -moz-linear-gradient(top, #f7f7f7, #ebebeb);
+    background-image: -ms-linear-gradient(top, #f7f7f7, #ebebeb);
+    background-image: -o-linear-gradient(top, #f7f7f7, #ebebeb);
+    background-image: linear-gradient(to bottom, #f7f7f7, #ebebeb);
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 1px 3px #000000;
+    -moz-box-shadow: 0px 1px 3px #000000;
+    box-shadow: 0px 1px 3px #000000;
+    color: #0033ff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
 }
 
 .registro:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
-  color: white;
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+    color: white;
 }
 
 h1 {
@@ -110,6 +137,6 @@ p {
     margin: 5%;
 }
 
-
-
-/************************* FIN DIV RESUMENES ****************************/
+#contenido div {
+    margin-bottom: 5%;
+}

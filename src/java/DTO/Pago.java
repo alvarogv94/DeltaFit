@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Pago.findAll", query = "SELECT p FROM Pago p"),
     @NamedQuery(name = "Pago.findByCodPago", query = "SELECT p FROM Pago p WHERE p.codPago = :codPago"),
+    @NamedQuery(name = "Pago.findByCodPagoAtleta", query = "SELECT p FROM Pago p WHERE p.codAtleta = :codAtleta ORDER BY P.codPago DESC"),
     @NamedQuery(name = "Pago.findByFechProxPago", query = "SELECT p FROM Pago p WHERE p.fechProxPago = :fechProxPago"),
     @NamedQuery(name = "Pago.findByFechUltPago", query = "SELECT p FROM Pago p WHERE p.fechUltPago = :fechUltPago"),
     @NamedQuery(name = "Pago.findByImporte", query = "SELECT p FROM Pago p WHERE p.importe = :importe")})

@@ -352,8 +352,9 @@
                                     <h:commandButton styleClass="btn" rendered="#{RealizaPreparacion.lesionSi()}" value="Guardar Preparacion" action="#{RealizaPreparacion.guardaPlanLesion()}"/>
                                     <h:commandButton styleClass="btn" rendered="#{RealizaPreparacion.lesionNo()}" value="Guardar Preparacion" action="#{RealizaPreparacion.guardaPlanLesionNo()}"/>
                                 </p>
+                                    <h:outputText id="resultadoAltaPlan" styleClass="#{RealizaPreparacion.clase}" value="#{RealizaPreparacion.mensaje}" />
                                 <p id="volver">
-                                    <h:commandButton styleClass="btn" value="Salir sin Guardar" action="#{RealizaPreparacion.volver()}"/>
+                                    <h:commandButton styleClass="btn" value="Volver" action="#{RealizaPreparacion.volver()}"/>
                                 </p>
                             </h:form>
                         </div>

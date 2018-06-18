@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RutinaRecuperacion.findAll", query = "SELECT r FROM RutinaRecuperacion r"),
     @NamedQuery(name = "RutinaRecuperacion.findByCodRutinaRecuperacion", query = "SELECT r FROM RutinaRecuperacion r WHERE r.codRutinaRecuperacion = :codRutinaRecuperacion"),
     @NamedQuery(name = "RutinaRecuperacion.findByDia", query = "SELECT r FROM RutinaRecuperacion r WHERE r.dia = :dia"),
+    @NamedQuery(name = "RutinaRecuperacion.findCodRec", query = "SELECT r FROM RutinaRecuperacion r WHERE r.codRecuperacion = :codRecuperacion"),
     @NamedQuery(name = "RutinaRecuperacion.findByEjercicio", query = "SELECT r FROM RutinaRecuperacion r WHERE r.ejercicio = :ejercicio"),
     @NamedQuery(name = "RutinaRecuperacion.findByAnotacion", query = "SELECT r FROM RutinaRecuperacion r WHERE r.anotacion = :anotacion"),
     @NamedQuery(name = "RutinaRecuperacion.findByOrden", query = "SELECT r FROM RutinaRecuperacion r WHERE r.orden = :orden")})

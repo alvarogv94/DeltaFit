@@ -164,5 +164,18 @@ public class DietaRecuperacionJpaController implements Serializable {
             em.close();
         }
     }
+        public DietaRecuperacion dietaByEntreno(Recuperacion codRecuperacion) {
+        EntityManager em = getEntityManager();
+        List<DietaRecuperacion> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("DietaRecuperacion.findByCodRecuperacion", DietaRecuperacion.class);
+            qu.setParameter("codRecuperacion", codRecuperacion);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista.get(0);
+    }
     
 }

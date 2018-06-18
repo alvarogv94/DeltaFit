@@ -24,6 +24,7 @@ import DTO.Recuperacion;
 import DTO.RutinaEntreno;
 import DTO.RutinaRecuperacion;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -72,6 +73,7 @@ public class RealizaPreparacion {
     //Objetos de error
     private String errorEjercicio;
     private String clase;
+    private String mensaje;
 
     /**
      * Creates a new instance of Preparacion
@@ -109,6 +111,14 @@ public class RealizaPreparacion {
         clase = "";
     }
 
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+    
     public String getEjercicioAlternativo() {
         return ejercicioAlternativo;
     }
@@ -368,7 +378,9 @@ public class RealizaPreparacion {
     //metodo que cambiará al siguiente dia, y empezara de nuevo el orden
     public void siguienteDia() {
         orden = 1;
-        dia++;
+        if(dia <= 5) {
+            dia++;            
+        }
     }
 
     public String guardaPlanLesion() {
@@ -380,6 +392,11 @@ public class RealizaPreparacion {
         RecuperacionJpaController recuperacionControl = new RecuperacionJpaController(emf);
         recuperacion.setCodPreparador(preparador);
         recuperacion.setCodAtleta(atleta);
+        recuperacion.setFechaProxima(new Date());
+        
+        if(recuperacion.getAnotacion().equals("")) {
+            recuperacion.setAnotacion("Sin Anotación");
+        }
         recuperacionControl.create(recuperacion);
 
         //Y recuperamos dicho plan para poder recuperar su codigo de recuperacion y añadirselo tanto a la dieta como al entreno
@@ -395,6 +412,7 @@ public class RealizaPreparacion {
             listaEntrenoLesion.get(i).setCodRecuperacion(ultimaRecuperacion);
             rutinaControl.create(listaEntrenoLesion.get(i));
         }
+        mensaje = "Plan Guardado correctamente.";
         return "ok";
     }
 
@@ -407,6 +425,10 @@ public class RealizaPreparacion {
         EntrenoJpaController entrenoControl = new EntrenoJpaController(emf);
         entreno.setCodPreparador(preparador);
         entreno.setCodAtleta(atleta);
+        entreno.setFechaProxima(new Date());
+        if(entreno.getAnotacion().equals("")) {
+            entreno.setAnotacion("Sin Anotación.");
+        }
         entrenoControl.create(entreno);
 
         //Y recuperamos dicho plan para poder recuperar su codigo de recuperacion y añadirselo tanto a la dieta como al entreno
@@ -422,7 +444,7 @@ public class RealizaPreparacion {
             listaEntreno.get(i).setCodEntreno(ultimoEntreno);
             rutinaControl.create(listaEntreno.get(i));            
         }
-        
+        mensaje = "Plan Guardado correctamente.";
         return "ok";
     }
     

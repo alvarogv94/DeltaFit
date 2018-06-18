@@ -150,8 +150,13 @@ public class Recuperacion implements Serializable {
 
     public String getFech() {
 
-        DateFormat dfDateMedium = DateFormat.getDateInstance(DateFormat.MEDIUM);
-        return dfDateMedium.format(fechaProxima);
+        if(fechaProxima != null) {
+            DateFormat dfDateMedium = DateFormat.getDateInstance(DateFormat.MEDIUM);
+            return dfDateMedium.format(fechaProxima);            
+        } else {
+            return "";
+        }
+
     }
 
     @Override

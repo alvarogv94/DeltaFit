@@ -164,5 +164,18 @@ public class RutinaRecuperacionJpaController implements Serializable {
             em.close();
         }
     }
+        public List<RutinaRecuperacion> rutinaByEntreno(Recuperacion codRecuperacion) {
+        EntityManager em = getEntityManager();
+        List<RutinaRecuperacion> lista = null;
+        try {
+
+            Query qu = em.createNamedQuery("RutinaRecuperacion.findCodRec", RutinaRecuperacion.class);
+            qu.setParameter("codRecuperacion", codRecuperacion);
+            lista = qu.getResultList();
+        } finally {
+            em.close();
+        }
+        return lista;
+    }
     
 }

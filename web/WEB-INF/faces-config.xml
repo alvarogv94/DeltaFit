@@ -164,4 +164,9 @@
         <managed-bean-class>controlador.admin.AddNuevoEjercicio</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>realizaPago</managed-bean-name>
+        <managed-bean-class>controlador.RealizaPago</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

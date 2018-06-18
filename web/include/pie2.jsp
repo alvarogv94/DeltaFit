@@ -12,4 +12,13 @@
     <div id="logo_pie">
         <img src="../img/logo.png" />
     </div>
+    <div id="derecha">
+        <div id="arriba">
+            <p>informacion@informacion.com</p>
+        </div>
+        <div id="abajo">
+            <span><h:form><h:commandLink action="politica_privacidad">Políticas de Privacidad</h:commandLink></h:form></span>            
+            <span><h:form><h:commandLink action="politica_cookies">Políticas de Cookies</h:commandLink></h:form></span>
+        </div>
+    </div>
 </div>

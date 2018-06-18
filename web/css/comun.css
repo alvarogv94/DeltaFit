@@ -4,27 +4,32 @@ ESTA ES LA HOJA DE ESTILO DE USO COMUN PARA TODAS LAS PAGINAS DEL SITIO WEB, TOD
 
 /*Estilos generales*/
 
-#menu a {
+li form a {
     color: white;
     text-decoration: none;
 }
 
 #contenedor {
-	position: relative;
-	width: 100%;	
-	font-family: 'UbuntuBold';
+    position: relative;
+    width: 100%;	
+    font-family: 'UbuntuBold';
 }
 
 
 /*Configuración del menu*/
+
+.cab_movil {
+    display: none;
+}
+
 #menu {
-	position: relative;
+    position: relative;
 }
 
 #menu > nav > ul {
 
-	width: 100%;
-	background: #06f;
+    width: 100%;
+    background: #06f;
     list-style: none;
     height: 45px;
     text-align: center;
@@ -32,47 +37,64 @@ ESTA ES LA HOJA DE ESTILO DE USO COMUN PARA TODAS LAS PAGINAS DEL SITIO WEB, TOD
 
 #menu > nav > ul > li {
 
-	width: 20%;
-	float: left;
-	line-height: 2.5em;
-	color: white;
+    width: 20%;
+    float: left;
+    line-height: 2.5em;
+    color: white;
 }
 
 /*Logo central*/
-li img {
-	/*width: 80%;*/
-	width: 12em;
-	margin: 5% 0 0 0;
+nav ul li img {
+    /*width: 80%;*/
+    width: 12em;
+    margin: 5% 0 0 0;
 }
 
 #letras_titulo_izquierda {
-	position: relative;
-	top: 10px;
-	right: 50%;
-	float: left;
+    position: relative;
+    top: 10px;
+    right: 50%;
+    float: left;
 }
 
 
 #letras_titulo_derecha {
-	position: relative;
-	top: 10px;
-	left: 1%;
+    position: relative;
+    top: 10px;
+    left: 1%;
+}
+
+.tag_line {
+    margin: 2%;
+    text-align: center;
+    color: #06f;
+    font-family: "UbuntuLight";
+    position: relative;
+    right: 31%;
+    top: 10em;
 }
 
 
+#tl_izquierda {
+    float: left;
+}
+
+#tl_derecha {
+    float: right;
+}
 .titulo_web {
-	font-size: 5em;
+    font-size: 5em;
 }
 
 
 #contenedorLogin {
-	position: absolute;
-	right: 10px;
-	top: 7px;
+    position: absolute;
+    right: 10px;
+    top: 7px;
 }
 
 #contenedorLogin img {
-	width: 2em;
+    width: 2em;
 }
 /*Fin de coniguración del menú*/
 
@@ -81,22 +103,62 @@ li img {
 /**************** Inicio estilo pie pagina *********************************/
 
 #footer {
-	background: #636363;
-	width: 100%;
-	height: 220px;
-	clear: both;
+    background: #636363 url("../img/pie.png");
+
+    width: 100%;
+    height: 220px;
+    clear: both;
 }
 
 #footer #logo_pie {
-
-	width: 25%;
-	height: 200px;
+    width: 25%;
+    height: 200px;
+    float: left;
 }
 
 #footer img{
-	width: 12em;
-	margin: 2%;
+    width: 12em;
+    margin: 2%;
+}
+
+#footer #derecha {
+    width: 70%;
+    height: 200px;
+    float: right;
 }
 
 
+#arriba p {
+    text-align: center;
+    color: white;
+    margin: 7% 10% 6% 0;
+    font-size: 1.5em;
+}
+
+
+#arriba {
+    height: 65px;
+    border-bottom: 1px solid #ededed;
+}
+
+#abajo {
+    margin: 3% 0;
+}
+
+#abajo span:first-child {
+    float: left;
+    margin: 0 40% 0 0;
+}
+
+#abajo span:last-child {
+    text-align: left;
+}
+
+#abajo a, #arriba p {
+    color: white;
+    font-size: 1.5em;
+    font-family: "UbuntuRegular";
+    margin: 0;
+    padding-top: 20px;
+}
 /**************** Fin estilo pie pagina ***********************/

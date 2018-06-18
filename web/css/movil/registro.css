@@ -1,0 +1,162 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17-jun-2018, 23:00:19
+    Author     : Alvaro
+*/
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17-jun-2018, 22:06:40
+    Author     : Alvaro
+*/
+
+@media only screen and (max-device-width : 800px) {
+
+    .titulo_web {
+        display: none;
+    }
+
+    #menu {
+        display: none;
+    }
+
+
+    .cab_movil{
+        display:block;
+        position: fixed;
+        top: 0;
+    }
+
+    header#cab_nav{
+        display:none;
+    }
+
+    header[class="cab_movil"] {
+        width:100%;
+        z-index: 2;
+    }
+
+    header nav {
+        width:90%;
+        max-width:1000px;
+        margin:20px auto;
+        background:#5aa2f3;
+    }
+
+    .menu_bar {
+        display:none;
+    }
+
+    header nav ul {
+        overflow:hidden;
+        list-style:none;
+    }
+
+    header nav ul li {
+        float:left;
+    }
+
+    header nav ul li form a {
+        color:#fff;
+        padding:20px;
+        display:block;
+        text-decoration:none;
+    }
+
+    .foot_li{
+        position: absolute;
+        bottom: 81px;
+        left: 4px;
+        color:white;
+    }
+    header nav ul li span {
+        margin-right:10px;
+    }
+
+    header nav ul li form a:hover {
+        background:lightgrey;
+    }
+
+    li[class=foot_li] a:hover {
+        background: transparent;
+
+    }
+    header nav {
+        width:45%;
+        height:100%;
+        left:-100%;
+        margin:0;
+        position: fixed;
+        z-index:9;
+    }
+
+    header nav ul li {
+        display:block;
+        float:none;
+        border-bottom:1px solid rgba(255,255,255, .3);
+    }
+
+    .menu_bar {
+        display:block;
+        width:100%;
+        background:#ccc;
+    }
+
+    .menu_bar .bt-menu {
+        display:block;
+        padding:27px;
+        background:#5aa2f3 url("../../img/menu.png") center left no-repeat;
+        background-position-x:19px;
+        background-size: 36px;
+        color:#fff;
+        text-decoration:none;
+        font-weight: bold;
+        font-size:25px;
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        box-sizing:border-box;
+        height:74px
+    }
+
+    .usu{
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        margin: 1%;
+        top: 0;
+        right: 0;
+    }
+    .menu_bar span {
+        float:right;
+        font-size:40px;
+    }
+
+    #footer {
+        display: none;
+    }
+
+    #contenido {
+        margin: 19% 0 10% 4%;
+        position: relative;
+        width: 80%;
+        z-index: 0;
+    }
+    #titulo {
+        display: block;
+        text-align: left;
+        margin: 12% 0 -6% 5%;
+        font-size: 2em;
+        color: #06f;
+        border-bottom: 3px solid #06f;
+        padding-right: 51%;
+        width: 23%;
+    }
+}
